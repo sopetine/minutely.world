@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Log in — Minutely</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://minutely.app/login.html">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/sections.css">
+  <link rel="stylesheet" href="assets/css/nav.css">
+  <style>
+    body { padding: 0; }
+    .auth-page {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 32px 16px;
+      background: var(--background);
+    }
+    .auth-card {
+      width: 100%;
+      max-width: 400px;
+      padding: 32px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+    }
+    .auth-card__back {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: var(--fs-xs);
+      color: var(--muted-foreground);
+      margin-bottom: 16px;
+    }
+    .auth-card__back:hover { color: var(--foreground); }
+    .auth-card__back svg { width: 12px; height: 12px; }
+    .tier-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      background: var(--brand-soft);
+      color: var(--brand);
+      border-radius: 999px;
+      font-size: var(--fs-xs);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+    .tier-pill::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--brand);
+    }
+    .auth-card__title {
+      font-size: var(--fs-2xl);
+      font-weight: 600;
+      letter-spacing: -0.022em;
+      margin-bottom: 4px;
+    }
+    .auth-card__sub {
+      font-size: var(--fs-sm);
+      color: var(--muted-foreground);
+      margin-bottom: 20px;
+    }
+    .auth-form { display: flex; flex-direction: column; gap: 12px; }
+    .auth-form__row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: var(--fs-xs);
+      color: var(--muted-foreground);
+      margin: 4px 0;
+    }
+    .auth-form__row a { color: var(--brand); }
+    .auth-form__check { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+    .auth-form__divider {
+      height: 1px;
+      background: var(--border);
+      margin: 12px 0;
+      position: relative;
+    }
+    .auth-form__divider::before {
+      content: 'or';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--card);
+      padding: 0 8px;
+      font-size: 10px;
+      color: var(--muted-foreground);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .auth-form__demo {
+      text-align: center;
+      font-size: var(--fs-xs);
+      color: var(--muted-foreground);
+      margin-top: 12px;
+    }
+    .auth-brand {
+      display: flex; align-items: center; gap: 8px;
+      justify-content: center;
+      margin-bottom: 24px;
+      font-weight: 600;
+      font-size: var(--fs-md);
+      letter-spacing: -0.01em;
+    }
+    .auth-brand-mark {
+      width: 24px; height: 24px; border-radius: 6px;
+      background: var(--brand);
+      color: var(--brand-foreground);
+      display: grid; place-items: center;
+      font-size: 12px; font-weight: 700;
+    }
+  </style>
+</head>
+<body data-page="login">
+  <a class="sr-only" href="#main">Skip to main content</a>
+
+  <main id="main" class="auth-page">
+    <div>
+      <div class="auth-brand">
+        <a href="index.html" style="display:flex;align-items:center;gap:8px;color:var(--foreground)">
+          <span class="auth-brand-mark">M</span>
+          <span>Minutely</span>
+        </a>
+      </div>
+      <div class="auth-card">
+        <a class="auth-card__back" href="index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Back home
+        </a>
+
+        <span class="tier-pill" id="tier-pill">Pro tier</span>
+
+        <h1 class="auth-card__title">Welcome back</h1>
+        <p class="auth-card__sub">Sign in to complete your purchase — or pick up where you left off.</p>
+
+        <form class="auth-form" id="login-form" novalidate>
+          <div class="field">
+            <label class="field__label" for="email">Email</label>
+            <input class="input" type="email" id="email" name="email" autocomplete="email" placeholder="you@work.com" required>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="password">Password</label>
+            <input class="input" type="password" id="password" name="password" autocomplete="current-password" placeholder="••••••••" required>
+          </div>
+
+          <div class="auth-form__row">
+            <label class="auth-form__check">
+              <input type="checkbox" id="remember" checked>
+              <span>Keep me signed in</span>
+            </label>
+            <a href="#">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn btn--brand btn--block btn--lg" style="margin-top:8px">
+            Continue to payment
+            <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+
+          <div class="auth-form__demo">
+            <strong>Demo build</strong> — any email and password work. No real auth.
+          </div>
+        </form>
+
+        <div class="auth-form__divider"></div>
+
+        <a class="btn btn--outline btn--block" href="payment.html?tier=pro&amp;amount=99">
+          Continue as guest to checkout
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <div class="glass-nav-root">
+    <nav class="glass-nav" data-config='{"cornerRadius":9999,"blurAmount":0.5,"refraction":0.4,"chromAberration":0.02,"edgeHighlight":0.12,"specular":0.1,"fresnel":0.85,"distortion":0,"opacity":0.85,"saturation":0.05,"tintStrength":0.06,"brightness":0.06,"shadowOpacity":0.2,"shadowSpread":18,"shadowOffsetY":6,"floating":false,"button":false,"bevelMode":0}'>
+    <a class="glass-nav__brand" href="index.html"><span class="glass-nav__brand-mark"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="4" x2="12" y2="6"/><line x1="12" y1="12" x2="18" y2="8"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg></span></a>
+    <span class="glass-nav__divider"></span>
+    <a class="glass-nav__link" href="index.html"><svg class="glass-nav__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span class="glass-nav__link-label">Home</span></a>
+    <a class="glass-nav__link" href="index.html#features"><svg class="glass-nav__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span class="glass-nav__link-label">Features</span></a>
+    <a class="glass-nav__link" href="index.html#pricing"><svg class="glass-nav__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg><span class="glass-nav__link-label">Pricing</span></a>
+    <a class="glass-nav__link" href="changelog.html"><svg class="glass-nav__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="glass-nav__link-label">Changelog</span></a>
+    <a class="glass-nav__cta" href="login.html" aria-current="page"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span class="glass-nav__cta-label">Buy</span></a>
+  </nav>
+  </div>
+
+  <script type="module">
+    try {
+      const m = await import('https://cdn.jsdelivr.net/npm/@ybouane/liquidglass/dist/index.js');
+      window.LiquidGlass = m.LiquidGlass;
+      window.dispatchEvent(new Event('liquidglass-ready'));
+    } catch (e) {}
+  </script>
+  <script>
+    window.addEventListener('liquidglass-ready', () => {
+      const s = document.createElement('script');
+      s.src = 'assets/js/liquidglass-init.js';
+      document.body.appendChild(s);
+    });
+  </script>
+  <script>
+    (() => {
+      const params = new URLSearchParams(location.search);
+      const t = (params.get('tier') || 'pro').toLowerCase();
+      const names = { personal: 'Personal', pro: 'Pro', team: 'Team' };
+      const el = document.getElementById('tier-pill');
+      if (el) el.textContent = (names[t] || 'Pro') + ' tier';
+      const form = document.getElementById('login-form');
+      if (!form) return;
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value.trim();
+        if (!email || !email.includes('@')) return;
+        sessionStorage.setItem('minutely_email', email);
+        location.href = 'payment.html?tier=' + encodeURIComponent(t);
+      });
+    })();
+  </script>
+</body>
+</html>

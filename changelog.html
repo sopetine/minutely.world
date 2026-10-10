@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Changelog — Minutely</title>
+  <meta name="description" content="Every Minutely release, in detail. Documentation, quickstart, and prompt library.">
+  <link rel="canonical" href="https://minutely.app/changelog.html">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/sections.css">
+  <link rel="stylesheet" href="assets/css/nav.css">
+  <style>
+    .legal-page { padding: 40px 0 80px; }
+    .legal-hero { padding: 120px 0 24px; }
+    .legal-back { display: inline-flex; align-items: center; gap: 4px; font-size: var(--fs-xs); color: var(--muted-foreground); margin-bottom: 24px; }
+    .legal-back:hover { color: var(--foreground); }
+    .legal-back svg { width: 12px; height: 12px; }
+    .legal-title { font-family: var(--font-display); font-style: italic; font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 12px; max-width: 18ch; }
+    .legal-title em { font-style: normal; color: var(--brand); }
+    .legal-lede { color: var(--muted-foreground); font-size: 1.125rem; line-height: 1.5; max-width: 60ch; }
+    .legal-body { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+    .release { padding: 24px 0; border-top: 0.5px solid var(--border); }
+    .release:first-child { border-top: none; }
+    .release-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 12px; margin-bottom: 8px; }
+    .release-head h2 { font-size: var(--fs-lg); font-weight: 600; letter-spacing: -0.012em; }
+    .release-tag { font-family: var(--font-mono); font-size: 11px; padding: 2px 8px; background: var(--accent); border: 0.5px solid var(--border); border-radius: 4px; color: var(--muted-foreground); font-weight: 500; }
+    .release-tag--latest { background: var(--brand); color: var(--brand-foreground); border-color: transparent; }
+    .release-date { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--muted-foreground); margin-left: auto; }
+    .release p { color: var(--muted-foreground); margin: 8px 0; line-height: 1.6; }
+    .release ul { padding-left: 20px; color: var(--muted-foreground); margin: 8px 0; }
+    .release li { margin-bottom: 4px; }
+    .release li::marker { color: var(--brand); }
+    .changelog-divider { height: 1px; background: var(--border); border: none; margin: 24px 0; }
+  </style>
+</head>
+<body data-page="changelog">
+  <a class="sr-only" href="#main">Skip to main content</a>
+
+  <header class="topbar">
+    <div class="topbar__title">
+      <a href="index.html" style="display:flex;align-items:center;gap:8px">
+        <svg class="topbar__title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Changelog
+      </a>
+    </div>
+    <div class="topbar__actions">
+      <a class="btn btn--ghost btn--sm" href="login.html">Log in</a>
+      <a class="btn btn--brand btn--sm" href="login.html?tier=pro&amp;amount=99">Buy for Mac</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="legal-hero">
+      <div class="container">
+        <a class="legal-back" href="index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Back home
+        </a>
+        <span class="eyebrow">Changelog &amp; Resources</span>
+        <h1 class="legal-title">Every release. <em>In detail.</em></h1>
+        <p class="legal-lede">New versions of Minutely ship every two weeks. Documentation, the quickstart guide, and the prompt library all live here too.</p>
+      </div>
+    </section>
+
+    <section class="legal-page">
+      <div class="legal-body">
+        <article class="release">
+          <div class="release-head">
+            <span class="release-tag release-tag--latest">v2.4.1 · Latest</span>
+            <h2>Local LLM support</h2>
+            <span class="release-date">Oct 10, 2026</span>
+          </div>
+          <p>The most-requested feature since launch. Minutely now ships a first-class integration with Ollama and LM Studio. Pick a local model, set a base URL, and your summaries never leave the machine — even when the Wi-Fi cuts out.</p>
+          <ul>
+            <li>Native Ollama and LM Studio discovery</li>
+            <li>Llama 3.1 8B, Mistral 7B, Phi-3 mini pre-tuned for meeting summaries</li>
+            <li>Zero-latency mode for offline meetings</li>
+            <li>Automatic fallback to your cloud key if the local model is unavailable</li>
+          </ul>
+        </article>
+
+        <article class="release">
+          <div class="release-head">
+            <span class="release-tag">v2.3.0</span>
+            <h2>Calendar-aware auto-arm</h2>
+            <span class="release-date">Sep 26, 2026</span>
+          </div>
+          <p>Minutely now reads your macOS Calendar (with permission) and arms itself the moment a Teams or Zoom meeting starts. No clicks, no popups.</p>
+          <ul>
+            <li>EventKit integration for calendar detection</li>
+            <li>"Auto-arm for the next 2:00 PM" badge</li>
+            <li>Per-event "skip" toggle in the calendar</li>
+          </ul>
+        </article>
+
+        <article class="release">
+          <div class="release-head">
+            <span class="release-tag">v2.2.0</span>
+            <h2>Ask across every meeting (RAG)</h2>
+            <span class="release-date">Sep 12, 2026</span>
+          </div>
+          <p>Type a question in plain English. Minutely returns the answer with the exact moment and speaker pulled from your entire archive.</p>
+          <ul>
+            <li>Vector search across all your transcripts</li>
+            <li>Citations: clickable timestamps that jump to the recording</li>
+            <li>Speaker-aware: knows "the pricing call" vs "the launch call"</li>
+          </ul>
+        </article>
+
+        <article class="release">
+          <div class="release-head">
+            <span class="release-tag">v2.1.0</span>
+            <h2>Speaker diarization</h2>
+            <span class="release-date">Aug 28, 2026</span>
+          </div>
+          <p>Every word in the transcript is now attributed to a named speaker. pyannote runs on-device, no audio ever uploaded.</p>
+          <ul>
+            <li>Up to 8 distinct speakers per meeting</li>
+            <li>Manual rename and global speaker registry</li>
+            <li>"Alice" persists across every future meeting with Alice</li>
+          </ul>
+        </article>
+
+        <article class="release">
+          <div class="release-head">
+            <span class="release-tag">v2.0.0</span>
+            <h2>The macOS-native rewrite</h2>
+            <span class="release-date">Aug 14, 2026</span>
+          </div>
+          <p>Native SwiftUI app, Universal binary, on-device Whisper (CoreML) running on the Neural Engine. Cold-start to first transcript dropped from 12s to 1.4s.</p>
+          <ul>
+            <li>SwiftUI + AppKit, 22 MB installed</li>
+            <li>Whisper large-v3 via CoreML</li>
+            <li>Apple Silicon only (Intel beta on request)</li>
+          </ul>
+        </article>
+
+        <hr class="changelog-divider">
+
+        <article id="docs" class="release">
+          <div class="release-head"><h2>Documentation</h2></div>
+          <p>Full reference for the Minutely API, prompt schema, and webhook format lives in our <a href="mailto:docs@minutely.app?subject=Documentation%20request">docs portal</a> (request access). Common recipes:</p>
+          <ul>
+            <li><strong>Standup summary</strong> — default preset; 3 chapters, blockers, action items</li>
+            <li><strong>Customer interview synthesis</strong> — pulls quotes, clusters by theme, flags pricing signals</li>
+            <li><strong>Investor update draft</strong> — converts your meetings into a Friday newsletter draft</li>
+          </ul>
+        </article>
+
+        <article id="quickstart" class="release">
+          <div class="release-head"><h2>Quickstart</h2></div>
+          <ol>
+            <li>Download Minutely and drag it to Applications.</li>
+            <li>Grant Microphone and Screen Recording on first launch.</li>
+            <li>Optionally add your OpenAI / Anthropic / local-LLM key in Settings.</li>
+            <li>Open Teams or Zoom. Minutely arms itself. The recording lands in <code>~/Movies/OBS/</code> as soon as you hang up.</li>
+          </ol>
+          <p>That's it. No accounts to create, no servers to deploy.</p>
+        </article>
+
+        <article id="prompts" class="release">
+          <div class="release-head"><h2>Prompt library</h2></div>
+          <p>20+ battle-tested prompt presets ship with Minutely. <a href="mailto:hello@minutely.app?subject=Prompt%20library">Request the full library</a> — we'll email you the .md files.</p>
+          <ul>
+            <li><code>standup.md</code> — 5-minute standup, blockers-only</li>
+            <li><code>sales-call.md</code> — pain points, budget signals, next steps</li>
+            <li><code>1on1.md</code> — feedback, growth, follow-ups</li>
+            <li><code>customer-interview.md</code> — themes, quotes, jobs-to-be-done</li>
+            <li><code>investor-update.md</code> — Friday newsletter draft from the week's calls</li>
+          </ul>
+        </article>
+
+        <article id="about" class="release">
+          <div class="release-head"><h2>About Minutely</h2></div>
+          <p>Minutely is built by a four-person team in San Francisco. We're funded by customers, not VCs — every dollar you spend keeps the product local-only and subscription-free.</p>
+          <p>Why local-only? Because the most important conversations at work are the ones you don't want leaving the room.</p>
+        </article>
+
+        <article id="blog" class="release">
+          <div class="release-head"><h2>From the blog</h2></div>
+          <p>Long-form writing on meeting culture, AI privacy, and small-team operations. Subscribe via the footer on the <a href="index.html">home page</a> or read the latest below.</p>
+          <ul>
+            <li><a href="mailto:hello@minutely.app?subject=Blog%20request">Why we don't ship a "free" tier</a></li>
+            <li><a href="mailto:hello@minutely.app?subject=Blog%20request">The hidden cost of cloud meeting bots</a></li>
+            <li><a href="mailto:hello@minutely.app?subject=Blog%20request">Local-first isn't a feature, it's a contract</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <div class="glass-nav-root">
+    <nav class="glass-nav" data-config='{"cornerRadius":9999,"blurAmount":0.5,"refraction":0.4,"chromAberration":0.02,"edgeHighlight":0.12,"specular":0.1,"fresnel":0.85,"distortion":0,"opacity":0.85,"saturation":0.05,"tintStrength":0.06,"brightness":0.06,"shadowOpacity":0.2,"shadowSpread":18,"shadowOffsetY":6,"floating":false,"button":false,"bevelMode":0}'>
+      <a class="glass-nav__brand" href="index.html"><span class="glass-nav__brand-mark"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="4" x2="12" y2="6"/><line x1="12" y1="12" x2="18" y2="8"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg></span></a>
+      <span class="glass-nav__divider"></span>
+      <a class="glass-nav__link" href="index.html"><svg class="glass-nav__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span class="glass-nav__link-label">Home</span></a>
+      <a class="glass-nav__link" href="index.html#features"><svg class="glass-nav__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span class="glass-nav__link-label">Features</span></a>
+      <a class="glass-nav__link" href="index.html#pricing"><svg class="glass-nav__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg><span class="glass-nav__link-label">Pricing</span></a>
+      <a class="glass-nav__link" href="changelog.html" aria-current="page"><svg class="glass-nav__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="glass-nav__link-label">Changelog</span></a>
+      <a class="glass-nav__cta" href="payment.html"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span class="glass-nav__cta-label">Buy</span></a>
+    </nav>
+  </div>
+
+  <script type="module">
+    try { const m = await import('https://cdn.jsdelivr.net/npm/@ybouane/liquidglass/dist/index.js'); window.LiquidGlass = m.LiquidGlass; window.dispatchEvent(new Event('liquidglass-ready')); } catch (e) {}
+  </script>
+  <script>
+    window.addEventListener('liquidglass-ready', () => {
+      const s = document.createElement('script');
+      s.src = 'assets/js/liquidglass-init.js';
+      document.body.appendChild(s);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Checkout — Minutely</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://minutely.app/payment.html">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/sections.css">
+  <link rel="stylesheet" href="assets/css/nav.css">
+  <style>
+    body { padding: 0; }
+    .auth-page {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 32px 16px;
+      background: var(--background);
+    }
+    .checkout-card {
+      width: 100%;
+      max-width: 480px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+    .summary {
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
+      background: var(--accent);
+    }
+    .summary-label { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted-foreground); font-weight: 500; margin-bottom: 6px; }
+    .summary-row { display: flex; justify-content: space-between; align-items: center; }
+    .summary-tier { font-size: var(--fs-md); font-weight: 600; }
+    .summary-amount { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+    .summary-period { font-size: var(--fs-sm); color: var(--muted-foreground); margin-top: 2px; text-align: right; }
+    .form-area { padding: 24px; }
+    .form-hint { font-size: var(--fs-xs); color: var(--muted-foreground); margin-top: 12px; line-height: 1.5; }
+    .form-hint code { font-family: var(--font-mono); font-size: 11px; padding: 2px 5px; background: var(--accent); border-radius: 4px; }
+    .auth-card__back { display: inline-flex; align-items: center; gap: 4px; font-size: var(--fs-xs); color: var(--muted-foreground); margin-bottom: 16px; }
+    .auth-card__back:hover { color: var(--foreground); }
+    .auth-card__back svg { width: 12px; height: 12px; }
+    .auth-brand { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; font-weight: 600; font-size: var(--fs-md); letter-spacing: -0.01em; }
+    .auth-brand-mark { width: 24px; height: 24px; border-radius: 6px; background: var(--brand); color: var(--brand-foreground); display: grid; place-items: center; font-size: 12px; font-weight: 700; }
+    .input--mono { font-family: var(--font-mono); letter-spacing: 0.02em; }
+
+    .payment-success, .payment-declined { padding: 48px 24px; text-align: center; }
+    .payment-success__icon { width: 48px; height: 48px; border-radius: 50%; background: var(--brand); color: var(--brand-foreground); display: grid; place-items: center; margin: 0 auto 16px; }
+    .payment-success__title { font-size: var(--fs-2xl); font-weight: 600; letter-spacing: -0.022em; margin-bottom: 8px; }
+    .payment-success__body { color: var(--muted-foreground); font-size: var(--fs-sm); margin-bottom: 20px; }
+    .payment-declined__icon { width: 48px; height: 48px; border-radius: 50%; background: var(--destructive); color: var(--destructive-foreground); display: grid; place-items: center; margin: 0 auto 16px; }
+    .payment-declined__title { font-size: var(--fs-2xl); font-weight: 600; letter-spacing: -0.022em; margin-bottom: 8px; }
+  </style>
+</head>
+<body data-page="payment">
+  <a class="sr-only" href="#main">Skip to main content</a>
+
+  <main id="main" class="auth-page">
+    <div>
+      <div class="auth-brand">
+        <a href="index.html" style="display:flex;align-items:center;gap:8px;color:var(--foreground)">
+          <span class="auth-brand-mark">M</span>
+          <span>Minutely</span>
+        </a>
+      </div>
+
+      <div class="checkout-card">
+        <div id="payment-form-area">
+          <div class="summary">
+            <div class="summary-row">
+              <div>
+                <div class="summary-label">Plan</div>
+                <div class="summary-tier" id="summary-tier">Pro</div>
+              </div>
+              <div>
+                <div class="summary-amount" id="summary-amount">$99</div>
+                <div class="summary-period">one-time</div>
+              </div>
+            </div>
+          </div>
+
+          <form class="form-area" id="payment-form" novalidate>
+            <div class="field" style="margin-bottom:10px">
+              <label class="field__label" for="card-number">Card number</label>
+              <input class="input input--mono" type="text" id="card-number" name="cardNumber" inputmode="numeric" autocomplete="cc-number" placeholder="1234 1234 1234 1234" maxlength="23" required>
+            </div>
+            <div class="field" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+              <div>
+                <label class="field__label" for="card-expiry">Expiry</label>
+                <input class="input input--mono" type="text" id="card-expiry" name="cardExpiry" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/YY" maxlength="5" required>
+              </div>
+              <div>
+                <label class="field__label" for="card-cvc">CVC</label>
+                <input class="input input--mono" type="text" id="card-cvc" name="cardCvc" inputmode="numeric" autocomplete="cc-csc" placeholder="CVC" maxlength="4" required>
+              </div>
+            </div>
+            <div class="field" style="margin-bottom:14px">
+              <label class="field__label" for="card-name">Name on card</label>
+              <input class="input" type="text" id="card-name" name="cardName" autocomplete="cc-name" placeholder="Full name" required>
+            </div>
+
+            <button type="submit" class="btn btn--brand btn--block btn--lg" id="pay-btn">
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              Pay <span id="pay-btn-amount">$99</span>
+            </button>
+
+            <p class="form-hint">
+              <strong>Demo card:</strong> use <code>4242 4242 4242 4242</code> for success, or <code>4000 0000 0000 0002</code> for declined. No real charge is ever made.
+            </p>
+          </form>
+        </div>
+
+        <div id="payment-success" class="payment-success" hidden>
+          <div class="payment-success__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h2 class="payment-success__title">You're all set.</h2>
+          <p class="payment-success__body">Welcome to Minutely — check your email for the download link and license key.</p>
+          <a class="btn btn--brand btn--block" href="index.html">Back to home</a>
+        </div>
+
+        <div id="payment-declined" class="payment-declined" hidden>
+          <div class="payment-declined__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </div>
+          <h2 class="payment-declined__title">Your card was declined.</h2>
+          <p class="payment-success__body">Please try a different payment method.</p>
+          <button type="button" id="retry-btn" class="btn btn--outline btn--block">Try again</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="glass-nav-root">
+    <nav class="glass-nav" data-config='{"cornerRadius":9999,"blurAmount":0.5,"refraction":0.4,"chromAberration":0.02,"edgeHighlight":0.12,"specular":0.1,"fresnel":0.85,"distortion":0,"opacity":0.85,"saturation":0.05,"tintStrength":0.06,"brightness":0.06,"shadowOpacity":0.2,"shadowSpread":18,"shadowOffsetY":6,"floating":false,"button":false,"bevelMode":0}'>
+    <a class="glass-nav__brand" href="index.html"><span class="glass-nav__brand-mark"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="4" x2="12" y2="6"/><line x1="12" y1="12" x2="18" y2="8"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg></span></a>
+    <span class="glass-nav__divider"></span>
+    <a class="glass-nav__link" href="index.html"><svg class="glass-nav__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span class="glass-nav__link-label">Home</span></a>
+    <a class="glass-nav__link" href="index.html#features"><svg class="glass-nav__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span class="glass-nav__link-label">Features</span></a>
+    <a class="glass-nav__link" href="index.html#pricing"><svg class="glass-nav__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg><span class="glass-nav__link-label">Pricing</span></a>
+    <a class="glass-nav__link" href="changelog.html"><svg class="glass-nav__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="glass-nav__link-label">Changelog</span></a>
+    <a class="glass-nav__cta" href="payment.html" aria-current="page"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span class="glass-nav__cta-label">Buy</span></a>
+  </nav>
+  </div>
+
+  <script type="module">
+    try {
+      const m = await import('https://cdn.jsdelivr.net/npm/@ybouane/liquidglass/dist/index.js');
+      window.LiquidGlass = m.LiquidGlass;
+      window.dispatchEvent(new Event('liquidglass-ready'));
+    } catch (e) {}
+  </script>
+  <script>
+    window.addEventListener('liquidglass-ready', () => {
+      const s = document.createElement('script');
+      s.src = 'assets/js/liquidglass-init.js';
+      document.body.appendChild(s);
+    });
+  </script>
+  <script>
+    (() => {
+      const params = new URLSearchParams(location.search);
+      const t = (params.get('tier') || 'pro').toLowerCase();
+      const a = parseInt(params.get('amount'), 10);
+      const tiers = {
+        personal: { name: 'Personal', amount: 49 },
+        pro:      { name: 'Pro',      amount: 99 },
+        team:     { name: 'Team',     amount: 249 }
+      };
+      const tier = tiers[t] || tiers.pro;
+      const amt = Number.isFinite(a) ? a : tier.amount;
+      const $ = (id) => document.getElementById(id);
+      if ($('summary-tier')) $('summary-tier').textContent = tier.name;
+      if ($('summary-amount')) $('summary-amount').textContent = '$' + amt;
+      if ($('pay-btn-amount')) $('pay-btn-amount').textContent = '$' + amt;
+      document.title = `Pay $${amt} — Minutely (${tier.name})`;
+
+      const form = $('payment-form');
+      const formArea = $('payment-form-area');
+      const success = $('payment-success');
+      const declined = $('payment-declined');
+
+      const cardNum = $('card-number');
+      const cardExp = $('card-expiry');
+      const cardCvc = $('card-cvc');
+
+      cardNum?.addEventListener('input', (e) => {
+        const cur = e.target.selectionStart;
+        const v = e.target.value.replace(/\D/g, '').slice(0, 19).replace(/(\d{4})(?=\d)/g, '$1 ');
+        e.target.value = v;
+        if (document.activeElement === e.target) e.target.setSelectionRange(cur, cur);
+      });
+      cardExp?.addEventListener('input', (e) => {
+        const cur = e.target.selectionStart;
+        const d = e.target.value.replace(/\D/g, '').slice(0, 4);
+        e.target.value = d.length < 3 ? d : d.slice(0, 2) + '/' + d.slice(2);
+        if (document.activeElement === e.target) e.target.setSelectionRange(cur, cur);
+      });
+      cardCvc?.addEventListener('input', (e) => { e.target.value = e.target.value.replace(/\D/g, '').slice(0, 4); });
+
+      form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        btn.innerHTML = 'Processing…';
+        setTimeout(() => {
+          const num = (cardNum?.value || '').replace(/\s/g, '');
+          formArea.hidden = true;
+          if (num === '4000000000000002') { declined.hidden = false; }
+          else { sessionStorage.setItem('minutely_mock_purchase', JSON.stringify({ tier: tier.name, amount: amt, at: Date.now() })); success.hidden = false; }
+        }, 800);
+      });
+
+      $('retry-btn')?.addEventListener('click', () => {
+        declined.hidden = true;
+        formArea.hidden = false;
+        const btn = form.querySelector('button[type="submit"]');
+        btn.disabled = false;
+        btn.innerHTML = `<svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Pay $${amt}`;
+        cardNum?.focus();
+      });
+    })();
+  </script>
+</body>
+</html>
