@@ -301,6 +301,22 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 .top-nav-logo:hover { color: var(--color-ink); }
 
+/* Same italic-serif gradient accent as the hero's "remembered for you" —
+   static (no gradient-shift animation) since this sits in a sticky nav
+   visible on every scroll, not a one-time hero moment. Sized up ~15%
+   to correct for Instrument Serif's smaller optical size next to the
+   30px mark and the surrounding Inter nav links. */
+.top-nav-logo span {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.15em;
+  background: linear-gradient(120deg, var(--color-brand) 0%, #C084FC 50%, var(--color-brand) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
 .top-nav-logo .logo-mark {
   display: block;
   width: 30px;
