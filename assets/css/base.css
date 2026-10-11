@@ -1,105 +1,525 @@
-/* =============================================================
-   Minutely V2 — Base
-   Geist Sans · strict reset · Linear-style defaults
-   ============================================================= */
-
-/* Scroll-reveal animation: progressive enhancement only.
-   Default = visible (no opacity:0). If JS runs and sets .reveal-anim
-   BEFORE the IntersectionObserver adds .is-revealed, the element animates
-   in. If JS never runs, everything stays visible. */
-[data-reveal].reveal-anim { opacity: 0; transform: translateY(8px); transition: opacity 600ms var(--ease), transform 600ms var(--ease); }
-[data-reveal].is-revealed { opacity: 1 !important; transform: none !important; }
-[data-stagger] > *.reveal-anim { opacity: 0; transform: translateY(8px); transition: opacity 500ms var(--ease), transform 500ms var(--ease); }
-[data-stagger].is-revealed > * { opacity: 1 !important; transform: none !important; }
-
-*, *::before, *::after { box-sizing: border-box; }
-
-* { margin: 0; padding: 0; }
-
-html, body { height: 100%; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 html {
-  font-family: var(--font-sans);
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--foreground);
-  background: var(--background);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  font-feature-settings: "ss01", "cv01", "cv11";
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
 }
 
 body {
-  font-size: var(--fs-base);
-  color: var(--foreground);
-  background: var(--background);
-  min-height: 100%;
-  overflow-x: hidden;
-  font-variant-numeric: tabular-nums;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-4);
+  line-height: var(--leading-normal);
+  color: var(--color-ink);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv11";
 }
 
-img, picture, video, canvas, svg {
-  display: block;
-  max-width: 100%;
+/* Only hide the native cursor when the custom cursor is active AND the user
+   is on a fine pointer (mouse). Touch users keep the native cursor. */
+body.has-custom-cursor { cursor: none; }
+body.has-custom-cursor a,
+body.has-custom-cursor button,
+body.has-custom-cursor [role="button"],
+body.has-custom-cursor input,
+body.has-custom-cursor textarea,
+body.has-custom-cursor select,
+body.has-custom-cursor label,
+body.has-custom-cursor summary { cursor: none; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: var(--tracking-snug);
+  line-height: var(--leading-tight);
+  color: var(--color-ink);
 }
 
-input, button, textarea, select {
-  font: inherit;
-  color: inherit;
+h1, .h1 {
+  font-size: var(--font-size-9);
+  letter-spacing: var(--tracking-tight);
+  font-weight: 600;
+  line-height: 1.02;
 }
 
-button {
-  background: none;
-  border: none;
-  cursor: pointer;
+h2, .h2 {
+  font-size: var(--font-size-8);
+  letter-spacing: var(--tracking-tight);
+  font-weight: 600;
+  line-height: 1.05;
+}
+
+h3, .h3 {
+  font-size: var(--font-size-7);
+  font-weight: 600;
+  letter-spacing: var(--tracking-snug);
+  line-height: 1.1;
+}
+
+h4, .h4 {
+  font-size: var(--font-size-6);
+  font-weight: 600;
+  letter-spacing: var(--tracking-snug);
+}
+
+h5, .h5 { font-size: var(--font-size-5); font-weight: 600; }
+h6, .h6 { font-size: var(--font-size-4); font-weight: 600; }
+
+p {
+  margin: 0;
+  line-height: var(--leading-relaxed);
+  color: var(--color-ink-soft);
 }
 
 a {
   color: inherit;
   text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-smooth);
 }
 
-p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
+a:hover { color: var(--color-brand); }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: var(--tracking-tight);
-  line-height: var(--lh-tight);
-  color: var(--foreground);
+img, svg, video { display: block; max-width: 100%; height: auto; }
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
 }
 
-h1 { font-size: var(--fs-5xl); font-weight: 600; letter-spacing: -0.03em; }
-h2 { font-size: var(--fs-3xl); font-weight: 600; letter-spacing: -0.025em; }
-h3 { font-size: var(--fs-xl); font-weight: 600; letter-spacing: var(--tracking-normal); }
-h4 { font-size: var(--fs-md); font-weight: 600; }
+input, textarea, select { font: inherit; color: inherit; }
 
-p { color: var(--muted-foreground); line-height: 1.6; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
 
 ::selection {
-  background: var(--brand-soft);
-  color: var(--foreground);
+  background: var(--color-brand);
+  color: var(--color-brand-ink);
 }
 
-:focus { outline: none; }
-:focus-visible {
-  outline: 2px solid var(--ring);
-  outline-offset: 2px;
-  border-radius: var(--radius-sm);
+.noise {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.025;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
+
+@media (prefers-color-scheme: dark) {
+  .noise { opacity: 0.04; mix-blend-mode: screen; }
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-left: var(--space-5);
+  padding-right: var(--space-5);
+}
+
+.container-narrow { max-width: var(--container-narrow); }
+.container-wide { max-width: var(--container-wide); }
+
+/* Simple section header — just h2 + optional eyebrow. No wrapper, no
+   max-width, no center-text forced on every section. */
+.section-title {
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: 0 0 var(--space-3);
+  text-wrap: balance;
+}
+
+.section-lead {
+  font-size: 0.95rem;
+  color: var(--color-ink-muted);
+  line-height: 1.55;
+  margin: 0 0 var(--space-5);
+  max-width: 60ch;
+}
+
+/* Eyebrow pill — used sparingly */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-1);
+  font-weight: 500;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-translucent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  margin-bottom: var(--space-3);
+}
+
+.eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-brand);
+  box-shadow: 0 0 0 3px var(--color-brand-glow);
+  animation: pulse-dot 2.4s var(--ease-smooth) infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.9); }
+}
+
+.section {
+  padding-top: clamp(48px, 7vh, 80px);
+  padding-bottom: clamp(48px, 7vh, 80px);
+  position: relative;
+}
+
+.section-tight {
+  padding-top: clamp(32px, 5vh, 48px);
+  padding-bottom: clamp(32px, 5vh, 48px);
+  position: relative;
+}
+
+.text-muted { color: var(--color-ink-muted); }
+.text-soft { color: var(--color-ink-soft); }
+
+.tabular { font-variant-numeric: tabular-nums; }
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-ink) 0%, var(--color-brand) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-border) 30%, var(--color-border) 70%, transparent);
+  border: none;
+  margin: 0;
+}
+
+.page {
+  min-height: 100vh;
+  padding-bottom: var(--space-9);
+  position: relative;
+}
+
+/* ====== TOP HEADER (compact pill) ====== */
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 12px 0;
+  background: transparent;
+  transition: background var(--dur-base) var(--ease-smooth);
+}
+
+.top-nav-shell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  padding: 0 8px 0 18px;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  background: transparent;
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  transition: background var(--dur-base) var(--ease-smooth),
+              border-color var(--dur-base) var(--ease-smooth),
+              box-shadow var(--dur-base) var(--ease-smooth);
+}
+
+.top-nav.is-scrolled .top-nav-shell,
+.top-nav:hover .top-nav-shell {
+  background: var(--color-surface-translucent);
+  border-color: var(--color-border);
+  box-shadow: var(--shadow-md);
+}
+
+.top-nav-inner {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-5);
+  display: block;
+}
+
+/* Small nav logo: the same M-circle SVG (black shapes) used by the hero logo */
+.top-nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: var(--tracking-normal);
+  color: var(--color-ink);
+  text-decoration: none;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.top-nav-logo:hover { color: var(--color-ink); }
+
+.top-nav-logo .logo-mark {
+  display: block;
+  width: 30px;
+  height: auto;
+  aspect-ratio: 850 / 400;
+  color: var(--color-ink);
+  flex-shrink: 0;
+  transition: transform var(--dur-base) var(--ease-spring);
+}
+
+.top-nav-logo:hover .logo-mark { transform: rotate(-3deg); }
+
+.top-nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.top-nav-link {
+  position: relative;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--color-ink-soft);
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  transition: color var(--dur-fast) var(--ease-smooth),
+              background var(--dur-fast) var(--ease-smooth);
+}
+
+.top-nav-link:hover { color: var(--color-ink); background: var(--color-surface-raised); }
+.top-nav-link[aria-current="page"] { color: var(--color-ink); background: var(--color-surface-raised); }
+
+.top-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+@media (max-width: 720px) {
+  .top-nav-links { display: none; }
+  .top-nav-shell { padding-left: 14px; }
+}
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: var(--tracking-normal);
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  transition: background var(--dur-base) var(--ease-smooth),
+              color var(--dur-base) var(--ease-smooth),
+              transform var(--dur-base) var(--ease-smooth),
+              box-shadow var(--dur-base) var(--ease-smooth),
+              border-color var(--dur-base) var(--ease-smooth);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.btn:hover { color: inherit; }
+
+.btn .material-symbols-outlined {
+  font-size: 18px;
+  font-weight: 400;
+  transition: transform var(--dur-base) var(--ease-spring);
+}
+
+.btn:hover .material-symbols-outlined.icon-arrow {
+  transform: translateX(3px);
+}
+
+.btn-primary {
+  background: var(--color-ink);
+  color: var(--color-bg);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.18), transparent 50%);
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-smooth);
+  z-index: -1;
+}
+
+.btn-primary:hover {
+  color: var(--color-bg);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-primary:hover::before { opacity: 1; }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.btn-brand {
+  background: var(--color-brand);
+  color: var(--color-brand-ink);
+  box-shadow: var(--shadow-md), 0 0 0 1px rgba(91, 91, 240, 0.3);
+}
+
+.btn-brand:hover {
+  background: var(--color-brand-hover);
+  color: var(--color-brand-ink);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-glow-brand);
+}
+
+.btn-ghost { background: transparent; color: var(--color-ink); }
+.btn-ghost:hover { background: var(--color-surface-raised); color: var(--color-ink); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-ink);
+  border-color: var(--color-border-strong);
+}
+
+.btn-outline:hover {
+  background: var(--color-surface-raised);
+  color: var(--color-ink);
+  border-color: var(--color-ink-muted);
+}
+
+.btn-lg { padding: 14px 28px; font-size: 1rem; font-weight: 600; }
+.btn-xl { padding: 16px 32px; font-size: 1.02rem; font-weight: 600; }
+.btn-block { width: 100%; }
 
 .sr-only {
   position: absolute;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0, 0, 0, 0);
-  white-space: nowrap; border: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
-::selection { background: var(--brand-soft); color: var(--foreground); }
+[hidden] { display: none !important; }
 
-/* Tabular numbers for stat counters */
-.tabular { font-variant-numeric: tabular-nums; }
+/* ====== LENIS SMOOTH-SCROLL CONTAINER ======
+   Lenis transforms #lenis-content (not <html>), so body-level
+   position:fixed elements (cursor ring, scroll-progress) escape the
+   transform subtree and composite against the full page — which is
+   what makes the cursor's mix-blend-mode: difference invert reliably
+   over every component (nav glass, isolated cards, etc.). */
+#lenis-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+#lenis-content {
+  will-change: transform;
+}
+
+/* ====== CUSTOM CURSOR (single ring, no CA) ====== */
+/* Uses mix-blend-mode: difference so the ring is visible on both light and
+   dark backgrounds without any blend-mode override hacks. */
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid #0E0F12;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2147483647;
+  will-change: transform;
+  mix-blend-mode: difference;
+  transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
+  transition: width 200ms var(--ease-out-expo),
+              height 200ms var(--ease-out-expo),
+              opacity 200ms var(--ease-smooth);
+}
+
+.cursor-ring.is-hover {
+  width: 44px;
+  height: 44px;
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor-ring { display: none; }
+}
+
+/* ====== VIEW TRANSITIONS ====== */
+@view-transition { navigation: auto; }
+::view-transition-old(root),
+::view-transition-new(root) { animation-duration: 400ms; animation-timing-function: var(--ease-out-expo); }
+::view-transition-old(root) { animation-name: vt-fade-out; }
+::view-transition-new(root) { animation-name: vt-fade-in; }
+@keyframes vt-fade-out { to { opacity: 0; transform: translateY(-12px); } }
+@keyframes vt-fade-in  { from { opacity: 0; transform: translateY(12px); } }
+
+/* ====== SCROLL PROGRESS BAR ====== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-brand), #7B7DFF, var(--color-brand));
+  background-size: 200% 100%;
+  width: 0%;
+  z-index: 9998;
+  animation: shimmer 3s linear infinite;
+  transition: width 80ms linear;
+}
+
+@keyframes shimmer { to { background-position: 200% 0; } }

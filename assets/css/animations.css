@@ -1,0 +1,97 @@
+/* Reveal animations — CSS-keyframe approach so content is NEVER hidden by
+   a failed JS path. If JS works, the .reveal class is added and the animation
+   plays. If JS fails, the element stays in its computed (visible) state. */
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes reveal-fast {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.reveal {
+  animation: reveal 600ms var(--ease-out-expo) both;
+}
+
+.reveal-fast {
+  animation: reveal-fast 400ms var(--ease-out-expo) both;
+}
+
+/* Page entrance — runs via CSS, no JS required */
+.page-enter { animation: reveal 700ms var(--ease-out-expo) both; }
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hover lift utility */
+.hover-lift {
+  transition: transform var(--dur-base) var(--ease-out-expo),
+              box-shadow var(--dur-base) var(--ease-out-expo);
+}
+.hover-lift:hover { transform: translateY(-3px); }
+
+/* 3D tilt — transform set by JS via --rx / --ry */
+.tilt-3d {
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform var(--dur-base) var(--ease-out-expo);
+}
+
+/* Wave bars (decorative) */
+@keyframes wave-bar {
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
+}
+
+.wave-bar {
+  display: inline-block;
+  width: 3px;
+  margin: 0 1.5px;
+  background: currentColor;
+  border-radius: 999px;
+  transform-origin: center;
+  animation: wave-bar var(--wave-dur, 1.2s) var(--ease-smooth) infinite;
+  animation-delay: var(--wave-delay, 0ms);
+  opacity: 0.85;
+}
+
+/* Spotlight (mouse-following gradient on cards) */
+.spotlight { position: relative; overflow: hidden; isolation: isolate; }
+.spotlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(91, 91, 240, 0.08), transparent 45%);
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-smooth);
+  pointer-events: none;
+  z-index: 0;
+}
+.spotlight:hover::after { opacity: 1; }
+
+/* Pulsing badge dot */
+.badge-pulse { animation: badge-pulse 2s var(--ease-smooth) infinite; }
+@keyframes badge-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(31, 157, 85, 0.45); }
+  50% { box-shadow: 0 0 0 8px rgba(31, 157, 85, 0); }
+}
+
+/* Recording dot — used inside the hero circle */
+.rec-dot {
+  animation: rec-blink 1.6s var(--ease-smooth) infinite;
+}
+@keyframes rec-blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-fast, .page-enter,
+  .rec-dot, .badge-pulse, .wave-bar {
+    animation: none !important;
+  }
+}
