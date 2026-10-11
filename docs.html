@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Minutely documentation — install, features, privacy, supported platforms, shortcuts, troubleshooting.">
+  <meta name="theme-color" content="#5B5BF0">
+  <title>Docs — Minutely</title>
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+</head>
+<body data-page="docs" class="page-enter">
+
+  <div id="lenis-wrapper"><div id="lenis-content">
+
+  <a class="sr-only" href="#main">Skip to main content</a>
+
+  <header class="top-nav" role="banner">
+    <div class="top-nav-inner">
+      <div class="top-nav-shell">
+        <a class="top-nav-logo" href="index.html" aria-label="Minutely home">
+          <img src="assets/img/logo.svg" alt="" class="logo-mark">
+          <span>Minutely</span>
+        </a>
+        <nav class="top-nav-links" aria-label="Primary">
+          <a class="top-nav-link" href="index.html#features">Features</a>
+          <a class="top-nav-link" href="index.html#pricing">Pricing</a>
+          <a class="top-nav-link" href="index.html#faq">FAQ</a>
+          <a class="top-nav-link" href="docs.html" aria-current="page">Docs</a>
+        </nav>
+        <div class="top-nav-actions">
+          <a class="btn btn-ghost" href="login.html">Log in</a>
+          <a class="btn btn-primary magnetic" href="payment.html?tier=pro&amp;amount=99" data-magnetic>
+            <span class="magnetic-inner" style="display:inline-flex;align-items:center;gap:6px;">
+              Buy for Mac
+              <span class="material-symbols-outlined icon-arrow" style="font-size:16px;">arrow_forward</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="page docs-page">
+    <div class="container docs-inner">
+      <aside class="docs-sidebar" aria-label="On this page">
+        <a href="#getting-started">Getting started</a>
+        <a href="#features-doc">Features</a>
+        <a href="#privacy">Privacy &amp; data</a>
+        <a href="#platforms">Supported platforms</a>
+        <a href="#pricing-doc">Pricing &amp; licensing</a>
+        <a href="#shortcuts">Shortcuts &amp; menu bar</a>
+        <a href="#troubleshooting">Troubleshooting</a>
+        <a href="changelog.html">Full changelog</a>
+      </aside>
+
+      <article class="docs-content">
+        <h1>Docs</h1>
+        <p>Everything you need to install Minutely, understand how it works, and fix the rare thing that goes wrong.</p>
+
+        <section id="getting-started">
+          <h2>Getting started</h2>
+
+          <h3>Installation</h3>
+          <p>Buy Minutely (or sign in if you already have it), open the <code>.dmg</code>, and drag it to <code>Applications</code>. On first launch macOS will ask for Screen Recording and Accessibility — grant both. Without them Minutely can't see the meeting or hear the audio.</p>
+
+          <h3>Your first recording</h3>
+          <p>Join any Teams, Zoom, or Google Meet call. Minutely detects it within a couple of seconds — the menu bar icon will turn solid red while the call is being recorded.</p>
+        </section>
+
+        <section id="features-doc">
+          <h2>Features</h2>
+
+          <h3>Automatic recording</h3>
+          <p>Minutely watches the window titles of Teams, Zoom, and Google Meet and starts recording the moment you join. No bot joins the call — the detection happens entirely on your Mac.</p>
+
+          <h3>Transcription &amp; speakers</h3>
+          <p>Whisper runs locally to transcribe every recording. Language is detected on the first few seconds; speaker names are added when diarization is on so you know who said what.</p>
+
+          <h3>Summaries &amp; chapters</h3>
+          <p>A short summary and chapter markers are written the moment your call ends. Open any past recording and press Summarize again to regenerate it with a different preset or your own AI.</p>
+
+          <h3>Catalog, search &amp; ask (RAG)</h3>
+          <p>Every meeting is indexed automatically. Search by keyword, or ask in plain English — Minutely returns an answer plus the exact timestamp in the original recording.</p>
+
+          <h3>Prompt presets &amp; your own AI</h3>
+          <p>Pick a preset summary style ("Stand-up", "1:1", "Discovery call"…), or paste any OpenAI-compatible API key in Settings to use your own model.</p>
+
+          <h3>Local LLM support</h3>
+          <p>Switch to a local model (Llama, Mistral, Phi) for fully offline summaries. Recommended on Apple Silicon Macs — Intel works too, just slower.</p>
+        </section>
+
+        <section id="privacy">
+          <h2>Privacy &amp; data</h2>
+          <p>Recordings, transcripts, and summaries stay on your Mac by default and are never uploaded anywhere. The only thing that leaves your device is what you explicitly send to a cloud AI provider you configure yourself — or it stays fully local with a local model.</p>
+
+          <div class="docs-callout">
+            <p><strong>What leaves your Mac:</strong> nothing by default. The only thing that ever leaves is the transcript text you send to a configured AI provider when you press Summarize.</p>
+          </div>
+        </section>
+
+        <section id="platforms">
+          <h2>Supported platforms</h2>
+          <p>Microsoft Teams (including the new Teams 2.0), Zoom, and Google Meet. macOS 13 or later (Apple Silicon recommended).</p>
+          <ul>
+            <li><strong>Microsoft Teams</strong> — including the new Teams 2.0 client</li>
+            <li><strong>Zoom</strong> — desktop app, browser, and breakout rooms</li>
+            <li><strong>Google Meet</strong> — Chrome, Safari, and the standalone Meet app</li>
+          </ul>
+        </section>
+
+        <section id="pricing-doc">
+          <h2>Pricing &amp; licensing</h2>
+          <p>Each tier is a one-time purchase, never a subscription. Move from Personal to Pro by paying only the difference. Teams can add seats whenever needed — you only pay for the difference there too.</p>
+          <ul>
+            <li><strong>Personal — $49</strong> — 1 Mac, 1 user. The basics.</li>
+            <li><strong>Pro — $99</strong> — 1 Mac. Adds speaker names, search-and-ask, and your own AI key.</li>
+            <li><strong>Team — $249</strong> — up to 5 Macs. Shared library and presets.</li>
+            <li><strong>Enterprise</strong> — Contact us. On-prem, SSO, and SCIM.</li>
+          </ul>
+        </section>
+
+        <section id="shortcuts">
+          <h2>Shortcuts &amp; menu bar</h2>
+          <p><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>R</kbd> — start or stop a recording manually (works even when no meeting is active).</p>
+
+          <h3>Menu bar icon states</h3>
+          <ul>
+            <li><strong>Idle</strong> — outlined circle, no active recording</li>
+            <li><strong>Recording</strong> — solid red filled circle, audio being captured</li>
+            <li><strong>Processing</strong> — half-filled circle, transcription in progress</li>
+          </ul>
+          <p>Click the menu bar icon to toggle recording, or right-click for the full context menu.</p>
+        </section>
+
+        <section id="troubleshooting">
+          <h2>Troubleshooting</h2>
+
+          <h3>Minutely isn't detecting my meeting.</h3>
+          <p>Open <strong>System Settings → Privacy &amp; Security → Accessibility</strong> and make sure Minutely is toggled on. Without this, Minutely can't read the title of the meeting window and won't know a call has started.</p>
+
+          <h3>Transcription seems slow.</h3>
+          <p>The first run downloads the Whisper model — later runs are faster. On Apple Silicon, switch to the small or medium model for the best balance of speed and accuracy. Large is accurate but ~3× slower.</p>
+
+          <h3>Audio quality is poor.</h3>
+          <p>Open <strong>System Settings → Privacy &amp; Security → Screen &amp; System Audio Recording</strong> and confirm Minutely is toggled on. Without it, the menu bar icon turns red but the recording is silent.</p>
+
+          <h3>The summary didn't generate.</h3>
+          <p>Open <strong>Settings → AI</strong> and confirm a provider is configured — either an OpenAI-compatible API key, or a loaded local model in the Models pane. If using a local model, wait for it to finish loading, then press Summarize again.</p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="footer-logo" href="index.html">
+            <span class="logo-mark" aria-hidden="true"><img src="assets/img/logo.svg" alt="" style="width:18px;height:auto;display:block;"></span>
+            Minutely
+          </a>
+          <p>Records, transcribes, and remembers every meeting on your Mac.</p>
+          <span class="footer-status">All systems operational</span>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
+            <li><a href="changelog.html">Changelog</a></li>
+            <li><a href="docs.html">Docs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="docs.html">Getting started</a></li>
+            <li><a href="docs.html#shortcuts">Shortcuts</a></li>
+            <li><a href="docs.html#troubleshooting">Troubleshooting</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="mailto:hello@minutely.app">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Minutely — built for people who hate re-explaining meetings.</span>
+        <span class="badge">macOS 13+</span>
+        <span>v1.4</span>
+      </div>
+    </div>
+  </footer>
+
+  </div></div>
+
+  <script src="assets/js/init.js" defer></script>
+  <script src="assets/js/magnetic.js" defer></script>
+  <script src="assets/js/cursor.js" defer></script>
+  <script type="module" src="assets/js/scroll.js"></script>
+</body>
+</html>

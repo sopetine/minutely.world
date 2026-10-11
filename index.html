@@ -1,701 +1,381 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#1e1f24" media="(prefers-color-scheme: dark)">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Minutely records your meetings on your Mac, transcribes them locally, and writes the summary for you. No bots, no cloud upload, no monthly fee.">
+  <meta name="theme-color" content="#5B5BF0">
+  <title>Minutely — Local meeting notes for your Mac</title>
 
-  <title>Minutely — Local meeting intelligence for your Mac</title>
-  <meta name="description" content="Minutely records, transcribes, and summarises every meeting on your Mac. No bots, no cloud, no missed details. One-time purchase, free lifetime updates.">
-
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Minutely — Every meeting. Minus the busywork.">
-  <meta property="og:description" content="Local meeting intelligence for your Mac. No bots, no cloud.">
-  <meta property="og:image" content="assets/img/og-card.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:url" content="https://minutely.app/">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Minutely — Every meeting. Minus the busywork.">
-  <meta name="twitter:description" content="Local meeting intelligence for your Mac.">
-  <meta name="twitter:image" content="assets/img/og-card.png">
-
-  <link rel="canonical" href="https://minutely.app/">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Fira+Code:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/sections.css">
-  <link rel="stylesheet" href="assets/css/nav.css">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "Minutely",
-    "description": "Local meeting intelligence for macOS.",
-    "brand": { "@type": "Brand", "name": "Minutely" },
-    "offers": [
-      { "@type": "Offer", "name": "Personal", "price": "49",  "priceCurrency": "USD" },
-      { "@type": "Offer", "name": "Pro",      "price": "99",  "priceCurrency": "USD" },
-      { "@type": "Offer", "name": "Team",     "price": "249", "priceCurrency": "USD" }
-    ]
-  }
-  </script>
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/home.css">
 </head>
-<body data-page="home">
+<body data-page="home" class="page-enter">
+
+  <div id="lenis-wrapper"><div id="lenis-content">
 
   <a class="sr-only" href="#main">Skip to main content</a>
 
-  <div class="app">
-    <!-- ============== Sidebar (Linear-style) ============== -->
-    <aside class="app__sidebar">
-      <nav class="side-nav" aria-label="Primary">
-        <a class="side-nav__logo" href="index.html">
-          <span class="side-nav__logo-mark">M</span>
+  <header class="top-nav" role="banner">
+    <div class="top-nav-inner">
+      <div class="top-nav-shell">
+        <a class="top-nav-logo" href="index.html" aria-label="Minutely home">
+          <img src="assets/img/logo.svg" alt="" class="logo-mark">
           <span>Minutely</span>
         </a>
-
-        <span class="side-nav__section">Workspace</span>
-        <a class="side-nav__link" href="index.html">
-          <svg class="side-nav__link-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-          Inbox
-        </a>
-        <a class="side-nav__link" href="index.html#features">
-          <svg class="side-nav__link-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-          Features
-        </a>
-        <a class="side-nav__link" href="index.html#how">
-          <svg class="side-nav__link-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          How it works
-        </a>
-        <a class="side-nav__link" href="index.html#pricing">
-          <svg class="side-nav__link-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg>
-          Pricing
-        </a>
-        <a class="side-nav__link" href="changelog.html">
-          <svg class="side-nav__link-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          Changelog
-        </a>
-
-        <span class="side-nav__section">Account</span>
-        <a class="side-nav__link" href="login.html">
-          <svg class="side-nav__link-icon" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
-          Log in
-        </a>
-        <a class="side-nav__link" href="mailto:support@minutely.app">
-          <svg class="side-nav__link-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-          Support
-        </a>
-
-        <div class="side-nav__footer">
-          <div class="theme-switcher" role="group" aria-label="Theme">
-            <button class="theme-switcher__btn" data-theme-set="pure-light" aria-label="Light">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
-            </button>
-            <button class="theme-switcher__btn" data-theme-set="dark" aria-label="Dark">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-            </button>
-            <button class="theme-switcher__btn" data-theme-set="magic-blue" aria-label="Magic Blue">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M5.6 18.4L18.4 5.6"/></svg>
-            </button>
-          </div>
-        </div>
-      </nav>
-    </aside>
-
-    <!-- ============== Main ============== -->
-    <main id="main" class="app__main">
-
-      <!-- Top bar -->
-      <header class="topbar">
-        <div class="topbar__title">
-          <svg class="topbar__title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          Home
-        </div>
-        <div class="topbar__actions">
-          <a class="btn btn--ghost btn--sm" href="login.html">Log in</a>
-          <a class="btn btn--brand btn--sm" href="login.html?tier=pro&amp;amount=99">
-            Buy for Mac
-            <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <nav class="top-nav-links" aria-label="Primary">
+          <a class="top-nav-link" href="#walkthrough">How it works</a>
+          <a class="top-nav-link" href="#features">Features</a>
+          <a class="top-nav-link" href="#pricing">Pricing</a>
+          <a class="top-nav-link" href="#faq">FAQ</a>
+          <a class="top-nav-link" href="docs.html">Docs</a>
+        </nav>
+        <div class="top-nav-actions">
+          <a class="btn btn-ghost" href="login.html">Log in</a>
+          <a class="btn btn-primary magnetic" href="payment.html?tier=pro&amp;amount=99" data-magnetic>
+            <span class="magnetic-inner" style="display:inline-flex;align-items:center;gap:6px;">
+              Buy for Mac
+              <span class="material-symbols-outlined icon-arrow" style="font-size:16px;">arrow_forward</span>
+            </span>
           </a>
         </div>
-      </header>
+      </div>
+    </div>
+  </header>
 
-      <!-- ============== HERO ============== -->
-      <section class="hero">
-        <div class="container">
-          <div class="hero__inner">
-            <div class="hero__copy" data-reveal>
-              <a class="hero__chip" href="changelog.html">
-                <span class="hero__chip-badge">v2.4</span>
-                <span class="hero__chip-text">Local LLM support is here</span>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-              </a>
+  <main id="main" class="page">
 
-              <h1 class="hero__title">
-                <em>Every meeting.</em><br>
-                <span class="no-italic">Minus the busywork.</span>
-              </h1>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-grain" aria-hidden="true"></div>
+      <div class="container hero-inner">
 
-              <p class="hero__lede">
-                Minutely records, transcribes, and summarises your calls — entirely on your Mac. No bots, no cloud, no missed details.
-              </p>
-
-              <div class="hero__cta">
-                <a class="btn btn--brand btn--lg" href="login.html?tier=pro&amp;amount=99">
-                  Buy for Mac — $99
-                  <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </a>
-                <a class="btn btn--outline btn--lg" href="#how">See how it works</a>
-              </div>
-
-              <div class="hero__meta">
-                <span>One-time purchase</span>
-                <span class="hero__meta-dot" aria-hidden="true"></span>
-                <span>Works with Teams, Zoom, Meet, Webex</span>
-                <span class="hero__meta-dot" aria-hidden="true"></span>
-                <span>Free updates</span>
-              </div>
-            </div>
-
-            <div class="hero__visual" data-reveal>
-              <img src="assets/img/hero-showcase.svg" alt="Minutely app showing live meeting recording with AI summary, action items, and an ask-anything interface" class="hero__visual-img" width="1200" height="800" loading="eager">
-            </div>
+        <div class="hero-logo" aria-hidden="true">
+          <svg class="hero-logo-svg hero-logo-svg--red" viewBox="0 0 850 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="400" rx="200" fill="currentColor"/>
+            <rect x="450" width="400" height="100" fill="currentColor"/>
+            <rect x="450" y="150" width="400" height="100" fill="currentColor"/>
+            <rect x="450" y="300" width="400" height="100" fill="currentColor"/>
+          </svg>
+          <svg class="hero-logo-svg hero-logo-svg--blue" viewBox="0 0 850 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="400" rx="200" fill="currentColor"/>
+            <rect x="450" width="400" height="100" fill="currentColor"/>
+            <rect x="450" y="150" width="400" height="100" fill="currentColor"/>
+            <rect x="450" y="300" width="400" height="100" fill="currentColor"/>
+          </svg>
+          <svg class="hero-logo-svg hero-logo-svg--main" viewBox="0 0 850 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="400" rx="200" fill="currentColor" stroke="#1f222e" stroke-width="2"/>
+            <rect x="450" width="400" height="100" fill="currentColor" stroke="#1f222e" stroke-width="2"/>
+            <rect x="450" y="150" width="400" height="100" fill="currentColor" stroke="#1f222e" stroke-width="2"/>
+            <rect x="450" y="300" width="400" height="100" fill="currentColor" stroke="#1f222e" stroke-width="2"/>
+          </svg>
+          <div class="hero-logo-circle-text">
+            <span class="typewriter-number typewriter-text--circle" data-typewriter></span>
+            <span class="typewriter-label typewriter-text--circle" data-typewriter></span>
+          </div>
+          <div class="hero-logo-bars">
+            <div class="hero-logo-bar"><span class="typewriter-text" data-typewriter></span></div>
+            <div class="hero-logo-bar"><span class="typewriter-text" data-typewriter></span></div>
+            <div class="hero-logo-bar"><span class="typewriter-text" data-typewriter></span></div>
           </div>
         </div>
-      </section>
 
-      <!-- ============== TRUST ============== -->
-      <section class="trust">
-        <div class="container">
-          <p class="trust__label">Works with every meeting app you already use</p>
-          <div class="trust__row">
-            <span class="trust__item">Microsoft Teams</span>
-            <span class="trust__item">Zoom</span>
-            <span class="trust__item">Google Meet</span>
-            <span class="trust__item">Webex</span>
-            <span class="trust__item">FaceTime</span>
-          </div>
+        <span class="eyebrow"><span class="eyebrow-dot"></span>On-device, always</span>
+
+        <h1 class="hero-title">Every meeting, <em>remembered for you.</em></h1>
+
+        <p class="hero-sub">
+          Minutely listens quietly on your Mac, transcribes every word, and hands you what matters the moment your call ends. Nothing is uploaded, ever. One purchase, yours forever.
+        </p>
+
+        <div class="hero-cta" data-magnetic>
+          <a class="btn btn-primary btn-xl magnetic" href="payment.html?tier=pro&amp;amount=99" data-magnetic>
+            <span class="magnetic-inner" style="display:inline-flex;align-items:center;gap:8px;">
+              Buy for Mac — $99
+              <span class="material-symbols-outlined icon-arrow">arrow_forward</span>
+            </span>
+          </a>
         </div>
-      </section>
+        <p class="hero-secondary"><a href="#pricing">See all plans ↓</a></p>
 
-      <!-- ============== VALUE PROPS ============== -->
-      <section class="section">
-        <div class="container">
-          <div class="section__head" data-reveal>
-            <span class="eyebrow">What's inside</span>
-            <h2 class="section__title">Everything an AI meeting tool should be.</h2>
-            <p class="section__lede">Six features that earn their place. No upsells, no add-ons, no "premium AI credits".</p>
-          </div>
-          <div class="value-row" data-stagger>
-            <article class="value-card">
-              <div class="value-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              </div>
-              <h3 class="value-card__title">Local-first, by default</h3>
-              <p class="value-card__body">Audio is captured and transcribed on your Mac. The cloud only sees what you explicitly send it.</p>
-            </article>
-            <article class="value-card">
-              <div class="value-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><line x1="2" y1="1" x2="22" y2="23"/></svg>
-              </div>
-              <h3 class="value-card__title">No bots, no invites</h3>
-              <p class="value-card__body">Minutely never appears in your meeting. No awkward "Notetaker" joining from across the table.</p>
-            </article>
-            <article class="value-card">
-              <div class="value-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              </div>
-              <h3 class="value-card__title">Ask, don't scroll</h3>
-              <p class="value-card__body">Ask a question in plain English. Get an answer with the exact moment and speaker pulled from your archive.</p>
-            </article>
-          </div>
-        </div>
-      </section>
+        <p class="hero-microcopy">One-time purchase. Free updates forever. Works with Teams, Zoom, and Google Meet on macOS 13+.</p>
+      </div>
+    </section>
 
-      <!-- ============== WALKTHROUGH ============== -->
-      <section class="section" id="how">
-        <div class="container">
-          <div class="section__head section__head--left" data-reveal>
-            <span class="eyebrow">How it works</span>
-            <h2 class="section__title">From calendar entry to <em>searchable memory.</em></h2>
-            <p class="section__lede">Minutely works quietly in the background — before, during, and after every call.</p>
-          </div>
+    <!-- ============ VALUE PROPS ============ -->
+    <section class="value-props" aria-label="Why Minutely">
+      <div class="container">
+        <ul class="value-list">
+          <li class="value-item">
+            <span class="value-item-icon"><span class="material-symbols-outlined">encrypted</span></span>
+            <span><strong>Stay invisible on every call</strong> — no bot ever joins.</span>
+          </li>
+          <li class="value-item">
+            <span class="value-item-icon"><span class="material-symbols-outlined">visibility_off</span></span>
+            <span><strong>Keep every recording on your Mac</strong> — nothing is uploaded, ever.</span>
+          </li>
+          <li class="value-item">
+            <span class="value-item-icon"><span class="material-symbols-outlined">search</span></span>
+            <span><strong>Find any moment in seconds</strong> — search, or just ask in plain English.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-          <div class="walkthrough">
-            <div class="walkthrough__rail" role="tablist" aria-label="Meeting lifecycle">
-              <button class="walkthrough__step" data-tab="before" aria-current="true" role="tab">
-                <span class="walkthrough__step-num">01</span>
-                <span>Before the call</span>
-              </button>
-              <button class="walkthrough__step" data-tab="during" role="tab">
-                <span class="walkthrough__step-num">02</span>
-                <span>During the call</span>
-              </button>
-              <button class="walkthrough__step" data-tab="after" role="tab">
-                <span class="walkthrough__step-num">03</span>
-                <span>After the call</span>
-              </button>
-            </div>
+    <!-- ============ WALKTHROUGH (Before / During / After) ============ -->
+    <section class="walkthrough" id="walkthrough" aria-label="How it works">
+      <div class="container">
+        <span class="eyebrow">How it works</span>
+        <h2 class="section-title">Before, during, after.</h2>
+        <p class="section-lead">Minutely runs in the background — you stay focused on the conversation. Here's what happens before, during, and after each call.</p>
 
-            <div class="walkthrough__panels">
-              <article class="walkthrough__panel" data-panel="before">
-                <h3 class="walkthrough__panel-title">Start your meeting prepared.</h3>
-                <p class="walkthrough__panel-body">Minutely watches your calendar and arms itself the moment a Teams or Zoom meeting starts. No clicks, no popups, no "remember to record".</p>
-                <div class="walkthrough__panel-tile">Calendar detection · Auto-arm · Private skip</div>
-              </article>
-              <article class="walkthrough__panel" data-panel="during" hidden>
-                <h3 class="walkthrough__panel-title">Give your full attention.</h3>
-                <p class="walkthrough__panel-body">Live transcription with speaker labels runs locally. Whisper handles the audio, pyannote handles the diarization. All on your Mac's Neural Engine.</p>
-                <div class="walkthrough__panel-tile">Whisper · Speaker diarization · On-device</div>
-              </article>
-              <article class="walkthrough__panel" data-panel="after" hidden>
-                <h3 class="walkthrough__panel-title">Post-meeting admin, done.</h3>
-                <p class="walkthrough__panel-body">The moment your call ends, Minutely delivers a clean summary, chapter markers, and action items — searchable alongside every past meeting.</p>
-                <div class="walkthrough__panel-tile">Auto-summaries · Chapters · Searchable</div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============== FEATURES (BENTO) ============== -->
-      <section class="section" id="features">
-        <div class="container">
-          <div class="section__head" data-reveal>
-            <span class="eyebrow">Features</span>
-            <h2 class="section__title">Everything you need to <em>never re-explain</em> a meeting.</h2>
-            <p class="section__lede">Built for people who hate the post-call recap.</p>
-          </div>
-
-          <div class="bento" data-stagger>
-            <article class="bento-card">
-              <div class="bento-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>
-              </div>
-              <h3 class="bento-card__title">Auto-recording</h3>
-              <p class="bento-card__body">Minutely detects when you join a Teams or Zoom call and starts recording automatically. No bot, no extra click, no awkward invite.</p>
-            </article>
-
-            <article class="bento-card">
-              <div class="bento-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 15h4M15 11h2M15 15h2"/></svg>
-              </div>
-              <h3 class="bento-card__title">Transcription & speakers</h3>
-              <p class="bento-card__body">Every word transcribed locally with Whisper, labeled by speaker — so you always know who said what.</p>
-            </article>
-
-            <article class="bento-card bento-card--wide">
-              <div class="bento-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              </div>
-              <h3 class="bento-card__title">Ask your meetings anything.</h3>
-              <p class="bento-card__body">Every meeting lives in a searchable catalog. Ask a question in plain English — get the answer with the exact moment and speaker pulled from your transcripts.</p>
-              <div class="bento-card__viz">↳ "What did we decide about pricing?" → 12:34 in the Mar 14 sync</div>
-            </article>
-
-            <article class="bento-card">
-              <div class="bento-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-              </div>
-              <h3 class="bento-card__title">Summaries & chapters</h3>
-              <p class="bento-card__body">Auto-chaptered summaries the moment your call ends.</p>
-            </article>
-
-            <article class="bento-card">
-              <div class="bento-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-              </div>
-              <h3 class="bento-card__title">Bring your own AI</h3>
-              <p class="bento-card__body">OpenAI, Anthropic, Azure, OpenRouter, or any local LLM. No lock-in, no markups.</p>
-            </article>
-
-            <article class="bento-card">
-              <div class="bento-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-              </div>
-              <h3 class="bento-card__title">Local LLM support</h3>
-              <p class="bento-card__body">Run Ollama, LM Studio, or any local server. Zero bytes leave your machine.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============== COMPARISON TABLE ============== -->
-      <section class="section">
-        <div class="container">
-          <div class="section__head" data-reveal>
-            <span class="eyebrow">Compared</span>
-            <h2 class="section__title">How Minutely stacks up.</h2>
-          </div>
-          <div class="compare" data-reveal>
-            <table>
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Minutely</th>
-                  <th>Cloud notetakers</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>Audio leaves your device</td><td><span class="compare__check">✓</span> Never</td><td><span class="compare__cross">✓</span> Always</td></tr>
-                <tr><td>"Notetaker" joins the call</td><td><span class="compare__check">✓</span> Never</td><td><span class="compare__cross">✓</span> Always</td></tr>
-                <tr><td>Works fully offline</td><td><span class="compare__check">✓</span> Yes</td><td><span class="compare__cross">✓</span> No</td></tr>
-                <tr><td>One-time purchase</td><td><span class="compare__check">✓</span> From $49</td><td><span class="compare__cross">✓</span> $15–30/mo</td></tr>
-                <tr><td>Ask across all past meetings</td><td><span class="compare__check">✓</span> Yes (RAG)</td><td><span class="compare__cross">✓</span> Limited</td></tr>
-                <tr><td>Bring your own model</td><td><span class="compare__check">✓</span> Yes</td><td><span class="compare__cross">✓</span> No</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============== WHY IT MATTERS ============== -->
-      <section class="section">
-        <div class="container">
-          <div class="why">
-            <div class="why__text" data-reveal>
-              <span class="eyebrow">Why it matters</span>
-              <h2 class="why__title">The end of <em>"wait, can you repeat that?"</em></h2>
-              <p class="why__body">Meetings are where decisions actually happen — and where they're lost the fastest. Minutely turns every call into a searchable, queryable, shareable artifact.</p>
-              <div class="why__features">
-                <div class="why__feature">
-                  <svg class="why__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
-                  <strong>Save 4 hours/week</strong>
-                  <span>Stop re-watching calls to find the one quote you need.</span>
-                </div>
-                <div class="why__feature">
-                  <svg class="why__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                  <strong>Pass security review</strong>
-                  <span>Audio never leaves the device unless you say so.</span>
-                </div>
-                <div class="why__feature">
-                  <svg class="why__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  <strong>Works on day one</strong>
-                  <span>No IT setup. Download, grant microphone, done.</span>
-                </div>
-                <div class="why__feature">
-                  <svg class="why__feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/></svg>
-                  <strong>One price, forever</strong>
-                  <span>Not a subscription. Yours to keep, with free updates.</span>
-                </div>
-              </div>
-            </div>
-            <div class="why__text" data-reveal>
-              <article class="bento-card" style="background:var(--card);min-height:auto">
-                <span class="eyebrow">Sprint Planning · Live</span>
-                <div style="display:flex;flex-direction:column;gap:14px;margin-top:8px">
-                  <div style="display:flex;gap:10px;align-items:flex-start">
-                    <div style="width:28px;height:28px;border-radius:50%;background:var(--brand);color:var(--brand-foreground);display:grid;place-items:center;font-size:11px;font-weight:600;flex:none">AK</div>
-                    <div>
-                      <div style="font-size:12px;font-weight:600">Anya · PM</div>
-                      <div style="font-size:12px;color:var(--muted-foreground);margin-top:2px">Are we keeping the launch on Friday?</div>
-                    </div>
-                  </div>
-                  <div style="display:flex;gap:10px;align-items:flex-start">
-                    <div style="width:28px;height:28px;border-radius:50%;background:var(--muted);color:var(--background);display:grid;place-items:center;font-size:11px;font-weight:600;flex:none">MK</div>
-                    <div>
-                      <div style="font-size:12px;font-weight:600">Marc · Eng</div>
-                      <div style="font-size:12px;color:var(--muted-foreground);margin-top:2px">Yes — I'll push the Stripe fix tonight. We're good.</div>
-                    </div>
-                  </div>
-                  <div style="display:flex;gap:10px;align-items:flex-start">
-                    <div style="width:28px;height:28px;border-radius:50%;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-size:11px;font-weight:600;flex:none">MD</div>
-                    <div>
-                      <div style="font-size:12px;font-weight:600">Maya · Design</div>
-                      <div style="font-size:12px;color:var(--muted-foreground);margin-top:2px">Pricing copy is done. Sending now.</div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============== PRICING ============== -->
-      <section class="section" id="pricing">
-        <div class="container">
-          <div class="section__head" data-reveal>
-            <span class="eyebrow">Pricing</span>
-            <h2 class="section__title">One payment. <em>Yours forever.</em></h2>
-            <p class="section__lede">No subscriptions. No "AI credits". No usage limits. Buy once, use on this Mac, get every future update.</p>
-          </div>
-
-          <div class="pricing__grid" data-stagger>
-            <article class="tier">
-              <h3 class="tier__name">Personal</h3>
-              <div class="tier__price">
-                <span class="tier__price-amount">$49</span>
-                <span class="tier__price-period">/ once</span>
-              </div>
-              <p class="tier__desc">For one Mac, one person who wants meetings handled.</p>
-              <ul class="tier__feats">
-                <li class="tier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Auto-recording for Teams & Zoom</li>
-                <li class="tier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Local Whisper transcription</li>
-                <li class="tier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>AI summaries & chapters</li>
-                <li class="tier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Free updates for life</li>
-              </ul>
-              <a class="btn btn--outline btn--block tier__cta" href="login.html?tier=personal&amp;amount=49">Choose Personal</a>
-            </article>
-
-            <article class="tier tier--featured">
-              <span class="tier__badge">Most popular</span>
-              <h3 class="tier__name">Pro</h3>
-              <div class="tier__price">
-                <span class="tier__price-amount">$99</span>
-                <span class="tier__price-period">/ once</span>
-              </div>
-              <p class="tier__desc">For people who live in meetings and need to find things later.</p>
-              <ul class="tier__feats">
-                <li class="tier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><strong>Everything</strong> in Personal</li>
-                <li class="tier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Speaker diarization</li>
-                <li class="tier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>RAG search & AI Q&A</li>
-                <li class="tier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Prompt presets & BYO-AI</li>
-                <li class="tier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Local LLM support</li>
-              </ul>
-              <a class="btn btn--brand btn--block tier__cta" href="login.html?tier=pro&amp;amount=99">Choose Pro</a>
-            </article>
-
-            <article class="tier">
-              <h3 class="tier__name">Team</h3>
-              <div class="tier__price">
-                <span class="tier__price-amount">$249</span>
-                <span class="tier__price-period">/ 5 seats</span>
-              </div>
-              <p class="tier__desc">For small teams that share a meeting archive.</p>
-              <ul class="tier__feats">
-                <li class="tier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><strong>Everything</strong> in Pro</li>
-                <li class="tier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Shared meeting catalog</li>
-                <li class="tier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Team prompt library</li>
-                <li class="tier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Admin & seat management</li>
-                <li class="tier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Priority support</li>
-              </ul>
-              <a class="btn btn--outline btn--block tier__cta" href="login.html?tier=team&amp;amount=249">Choose Team</a>
-            </article>
-          </div>
-
-          <article class="enterprise" data-reveal>
-            <div>
-              <h3 class="enterprise__title">Enterprise</h3>
-              <p class="enterprise__body">Self-hosted control plane, SSO, custom model deployments, on-prem Whisper & pyannote, audit logs, and a dedicated support channel. We come to you.</p>
-            </div>
-            <div>
-              <ul class="enterprise__feats">
-                <li>Local LLM / on-prem</li>
-                <li>SSO & SCIM</li>
-                <li>Custom deployment</li>
-                <li>Audit logs</li>
-                <li>Dedicated support</li>
-                <li>Volume licensing</li>
-              </ul>
-              <a class="btn btn--outline" style="margin-top:16px" href="mailto:sales@minutely.app?subject=Enterprise%20enquiry">Contact sales</a>
-            </div>
+        <div class="walkthrough-grid">
+          <article class="walkthrough-card" data-reveal-scroll>
+            <span class="walkthrough-card-num">01 · BEFORE</span>
+            <h3>Detects your meetings</h3>
+            <p>Minutely reads your calendar and gets ready the moment a Teams, Zoom, or Google Meet call starts. You never click record.</p>
+          </article>
+          <article class="walkthrough-card" data-reveal-scroll>
+            <span class="walkthrough-card-num">02 · DURING</span>
+            <h3>Transcribes live</h3>
+            <p>Whisper runs on your Mac's Neural Engine. Words appear with speaker labels in real time — nothing leaves your device.</p>
+          </article>
+          <article class="walkthrough-card" data-reveal-scroll>
+            <span class="walkthrough-card-num">03 · AFTER</span>
+            <h3>Summarises everything</h3>
+            <p>A short summary, chapter markers, and action items appear the moment the call ends. Every past meeting is searchable from the same place.</p>
           </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- ============== TESTIMONIALS ============== -->
-      <section class="section">
-        <div class="container">
-          <div class="section__head" data-reveal>
-            <span class="eyebrow">Loved by</span>
-            <h2 class="section__title">Quietly running the meetings of <em>thousands of teams.</em></h2>
-          </div>
-          <div class="testimonials" data-stagger>
-            <article class="testimonial">
-              <p class="testimonial__quote">"I used to spend Sunday nights re-watching calls. Now I just ask Minutely "what did we decide on Q2?" and get an answer in two seconds."</p>
-              <div class="testimonial__author">
-                <div class="testimonial__avatar">SL</div>
-                <div>
-                  <div class="testimonial__name">Sara L.</div>
-                  <div class="testimonial__role">Head of Product</div>
-                </div>
-              </div>
-            </article>
-            <article class="testimonial">
-              <p class="testimonial__quote">"The fact that no bot joins the call is a dealbreaker for us. Local-only sealed it for our security team."</p>
-              <div class="testimonial__author">
-                <div class="testimonial__avatar">DK</div>
-                <div>
-                  <div class="testimonial__name">Devon K.</div>
-                  <div class="testimonial__role">VP Engineering, fintech</div>
-                </div>
-              </div>
-            </article>
-            <article class="testimonial">
-              <p class="testimonial__quote">"I run 12 user interviews a week. Minutely gives me searchable quotes in my own words. It's like having a research assistant who never sleeps."</p>
-              <div class="testimonial__author">
-                <div class="testimonial__avatar">MR</div>
-                <div>
-                  <div class="testimonial__name">Maya R.</div>
-                  <div class="testimonial__role">Senior UX Researcher</div>
-                </div>
-              </div>
-            </article>
-          </div>
+    <!-- ============ FEATURES (6) ============ -->
+    <section class="features" id="features" aria-label="Features">
+      <div class="container">
+        <span class="eyebrow">Features</span>
+        <h2 class="section-title">What's inside.</h2>
+        <p class="section-lead">Everything you need to record, read, and revisit a meeting — and a few things you didn't know you needed.</p>
+
+        <div class="features-grid">
+          <article class="feature-card spotlight" data-reveal-scroll>
+            <div class="feature-icon"><span class="material-symbols-outlined">fiber_manual_record</span></div>
+            <h3>Automatic recording</h3>
+            <p>Starts the moment you join — no bot, no extra click, nothing to remember. Works with Teams, Zoom, and Google Meet.</p>
+          </article>
+          <article class="feature-card spotlight" data-reveal-scroll>
+            <div class="feature-icon"><span class="material-symbols-outlined">subtitles</span></div>
+            <h3>Transcription &amp; speakers</h3>
+            <p>Every word, transcribed on-device with Whisper and labelled by speaker. Rename someone once, and Minutely remembers them in every meeting after.</p>
+          </article>
+          <article class="feature-card spotlight" data-reveal-scroll>
+            <div class="feature-icon"><span class="material-symbols-outlined">auto_awesome</span></div>
+            <h3>Summaries &amp; chapters</h3>
+            <p>A clean summary and chapter markers are waiting the second you hang up. Don't love it? Regenerate with one click, any time.</p>
+          </article>
+          <article class="feature-card spotlight" data-reveal-scroll>
+            <div class="feature-icon"><span class="material-symbols-outlined">manage_search</span></div>
+            <h3>Catalog, search &amp; ask</h3>
+            <p>Every meeting you've ever recorded, instantly searchable. Ask a question in plain English and jump straight to the moment it was said.</p>
+          </article>
+          <article class="feature-card spotlight" data-reveal-scroll>
+            <div class="feature-icon"><span class="material-symbols-outlined">tune</span></div>
+            <h3>Prompt presets &amp; your own AI</h3>
+            <p>Start from a built-in summary style, or bring any OpenAI-compatible key. Same workflow, whichever model you trust.</p>
+          </article>
+          <article class="feature-card spotlight" data-reveal-scroll>
+            <div class="feature-icon"><span class="material-symbols-outlined">memory</span></div>
+            <h3>Local LLM support</h3>
+            <p>Run Llama, Mistral, or Phi entirely on-device. No key, no cloud, no internet — full speed on Apple Silicon.</p>
+          </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- ============== FAQ ============== -->
-      <section class="section" id="faq">
-        <div class="container container--narrow">
-          <div class="section__head" data-reveal>
-            <span class="eyebrow">FAQ</span>
-            <h2 class="section__title">Quick answers.</h2>
-            <p class="section__lede">Still have questions? Email <a href="mailto:hello@minutely.app" style="color:var(--brand)">hello@minutely.app</a> — a real person replies within a day.</p>
-          </div>
-          <div class="accordion" data-stagger>
-            <details class="accordion__item" open>
-              <summary class="accordion__trigger">Does Minutely need a bot to join my calls?<span class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
-              <div class="accordion__body">No — Minutely runs on your Mac and captures audio locally the moment you join a supported call. No "Minutely Notetaker" shows up for anyone else.</div>
-            </details>
-            <details class="accordion__item">
-              <summary class="accordion__trigger">Where does my audio and transcript data go?<span class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
-              <div class="accordion__body">Nowhere, by default. Transcription and (optionally) summarization can run fully on-device with a local model. If you bring your own API key, those calls go to your chosen provider — never to us.</div>
-            </details>
-            <details class="accordion__item">
-              <summary class="accordion__trigger">Which platforms are supported?<span class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
-              <div class="accordion__body">Microsoft Teams, Zoom, and Google Meet — fully supported on day one. We're adding Webex and Slack huddles based on demand.</div>
-            </details>
-            <details class="accordion__item">
-              <summary class="accordion__trigger">Can I use my own AI model?<span class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
-              <div class="accordion__body">Yes. Any OpenAI-compatible endpoint — OpenAI, Anthropic (via proxy), Azure, OpenRouter, or local Ollama and LM Studio. Set the base URL, paste the key, choose the model.</div>
-            </details>
-            <details class="accordion__item">
-              <summary class="accordion__trigger">Is this a subscription?<span class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
-              <div class="accordion__body">No. Every tier is a one-time purchase. Free updates are included forever.</div>
-            </details>
-            <details class="accordion__item">
-              <summary class="accordion__trigger">Will this drain my battery or slow my Mac?<span class="accordion__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></summary>
-              <div class="accordion__body">Minutely is designed to use less than 5% CPU on Apple Silicon during a meeting. Battery impact is comparable to running a chat app in the background.</div>
-            </details>
-          </div>
-        </div>
-      </section>
+    <!-- ============ PRICING ============ -->
+    <section class="pricing" id="pricing" aria-label="Pricing">
+      <div class="container">
+        <span class="eyebrow">Pricing</span>
+        <h2 class="section-title">One price. Yours forever.</h2>
+        <p class="section-lead">Pay once per tier, get every future update. No subscriptions, ever.</p>
 
-      <!-- ============== FINAL CTA ============== -->
-      <section class="final-cta">
-        <div class="container">
-          <span class="badge badge--brand" style="margin-bottom:16px">Available now for macOS 13+</span>
-          <h2 class="final-cta__title" data-reveal>Stop explaining what was said.<br><em style="font-style:normal;color:var(--brand)">Start asking what was decided.</em></h2>
-          <p class="final-cta__body" data-reveal>Join thousands of founders, PMs, and researchers who trust Minutely to remember every meeting — without ever joining one.</p>
-          <div class="final-cta__cta" data-reveal>
-            <a class="btn btn--brand btn--lg" href="login.html?tier=pro&amp;amount=99">
-              Buy for Mac — $99
-              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        <div class="pricing-grid">
+          <article class="price-card spotlight" data-reveal-scroll>
+            <h3>Personal</h3>
+            <p class="price-tagline">For working solo, one Mac at a time.</p>
+            <div class="price-amount-wrap">
+              <span class="price-currency">$</span>
+              <span class="price-amount tabular">49</span>
+            </div>
+            <p class="price-period">one-time · 1 Mac</p>
+            <ul class="price-features">
+              <li>Auto-recording on Teams, Zoom, and Meet</li>
+              <li>Local transcription</li>
+              <li>Summary the moment the call ends</li>
+              <li>1 Mac, 1 user</li>
+            </ul>
+            <a class="btn btn-outline btn-block magnetic" href="payment.html?tier=personal&amp;amount=49" data-magnetic>
+              <span class="magnetic-inner">Buy Personal</span>
             </a>
-            <a class="btn btn--outline btn--lg" href="mailto:sales@minutely.app?subject=Enterprise">Talk to sales</a>
-          </div>
+          </article>
+
+          <article class="price-card price-card-popular spotlight" data-reveal-scroll>
+            <span class="price-tag">Most popular</span>
+            <h3>Pro</h3>
+            <p class="price-tagline">For people who live in back-to-back calls.</p>
+            <div class="price-amount-wrap">
+              <span class="price-currency">$</span>
+              <span class="price-amount tabular">99</span>
+            </div>
+            <p class="price-period">one-time · 1 Mac</p>
+            <ul class="price-features">
+              <li><strong>Everything</strong> in Personal</li>
+              <li>Speaker names in every meeting</li>
+              <li>Search across all past meetings and ask in plain English</li>
+              <li>Built-in summary presets and your own AI key</li>
+            </ul>
+            <a class="btn btn-primary btn-block magnetic" href="payment.html?tier=pro&amp;amount=99" data-magnetic>
+              <span class="magnetic-inner">Buy Pro</span>
+            </a>
+          </article>
+
+          <article class="price-card spotlight" data-reveal-scroll>
+            <h3>Team</h3>
+            <p class="price-tagline">For small teams that share a calendar.</p>
+            <div class="price-amount-wrap">
+              <span class="price-currency">$</span>
+              <span class="price-amount tabular">249</span>
+            </div>
+            <p class="price-period">one-time · 5 seats</p>
+            <ul class="price-features">
+              <li><strong>Everything</strong> in Pro</li>
+              <li>Shared meeting catalog</li>
+              <li>Shared summary presets</li>
+              <li>Priority email support</li>
+            </ul>
+            <a class="btn btn-outline btn-block magnetic" href="payment.html?tier=team&amp;amount=249" data-magnetic>
+              <span class="magnetic-inner">Buy Team</span>
+            </a>
+          </article>
+
+          <article class="price-card price-card-enterprise spotlight" data-reveal-scroll>
+            <h3>Enterprise</h3>
+            <p class="price-tagline">For organizations with their own security bar to clear.</p>
+            <div class="price-amount-wrap">
+              <span class="price-amount">Custom</span>
+            </div>
+            <p class="price-period">annual · volume seats</p>
+            <ul class="price-features">
+              <li>On-prem LLM and data residency</li>
+              <li>SSO, SCIM, and admin dashboard</li>
+              <li>Custom integrations</li>
+              <li>Named engineer &amp; SLA</li>
+            </ul>
+            <a class="btn btn-ghost btn-block magnetic" href="mailto:sales@minutely.app" data-magnetic>
+              <span class="magnetic-inner">Contact sales</span>
+            </a>
+          </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- ============== Footer ============== -->
-      <footer class="footer" style="border-top:0.5px solid var(--border);background:var(--container)">
-        <div class="container" style="padding:32px 24px">
-          <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px;margin-bottom:32px">
-            <div>
-              <div style="display:flex;align-items:center;gap:8px;font-weight:600;margin-bottom:8px">
-                <span style="width:22px;height:22px;border-radius:6px;background:var(--brand);display:grid;place-items:center;color:var(--brand-foreground);font-size:11px;font-weight:700">M</span>
-                Minutely
-              </div>
-              <p style="font-size:var(--fs-sm);color:var(--muted-foreground);max-width:28ch">Local meeting intelligence for the Mac.</p>
-            </div>
-            <div>
-              <p style="font-size:var(--fs-xs);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted-foreground);margin-bottom:12px">Product</p>
-              <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;font-size:var(--fs-sm)">
-                <li><a href="index.html#features" style="color:var(--muted-foreground)">Features</a></li>
-                <li><a href="index.html#how" style="color:var(--muted-foreground)">How it works</a></li>
-                <li><a href="index.html#pricing" style="color:var(--muted-foreground)">Pricing</a></li>
-                <li><a href="changelog.html" style="color:var(--muted-foreground)">Changelog</a></li>
-              </ul>
-            </div>
-            <div>
-              <p style="font-size:var(--fs-xs);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted-foreground);margin-bottom:12px">Company</p>
-              <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;font-size:var(--fs-sm)">
-                <li><a href="mailto:hello@minutely.app" style="color:var(--muted-foreground)">Contact</a></li>
-                <li><a href="privacy.html" style="color:var(--muted-foreground)">Privacy</a></li>
-                <li><a href="terms.html" style="color:var(--muted-foreground)">Terms</a></li>
-              </ul>
-            </div>
-            <div>
-              <p style="font-size:var(--fs-xs);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted-foreground);margin-bottom:12px">Support</p>
-              <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px;font-size:var(--fs-sm)">
-                <li><a href="mailto:support@minutely.app" style="color:var(--muted-foreground)">Support</a></li>
-                <li><a href="mailto:sales@minutely.app?subject=Enterprise" style="color:var(--muted-foreground)">Enterprise</a></li>
-              </ul>
-            </div>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:24px;border-top:0.5px solid var(--border);font-size:var(--fs-xs);color:var(--muted-foreground)">
-            <span>© 2026 Minutely. Built with care for the Mac.</span>
-            <span>v2.4.1 · All systems operational</span>
-          </div>
+    <!-- ============ FAQ ============ -->
+    <section class="faq" id="faq" aria-label="Frequently asked questions">
+      <div class="container">
+        <span class="eyebrow">FAQ</span>
+        <h2 class="section-title">Quick answers.</h2>
+
+        <div class="faq-list">
+          <details class="faq-item" data-reveal-scroll>
+            <summary>Where does my audio go?</summary>
+            <div class="faq-item-body">Nowhere, by default. Transcription, summaries, and search all run on your Mac. The only thing that leaves your device is what you explicitly send to a cloud AI provider you set up yourself.</div>
+          </details>
+          <details class="faq-item" data-reveal-scroll>
+            <summary>Does Minutely need a bot to join my calls?</summary>
+            <div class="faq-item-body">No. Minutely runs entirely on your Mac and starts capturing the meeting's audio the moment you join a supported call. There is no separate participant bot.</div>
+          </details>
+          <details class="faq-item" data-reveal-scroll>
+            <summary>Which platforms are supported?</summary>
+            <div class="faq-item-body">Microsoft Teams (including the new Teams 2.0), Zoom, and Google Meet. Anything that runs on macOS 13 or later works — Intel and Apple Silicon.</div>
+          </details>
+          <details class="faq-item" data-reveal-scroll>
+            <summary>Can I use my own AI model?</summary>
+            <div class="faq-item-body">Yes. Bring your own OpenAI-compatible API key in Settings, or pick a local LLM (Llama, Mistral, Phi) for fully offline summaries. Both work with the same recordings.</div>
+          </details>
+          <details class="faq-item" data-reveal-scroll>
+            <summary>Is this a subscription?</summary>
+            <div class="faq-item-body">No. Every tier is a single one-time purchase. All future updates are included — Minutely will never charge you again for the same Mac.</div>
+          </details>
+          <details class="faq-item" data-reveal-scroll>
+            <summary>I need more seats later — what do I do?</summary>
+            <div class="faq-item-body">Email us and we'll set you up — no need to repurchase. You only ever pay for the difference when you add seats.</div>
+          </details>
         </div>
-      </footer>
-    </main>
-  </div>
+      </div>
+    </section>
 
-  <!-- ============== iOS 27 floating glass bottom nav ============== -->
-  <div class="glass-nav-root" aria-label="Quick navigation">
-    <nav class="glass-nav" data-config='{"cornerRadius":9999,"blurAmount":0.5,"refraction":0.4,"chromAberration":0.02,"edgeHighlight":0.12,"specular":0.1,"fresnel":0.85,"distortion":0,"opacity":0.85,"saturation":0.05,"tintStrength":0.06,"brightness":0.06,"shadowOpacity":0.2,"shadowSpread":18,"shadowOffsetY":6,"floating":false,"button":false,"bevelMode":0}'>
-      <a class="glass-nav__brand" href="index.html" aria-label="Minutely home">
-        <span class="glass-nav__brand-mark" aria-hidden="true">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="4" x2="12" y2="6"/><line x1="12" y1="12" x2="18" y2="8"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
-        </span>
-      </a>
-      <span class="glass-nav__divider" aria-hidden="true"></span>
-      <a class="glass-nav__link" href="index.html" aria-current="page">
-        <svg class="glass-nav__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        <span class="glass-nav__link-label">Home</span>
-      </a>
-      <a class="glass-nav__link" href="index.html#features">
-        <svg class="glass-nav__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-        <span class="glass-nav__link-label">Features</span>
-      </a>
-      <a class="glass-nav__link" href="index.html#pricing">
-        <svg class="glass-nav__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-        <span class="glass-nav__link-label">Pricing</span>
-      </a>
-      <a class="glass-nav__link" href="changelog.html">
-        <svg class="glass-nav__link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        <span class="glass-nav__link-label">Changelog</span>
-      </a>
-      <a class="glass-nav__cta" href="login.html?tier=pro&amp;amount=99">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        <span class="glass-nav__cta-label">Buy</span>
-      </a>
-    </nav>
-  </div>
+  </main>
 
-  <!-- LiquidGlass (CDN, ESM) -->
-  <script type="module">
-    try {
-      const m = await import('https://cdn.jsdelivr.net/npm/@ybouane/liquidglass/dist/index.js');
-      window.LiquidGlass = m.LiquidGlass;
-      window.dispatchEvent(new Event('liquidglass-ready'));
-    } catch (e) {
-      console.info('[minutely-v2] LiquidGlass unavailable, using CSS fallback');
-    }
-  </script>
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="footer-logo" href="index.html">Minutely</a>
+          <p>Records, transcribes, and remembers every meeting on your Mac — nothing leaves without your say-so.</p>
+          <span class="footer-status">All systems operational</span>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="docs.html">Docs</a></li>
+            <li><a href="changelog.html">Changelog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="mailto:hello@minutely.app">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Minutely — built for people who hate re-explaining meetings.</span>
+        <span class="badge">macOS 13+</span>
+        <span>v1.4</span>
+      </div>
+    </div>
+  </footer>
 
-  <script src="assets/js/scroll-reveal.js" defer></script>
-  <script src="assets/js/tabs.js" defer></script>
-  <script src="assets/js/theme.js" defer></script>
-  <script>
-    window.addEventListener('liquidglass-ready', () => {
-      const s = document.createElement('script');
-      s.src = 'assets/js/liquidglass-init.js';
-      document.body.appendChild(s);
-    });
-  </script>
+  </div></div>
+
+  <script src="assets/js/init.js" defer></script>
+  <script src="assets/js/magnetic.js" defer></script>
+  <script src="assets/js/cursor.js" defer></script>
+  <script src="assets/js/typewriter.js" defer></script>
+  <script type="module" src="assets/js/scroll.js"></script>
 </body>
 </html>
