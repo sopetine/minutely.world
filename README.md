@@ -1,4 +1,4 @@
-# Minutely — Landing Page Prototype (v4)
+# Minutely — Landing Page Prototype (v5)
 
 Static, visual-only prototype of a fictional Mac app: auto-records Teams/Zoom
 calls, transcribes with speaker diarization, summarizes, and lets you search and
@@ -9,8 +9,26 @@ This is a portfolio / demand-validation artifact. No backend, no database, no
 real auth, no real payment processing. Login and Payment pages are UI-only
 mockups with zero network calls.
 
-v4 adds a 30-second product overview video to the hero (see "Hero video"
-below). Everything else is carried over from v3.
+v5 changes (over v4):
+
+- New hero video (always muted, no sound button), 12px corners, an
+  Apple-style scroll "settle" effect, and full-bleed width on phones.
+- Smoother scrolling: Lenis now runs on the window, driven once per frame by
+  the GSAP ticker (v4 ran it twice per frame inside a clipped wrapper div).
+  Touch devices keep native momentum scrolling.
+- Hero logo: 24 bar phrases + 10 circle stats drawn from a shared shuffled
+  deck (never two identical lines on screen); text is sized in `cqw` so it
+  fits the logo at every width.
+- Higher-contrast cursor (white ring + dot with `mix-blend-mode: difference`).
+- Hero CTA and microcopy removed; header "Buy for Mac" is the single CTA.
+- Tighter vertical spacing across all sections.
+- "Overview" nav link; "Most popular" tag no longer clipped.
+- Checkout: plan switcher, card validation (Luhn, expiry, CVC), then an
+  account step that ends in a licensing-service timeout message.
+- Sign in: ends in an authentication-service timeout message.
+- No "demo" wording anywhere in the UI.
+
+v4 added the 30-second product overview video to the hero.
 
 v3 is a premium refresh of the `minutely/` prototype one directory up: tighter,
 more consistent copy across all 8 pages; a typography fix for the Instrument
@@ -33,8 +51,8 @@ description brought back in line with what's actually built).
 - `index.html` — Home: hero, 3 value props, Before/During/After walkthrough, 6-feature grid, 4-tier pricing, FAQ, footer
 - `changelog.html` — Version history (v0.1 → v1.4)
 - `docs.html` — Documentation: getting started, features, privacy, supported platforms, pricing & licensing, shortcuts, troubleshooting
-- `login.html` — Mock login (any email/password works, no validation). Heading: "Welcome back"
-- `payment.html` — Mock payment. Use `4242 4242 4242 4242` for success, `4000 0000 0000 0002` for declined. Pass `?tier=personal|pro|team&amount=N` in the URL to preselect a plan
+- `login.html` — Mock sign-in. Validates email/password format, shows a spinner for ~9.5 s, then a "504 · auth-eu-west-1" timeout alert with a random request ID. Nothing is sent or stored.
+- `payment.html` — Mock checkout. Plan switcher (`?tier=personal|pro|team` preselects and is kept in sync). Card form validates like a real one (any Luhn-valid number, e.g. `4242 4242 4242 4242`, future expiry, 3-digit CVC). Next comes a "One last step" account form, which ends after ~8.5 s in a "504 · lic-eu-west-1" licensing timeout ("your card has not been charged"). Nothing is sent or stored.
 - `404.html`, `privacy.html`, `terms.html` — Legal/error pages
 
 ## Run locally
@@ -62,7 +80,7 @@ Login and Payment are 100% client-side state machines; no `fetch`,
 ## File layout
 
 ```
-v4/
+v5/
 ├── index.html
 ├── login.html
 ├── payment.html
@@ -83,15 +101,16 @@ v4/
     │   ├── magnetic.js   # magnetic button hover effect
     │   ├── cursor.js     # Apple-style custom cursor
     │   ├── typewriter.js # hero logo bars/circle typewriter effect
-    │   ├── hero-video.js # hero video: in-view muted autoplay + "Play with sound"
-    │   ├── login.js      # mock auth state machine
-    │   └── payment.js    # mock payment state machine
+    │   ├── hero-video.js # hero video: in-view muted autoplay
+    │   ├── auth-ui.js    # shared form helpers: inline errors, busy button, timeout alert
+    │   ├── login.js      # mock sign-in flow
+    │   └── payment.js    # mock checkout: plan switcher, card validation, account step
     ├── img/
     │   ├── logo.svg
     │   └── favicon.svg
     └── video/
-        ├── hero-720.mp4      # desktop, H.264 30 fps, ~2.5 MB, faststart
-        ├── hero-480.mp4      # mobile (≤720px), ~1.4 MB
+        ├── hero-720.mp4      # desktop, H.264 30 fps, ~3.9 MB, faststart, no audio
+        ├── hero-480.mp4      # mobile (≤720px), ~1.9 MB, no audio
         └── hero-poster.webp  # poster / LCP image (preloaded)
 ```
 
@@ -107,17 +126,19 @@ The overview clip is committed to the repo and served same-origin by Vercel
   25% on screen; it pauses when scrolled away or the tab is hidden.
 - Mobile (≤720px) gets the 480p file; `hero-video.js` swaps `src` before
   anything loads (`<source media>` isn't honoured everywhere).
-- Muted + `playsinline` so iOS allows autoplay. "Play with sound" restarts it
-  unmuted with native controls (fullscreen available there).
-- No autoplay with `prefers-reduced-motion` or Data Saver — poster + "Play".
+- Always muted + `playsinline` so iOS allows autoplay; the files carry no
+  audio track.
+- No autoplay with `prefers-reduced-motion` or Data Saver — poster only.
+- Scroll effect: `scroll.js` tweens `--expand` 0 → 1 on the figure; CSS maps it
+  to `scale` (and, on phones, the corner radius down to 0 for a full-bleed finish).
 
-Re-encode from the master (`v3/Minutely hero.mp4`) with two-pass x264:
-720p @ 520 kb/s and 854×480 @ 260 kb/s, 30 fps, `-tune animation
--movflags +faststart`.
+Re-encode from the master (`~/Movies/OBS/2026-10-12 14-29-34.mp4`, 1080p60)
+with two-pass x264, 30 fps, `-an -movflags +faststart`: 1280×720 @ 900 kb/s and
+854×480 @ 450 kb/s. Poster: frame at 1 s, 1280×720 WebP (q80, via `cwebp`).
 
 ## Premium touches
 
-- **Smooth scroll** (Lenis, 1.15s duration with custom easing)
+- **Smooth scroll** (Lenis on the window, lerp 0.1, wheel only)
 - **Scroll-triggered reveals** on every section (degrades gracefully if JS fails)
 - **Staggered children animations** on grids
 - **Word-by-word text reveal** on hero headings (preserves `<em>` styling + gradient)

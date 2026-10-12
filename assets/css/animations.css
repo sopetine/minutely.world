@@ -20,8 +20,11 @@
   animation: reveal-fast 400ms var(--ease-out-expo) both;
 }
 
-/* Page entrance — runs via CSS, no JS required */
-.page-enter { animation: reveal 700ms var(--ease-out-expo) both; }
+/* Page entrance — runs via CSS, no JS required. Opacity only: a transform
+   on <body> would make it the containing block for the position:fixed
+   cursor and progress bar, pinning them to the top of the page. */
+.page-enter { animation: page-fade 600ms var(--ease-out-expo) both; }
+@keyframes page-fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes reveal {
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }

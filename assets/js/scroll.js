@@ -8,24 +8,9 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
 
 let lenis = null;
 if (!reduceMotion) {
-  const wrapperEl = document.getElementById('lenis-wrapper');
-  const contentEl = document.getElementById('lenis-content');
-  lenis = new Lenis({
-    wrapper: wrapperEl,
-    content: contentEl,
-    duration: 1.15,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smoothWheel: true,
-    syncTouch: true,
-    wheelMultiplier: 1,
-    touchMultiplier: 1.4,
-    lerp: 0.09
-  });
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-  requestAnimationFrame(raf);
+  // Window-level smooth scroll (wheel only — touch keeps native momentum).
+  // Driven by the gsap ticker alone so lenis.raf runs exactly once per frame.
+  lenis = new Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1 });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((time) => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
@@ -100,9 +85,10 @@ function setupAnchorLinks() {
       if (!target) return;
       e.preventDefault();
       if (lenis) {
-        lenis.scrollTo(target, { offset: -68, duration: 1.2 });
+        lenis.scrollTo(id === '#hero' ? 0 : target, { offset: -68, duration: 1.2 });
       } else {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (id === '#hero') window.scrollTo({ top: 0, behavior: 'smooth' });
+        else target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
   });
@@ -131,12 +117,27 @@ function immediateReveal() {
   });
 }
 
+/* Hero video settles from slightly inset to full size as it scrolls up
+   to the viewport centre (Apple-style). CSS vars keep the styling in CSS. */
+function setupHeroVideoExpand() {
+  if (reduceMotion) return;
+  const fig = document.querySelector('[data-hero-video]');
+  if (!fig) return;
+  fig.classList.add('is-expandable');
+  gsap.fromTo(fig, { '--expand': 0 }, {
+    '--expand': 1,
+    ease: 'none',
+    scrollTrigger: { trigger: fig, start: 'top 95%', end: 'center 55%', scrub: 0.6 }
+  });
+}
+
 function init() {
   setupSpotlights();
   setup3DTilt();
   setupNavScroll();
   setupProgressBar();
   setupAnchorLinks();
+  setupHeroVideoExpand();
   setupScrollReveal();
   immediateReveal();
 
