@@ -77,8 +77,8 @@
 .summary-copy .material-symbols-outlined { font-size: 14px; }
 .summary-copy.is-copied { color: var(--color-success); border-color: rgba(31, 157, 85, 0.35); }
 
-/* Collapsible body. Collapsed: a fixed-height window whose content scrolls
-   inside it (top/bottom fades show there is more). Expanded: full height. */
+/* Collapsible body. Collapsed: a fixed-height preview with a bottom fade —
+   no inner scroll, so the page wheel never gets trapped. Expanded: full height. */
 .summary-body {
   position: relative;
   height: 460px;
@@ -87,8 +87,7 @@
 }
 .summary-scroll {
   height: 100%;
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  overflow: hidden;
   scrollbar-width: thin;
   scrollbar-color: rgba(5, 104, 161, 0.45) transparent;
 }
@@ -122,29 +121,8 @@
   height: 120px;
   background: linear-gradient(180deg, rgba(253, 253, 252, 0) 0%, var(--sw-bg) 85%);
 }
-.summary-body.is-scrolled::before { opacity: 1; }
-.summary-body.at-end::after { opacity: 0; }
 .summary-window.is-expanded .summary-body::before,
 .summary-window.is-expanded .summary-body::after { opacity: 0; }
-
-/* "Scroll" hint, bottom-right of the collapsed panel */
-.summary-scroll-hint {
-  position: absolute;
-  right: 18px;
-  bottom: 22px;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-  font: 500 0.72rem/1 var(--font-sans);
-  color: var(--color-ink-muted);
-  pointer-events: none;
-  transition: opacity 300ms var(--ease-smooth);
-}
-.summary-scroll-hint .material-symbols-outlined { font-size: 16px; animation: hint-bob 1.6s var(--ease-smooth) infinite; }
-@keyframes hint-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
-.summary-body.is-scrolled .summary-scroll-hint,
-.summary-window.is-expanded .summary-scroll-hint { opacity: 0; }
 
 .summary-toggle {
   position: absolute;

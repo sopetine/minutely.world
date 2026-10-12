@@ -8,7 +8,6 @@
   if (!win || !window.marked) return;
   const content = win.querySelector('.app-summary');
   const body = win.querySelector('.summary-body');
-  const scroller = win.querySelector('.summary-scroll');
   const floatBtn = document.querySelector('[data-summary-float]');
   const toggle = win.querySelector('.summary-toggle');
   const toggleLabel = toggle.querySelector('[data-toggle-label]');
@@ -120,7 +119,6 @@
     wrapTables();
     sizeTables('table');
     tagMentions();
-    updateScrollCues();
     if (window.ResizeObserver) {
       let raf = null;
       new ResizeObserver(() => {
@@ -139,16 +137,7 @@
     else window.dispatchEvent(new Event('resize'));
   }
 
-  // Collapsed panel scrolls inside itself; fades + hint show where you are.
-  function updateScrollCues() {
-    const max = scroller.scrollHeight - scroller.clientHeight;
-    body.classList.toggle('is-scrolled', scroller.scrollTop > 4);
-    body.classList.toggle('at-end', scroller.scrollTop >= max - 4);
-  }
-  scroller.addEventListener('scroll', updateScrollCues, { passive: true });
-
   function setExpanded(expanding) {
-    if (!expanding) scroller.scrollTop = 0;
     body.style.height = (expanding ? content.offsetHeight : COLLAPSED) + 'px';
     win.classList.toggle('is-expanded', expanding);
     toggle.setAttribute('aria-expanded', expanding ? 'true' : 'false');
@@ -158,7 +147,6 @@
       if (window.__lenis) window.__lenis.scrollTo(top, { duration: 0.9 });
       else window.scrollTo({ top, behavior: 'smooth' });
     }
-    updateScrollCues();
     updateFloat();
     setTimeout(refreshScroll, 750);
   }

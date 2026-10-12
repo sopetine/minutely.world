@@ -1,0 +1,7 @@
+{
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/cv", "destination": "/index.html" },
+    { "source": "/in", "destination": "/index.html" }
+  ]
+}
