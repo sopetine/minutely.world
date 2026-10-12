@@ -1686,8 +1686,6 @@
 
 /* Hero → video: actions, then the overview */
 .hero-sub { margin-bottom: var(--space-4); }
-.hero-ctas { display: flex; gap: var(--space-2); justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
-.hero-ctas .btn { min-width: 168px; justify-content: center; }
 .hero-video { margin-top: 0; }
 .hero-video-tag {
   position: absolute;
@@ -1739,40 +1737,27 @@
 }
 .icon-tile .material-symbols-outlined { font-size: 24px; font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24; }
 
-/* Personas: flat avatar + role badge */
+/* Personas: flat avatar, role cue drawn in (v10) */
 .persona-avatar {
-  position: relative;
-  display: grid;
-  place-items: end center;
-  width: 44px;
-  height: 44px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  overflow: visible;
-}
-.persona-bust { width: 44px; height: 44px; border-radius: 50%; fill: rgba(255, 255, 255, 0.92); }
-.persona-avatar-1 { background: #E4E3FD; }
-.persona-avatar-2 { background: #DDEFE6; }
-.persona-avatar-3 { background: #FBE6D4; }
-.persona-avatar-4 { background: #DCEAF7; }
-.persona-avatar-1 .persona-bust { fill: #8F8EF2; }
-.persona-avatar-2 .persona-bust { fill: #5DA88A; }
-.persona-avatar-3 .persona-bust { fill: #D8975F; }
-.persona-avatar-4 .persona-bust { fill: #5B92C9; }
-.persona-badge {
-  position: absolute;
-  right: -4px;
-  bottom: -4px;
   display: grid;
   place-items: center;
-  width: 20px;
-  height: 20px;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
   border-radius: 50%;
-  background: var(--color-surface);
-  box-shadow: 0 0 0 1.5px var(--color-surface), inset 0 0 0 1px var(--color-border-strong);
-  color: var(--color-ink);
+  overflow: hidden;
 }
-.persona-badge .material-symbols-outlined { font-size: 13px; font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 20; }
+.persona-avatar svg { width: 48px; height: 48px; display: block; }
+.persona-avatar-1 { background: #E4E3FD; --pc: #8F8EF2; --pc-deep: #4B4BD6; }
+.persona-avatar-2 { background: #DDEFE6; --pc: #5DA88A; --pc-deep: #2B6E54; }
+.persona-avatar-3 { background: #FBE6D4; --pc: #D8975F; --pc-deep: #8F4E1E; }
+.persona-avatar-4 { background: #DCEAF7; --pc: #5B92C9; --pc-deep: #255C94; }
+.persona-avatar .pa-body { fill: var(--pc); }
+.persona-avatar .pa-deep { fill: var(--pc-deep); }
+.persona-avatar .pa-white { fill: #FFFFFF; }
+.persona-avatar .pa-stroke { fill: none; stroke: var(--pc-deep); stroke-width: 2.4; stroke-linecap: round; }
+.persona-avatar .pa-thin { stroke-width: 1.6; }
+.persona-avatar .pa-outline { stroke: var(--pc-deep); stroke-width: 1.4; }
 
 /* No gap between the LinkedIn row and the footer */
 main.page { padding-bottom: 0; }
@@ -1781,3 +1766,30 @@ main.page { padding-bottom: 0; }
 @media (prefers-color-scheme: dark) {
   .icon-tile { background: #1F1F40; border-color: rgba(142, 142, 255, 0.22); box-shadow: none; }
 }
+
+/* ============================================
+   v10 — CRISP HERO, VALUE CHIPS
+   ============================================ */
+.hero-sub { margin-inline: auto; margin-bottom: var(--space-3); color: var(--color-ink); font-weight: 500; font-size: clamp(1.05rem, 1.4vw, 1.25rem); }
+.hero-props {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+}
+.hero-props li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px 6px 10px;
+  border-radius: 999px;
+  background: var(--color-brand-soft);
+  color: var(--color-ink);
+  font-size: 0.88rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.hero-props .material-symbols-outlined { font-size: 18px; color: var(--color-brand); }
