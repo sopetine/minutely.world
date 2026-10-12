@@ -21,8 +21,6 @@
 </head>
 <body data-page="payment" class="page-enter">
 
-  <div id="lenis-wrapper"><div id="lenis-content">
-
   <a class="sr-only" href="#main">Skip to main content</a>
 
   <header class="top-nav" role="banner">
@@ -33,6 +31,7 @@
           <span>Minutely</span>
         </a>
         <nav class="top-nav-links" aria-label="Primary">
+          <a class="top-nav-link" href="index.html#hero">Overview</a>
           <a class="top-nav-link" href="index.html#features">Features</a>
           <a class="top-nav-link" href="index.html#pricing">Pricing</a>
           <a class="top-nav-link" href="index.html#faq">FAQ</a>
@@ -55,12 +54,20 @@
     <div class="auth-card">
       <div id="payment-form-wrap">
         <h1>Checkout.</h1>
-        <p class="subtitle">One payment. No subscription, no auto-renew, no hidden fees. Free updates included forever.</p>
+        <p class="subtitle">One payment. No subscription, no auto-renew. Free updates included forever.</p>
 
-        <div class="payment-summary" aria-label="Order summary">
+        <div class="plan-switch" role="radiogroup" aria-label="Plan">
+          <span class="plan-switch-pill" aria-hidden="true"></span>
+          <button type="button" class="plan-switch-opt" role="radio" data-tier="personal" aria-checked="false">Personal</button>
+          <button type="button" class="plan-switch-opt" role="radio" data-tier="pro" aria-checked="true">Pro</button>
+          <button type="button" class="plan-switch-opt" role="radio" data-tier="team" aria-checked="false">Team</button>
+        </div>
+
+        <div class="payment-summary" aria-label="Order summary" aria-live="polite">
           <div>
             <div class="payment-summary-label">Plan</div>
             <div class="payment-summary-tier" id="summary-tier">Pro</div>
+            <div class="payment-summary-meta" id="summary-meta">One-time · 1 Mac</div>
           </div>
           <div class="payment-summary-amount tabular" id="summary-amount">$79</div>
         </div>
@@ -68,72 +75,80 @@
         <form id="payment-form" novalidate>
           <div class="form-field">
             <label for="card-number">Card number</label>
-            <input type="text" id="card-number" name="cardNumber" inputmode="numeric" autocomplete="cc-number" placeholder="1234 1234 1234 1234" required>
+            <div class="input-wrap">
+              <input type="text" id="card-number" name="cardNumber" inputmode="numeric" autocomplete="cc-number" placeholder="1234 1234 1234 1234" required>
+              <span class="card-brand" id="card-brand" aria-hidden="true"></span>
+            </div>
+            <span class="field-error" data-error-for="card-number"></span>
           </div>
           <div class="form-field-row">
             <div class="form-field">
               <label for="card-expiry">Expiry</label>
-              <input type="text" id="card-expiry" name="cardExpiry" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/YY" required>
+              <input type="text" id="card-expiry" name="cardExpiry" inputmode="numeric" autocomplete="cc-exp" placeholder="MM / YY" required>
+              <span class="field-error" data-error-for="card-expiry"></span>
             </div>
             <div class="form-field">
               <label for="card-cvc">CVC</label>
-              <input type="text" id="card-cvc" name="cardCvc" inputmode="numeric" autocomplete="cc-csc" placeholder="CVC" required>
+              <input type="text" id="card-cvc" name="cardCvc" inputmode="numeric" autocomplete="cc-csc" placeholder="123" required>
+              <span class="field-error" data-error-for="card-cvc"></span>
             </div>
           </div>
           <div class="form-field">
             <label for="card-name">Name on card</label>
             <input type="text" id="card-name" name="cardName" autocomplete="cc-name" placeholder="Full name" required>
+            <span class="field-error" data-error-for="card-name"></span>
           </div>
 
           <button id="pay-btn" type="submit" class="btn btn-primary btn-block magnetic" data-magnetic>
             <span class="magnetic-inner" style="display:inline-flex;align-items:center;gap:6px;">
               <span class="material-symbols-outlined" style="font-size:16px;">lock</span>
-              Pay $79
-              <span class="material-symbols-outlined icon-arrow">arrow_forward</span>
+              <span data-btn-label>Pay $79</span>
             </span>
           </button>
 
-          <p class="payment-hint">
-            <strong>Demo card:</strong> use <code>4242 4242 4242 4242</code> for success, or <code>4000 0000 0000 0002</code> to see the declined state. No real charge is ever made.
+          <p class="form-secure">
+            <span class="material-symbols-outlined" aria-hidden="true">verified_user</span>
+            Encrypted end to end. Card details are tokenised by our payment processor.
           </p>
         </form>
       </div>
 
-      <div id="payment-success" class="result-block" hidden>
-        <div class="result-icon result-icon-success" aria-hidden="true">
-          <span class="material-symbols-outlined">check</span>
-        </div>
-        <h2>You're all set — welcome to Minutely.</h2>
-        <p>Check your email for the .dmg download link and licence key. Installation takes one minute — see the docs if you need a hand.</p>
-        <a class="btn btn-primary btn-block magnetic" href="index.html" data-magnetic>
-          <span class="magnetic-inner" style="display:inline-flex;align-items:center;gap:6px;">
-            Back to home
-            <span class="material-symbols-outlined icon-arrow">arrow_forward</span>
-          </span>
-        </a>
-      </div>
+      <div id="account-step" hidden>
+        <h1>One last step.</h1>
+        <p class="subtitle">Create your Minutely account — your licence key and downloads are tied to it.</p>
 
-      <div id="payment-declined" class="result-block" hidden>
-        <div class="result-icon result-icon-danger" aria-hidden="true">
-          <span class="material-symbols-outlined">priority_high</span>
-        </div>
-        <h2>Your card was declined.</h2>
-        <p>That didn't go through. Try a different card — or use the demo card on this page to see what a successful payment looks like.</p>
-        <button id="retry-btn" type="button" class="btn btn-primary btn-block magnetic" data-magnetic>
-          <span class="magnetic-inner" style="display:inline-flex;align-items:center;gap:6px;">
-            Try again
-            <span class="material-symbols-outlined icon-arrow">arrow_forward</span>
-          </span>
-        </button>
+        <form id="account-form" novalidate>
+          <div class="form-field">
+            <label for="acct-email">Work email</label>
+            <input type="email" id="acct-email" name="email" autocomplete="email" placeholder="you@work.com" required>
+            <span class="field-error" data-error-for="acct-email"></span>
+          </div>
+          <div class="form-field">
+            <label for="acct-password">Password</label>
+            <input type="password" id="acct-password" name="password" autocomplete="new-password" placeholder="At least 8 characters" required>
+            <span class="field-error" data-error-for="acct-password"></span>
+          </div>
+
+          <div class="form-alert" id="account-alert" role="alert" hidden></div>
+
+          <button id="account-btn" type="submit" class="btn btn-primary btn-block magnetic" data-magnetic>
+            <span class="magnetic-inner" style="display:inline-flex;align-items:center;gap:6px;">
+              <span data-btn-label>Create account &amp; pay $79</span>
+              <span class="material-symbols-outlined icon-arrow">arrow_forward</span>
+            </span>
+          </button>
+
+          <p class="form-footnote">By continuing you agree to the <a href="terms.html">Terms</a> and <a href="privacy.html">Privacy Policy</a>.</p>
+        </form>
       </div>
     </div>
   </main>
 
-  </div></div>
 
   <script src="assets/js/init.js" defer></script>
   <script src="assets/js/magnetic.js" defer></script>
   <script src="assets/js/cursor.js" defer></script>
+  <script src="assets/js/auth-ui.js" defer></script>
   <script src="assets/js/payment.js" defer></script>
   <script type="module" src="assets/js/scroll.js"></script>
 </body>

@@ -21,8 +21,6 @@
 </head>
 <body data-page="login" class="page-enter">
 
-  <div id="lenis-wrapper"><div id="lenis-content">
-
   <a class="sr-only" href="#main">Skip to main content</a>
 
   <header class="top-nav" role="banner">
@@ -33,6 +31,7 @@
           <span>Minutely</span>
         </a>
         <nav class="top-nav-links" aria-label="Primary">
+          <a class="top-nav-link" href="index.html#hero">Overview</a>
           <a class="top-nav-link" href="index.html#features">Features</a>
           <a class="top-nav-link" href="index.html#pricing">Pricing</a>
           <a class="top-nav-link" href="index.html#faq">FAQ</a>
@@ -60,29 +59,33 @@
         <div class="form-field">
           <label for="email">Email</label>
           <input type="email" id="email" name="email" autocomplete="email" placeholder="you@work.com" required>
+          <span class="field-error" data-error-for="email"></span>
         </div>
         <div class="form-field">
           <label for="password">Password</label>
           <input type="password" id="password" name="password" autocomplete="current-password" placeholder="••••••••" required>
+          <span class="field-error" data-error-for="password"></span>
         </div>
+
+        <div class="form-alert" id="login-alert" role="alert" hidden></div>
 
         <button type="submit" class="btn btn-primary btn-block magnetic" data-magnetic>
           <span class="magnetic-inner" style="display:inline-flex;align-items:center;gap:6px;">
-            Continue
+            <span data-btn-label>Continue</span>
             <span class="material-symbols-outlined icon-arrow">arrow_forward</span>
           </span>
         </button>
 
-        <p class="form-footnote">Demo mode — any email and password work. We never send anything to a server on this page.</p>
+        <p class="form-footnote">New to Minutely? <a href="index.html#pricing">Choose a plan</a> — you'll create your account at checkout.</p>
       </form>
     </div>
   </main>
 
-  </div></div>
 
   <script src="assets/js/init.js" defer></script>
   <script src="assets/js/magnetic.js" defer></script>
   <script src="assets/js/cursor.js" defer></script>
+  <script src="assets/js/auth-ui.js" defer></script>
   <script src="assets/js/login.js" defer></script>
   <script type="module" src="assets/js/scroll.js"></script>
 </body>

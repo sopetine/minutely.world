@@ -4,30 +4,74 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion) return;
 
-  // Benefits shown in the 3 black bars (each ≤ ~16 chars).
+  // Benefits shown in the 3 black bars. Keep each ≤ 14 chars so it fits the
+  // bar at every logo width (font-size is in cqw, see home.css).
   const SCRIPT_BARS = [
-    'No bots. Local.',
-    'Whisper on M1',
-    'Local. Private.',
-    'Press record.',
+    'No bots.',
     'Runs offline.',
-    'Yours. Forever.',
+    'Local. Private.',
+    'Press nothing.',
+    'Auto-records.',
+    'Whisper on Mac',
+    'Speaker names.',
+    'Ask any call.',
+    'Search it all.',
     'One price.',
+    'Yours forever.',
     'No cloud.',
-    'Search every call.',
-    'Built for Mac.'
+    'No banners.',
+    'Teams. Zoom.',
+    'Google Meet.',
+    'Any video file',
+    'Local LLMs.',
+    'Your own key.',
+    'Free updates.',
+    'Action items.',
+    'Synced replay.',
+    'Built for Mac.',
+    'Zero upkeep.',
+    'Notes, done.'
   ];
 
-  // Impact stats shown in the circle — first line is the number (big), second
-  // line is the label (small, uppercase). All measure real outcomes.
+  // Impact stats shown in the circle — number (big) + label (small, uppercase).
   const SCRIPT_CIRCLE = [
     { number: '4h',   label: 'saved/wk' },
     { number: '0',    label: 'bots' },
-    { number: '0',    label: 'cloud' },
+    { number: '0',    label: 'uploads' },
     { number: '4s',   label: 'summary' },
-    { number: '1',    label: 'payment' },
-    { number: '98%',  label: 'accurate' }
+    { number: '1×',   label: 'payment' },
+    { number: '98%',  label: 'accurate' },
+    { number: '100%', label: 'on-device' },
+    { number: '99',   label: 'languages' },
+    { number: '$0',   label: 'per minute' },
+    { number: '∞',    label: 'meetings' }
   ];
+
+  // Shuffled deck shared by all slots: a slot never draws a phrase that is
+  // already on screen in another slot, and the deck only repeats once spent.
+  function makeDeck(items) {
+    let pile = [];
+    const showing = new Set();
+    return {
+      draw(prev) {
+        if (!pile.length) {
+          pile = items.slice();
+          for (let i = pile.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [pile[i], pile[j]] = [pile[j], pile[i]];
+          }
+        }
+        let idx = pile.findIndex((x) => !showing.has(x) && x !== prev);
+        if (idx < 0) idx = 0;
+        const item = pile.splice(idx, 1)[0];
+        showing.add(item);
+        return item;
+      },
+      release(item) { showing.delete(item); }
+    };
+  }
+  const barDeck = makeDeck(SCRIPT_BARS);
+  const circleDeck = makeDeck(SCRIPT_CIRCLE);
 
   // Find all targets
   const barTargets = Array.from(document.querySelectorAll('.hero-logo-bars .typewriter-text'));
@@ -72,6 +116,17 @@
     }
   }
 
+  // Safety net: if a phrase still overflows its bar (odd font fallback),
+  // step the font down until it fits.
+  function fitToBar(el) {
+    const bar = el.parentElement;
+    let size = parseFloat(getComputedStyle(el).fontSize);
+    while (el.scrollWidth > bar.clientWidth * 0.9 && size > 7) {
+      size -= 0.5;
+      el.style.fontSize = size + 'px';
+    }
+  }
+
   async function fadeOut(el) {
     el.classList.add('is-fading');
     await new Promise((r) => setTimeout(r, 600));
@@ -80,25 +135,31 @@
   async function runBar(el, index) {
     // Stagger start so the 3 lines begin in sequence, not in unison.
     await new Promise((r) => setTimeout(r, index * 1600));
+    let phrase = null;
     while (true) {
-      const phrase = SCRIPT_BARS[Math.floor(Math.random() * SCRIPT_BARS.length)];
+      phrase = barDeck.draw(phrase);
+      el.style.fontSize = '';
       await typePhrase(el, phrase, true);
+      fitToBar(el);
       await new Promise((r) => setTimeout(r, 1600));
       await fadeOut(el);
+      barDeck.release(phrase);
       await new Promise((r) => setTimeout(r, 200));
     }
   }
 
   async function runCircle(numberEl, labelEl, index) {
     await new Promise((r) => setTimeout(r, index * 1600));
+    let stat = null;
     while (true) {
-      const stat = SCRIPT_CIRCLE[Math.floor(Math.random() * SCRIPT_CIRCLE.length)];
+      stat = circleDeck.draw(stat);
       // Type the big number first (with cursor), then the small label (no cursor).
       await typePhrase(numberEl, stat.number, true);
       await typePhrase(labelEl, stat.label, false);
       await new Promise((r) => setTimeout(r, 1600));
       await fadeOut(numberEl);
       await fadeOut(labelEl);
+      circleDeck.release(stat);
       await new Promise((r) => setTimeout(r, 200));
     }
   }
