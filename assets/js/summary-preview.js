@@ -8,6 +8,8 @@
   if (!win || !window.marked) return;
   const content = win.querySelector('.app-summary');
   const body = win.querySelector('.summary-body');
+  const scroller = win.querySelector('.summary-scroll');
+  const floatBtn = document.querySelector('[data-summary-float]');
   const toggle = win.querySelector('.summary-toggle');
   const toggleLabel = toggle.querySelector('[data-toggle-label]');
   const copyBtn = win.querySelector('.summary-copy');
@@ -118,6 +120,7 @@
     wrapTables();
     sizeTables('table');
     tagMentions();
+    updateScrollCues();
     if (window.ResizeObserver) {
       let raf = null;
       new ResizeObserver(() => {
@@ -136,8 +139,16 @@
     else window.dispatchEvent(new Event('resize'));
   }
 
-  toggle.addEventListener('click', () => {
-    const expanding = !win.classList.contains('is-expanded');
+  // Collapsed panel scrolls inside itself; fades + hint show where you are.
+  function updateScrollCues() {
+    const max = scroller.scrollHeight - scroller.clientHeight;
+    body.classList.toggle('is-scrolled', scroller.scrollTop > 4);
+    body.classList.toggle('at-end', scroller.scrollTop >= max - 4);
+  }
+  scroller.addEventListener('scroll', updateScrollCues, { passive: true });
+
+  function setExpanded(expanding) {
+    if (!expanding) scroller.scrollTop = 0;
     body.style.height = (expanding ? content.offsetHeight : COLLAPSED) + 'px';
     win.classList.toggle('is-expanded', expanding);
     toggle.setAttribute('aria-expanded', expanding ? 'true' : 'false');
@@ -147,8 +158,33 @@
       if (window.__lenis) window.__lenis.scrollTo(top, { duration: 0.9 });
       else window.scrollTo({ top, behavior: 'smooth' });
     }
+    updateScrollCues();
+    updateFloat();
     setTimeout(refreshScroll, 750);
-  });
+  }
+
+  toggle.addEventListener('click', () => setExpanded(!win.classList.contains('is-expanded')));
+  if (floatBtn) floatBtn.addEventListener('click', () => setExpanded(false));
+
+  // Floating "Collapse" pill: shown while the expanded summary fills the
+  // screen and its own Collapse button is out of view.
+  let winInView = false, toggleInView = false;
+  function updateFloat() {
+    if (!floatBtn) return;
+    const show = win.classList.contains('is-expanded') && winInView && !toggleInView;
+    floatBtn.classList.toggle('is-shown', show);
+    floatBtn.tabIndex = show ? 0 : -1;
+  }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((entries) => {
+      winInView = entries[0].isIntersecting;
+      updateFloat();
+    }, { rootMargin: '-80px 0px -40px 0px' }).observe(win);
+    new IntersectionObserver((entries) => {
+      toggleInView = entries[0].isIntersecting;
+      updateFloat();
+    }).observe(toggle);
+  }
   body.style.height = COLLAPSED + 'px';
 
   // ---- Copy: rich text (as rendered) + markdown as plain text ----

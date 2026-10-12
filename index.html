@@ -41,7 +41,6 @@
           <a class="top-nav-link" href="docs.html">Docs</a>
         </nav>
         <div class="top-nav-actions">
-          <a class="btn btn-ghost" href="login.html">Log in</a>
           <a class="btn btn-primary magnetic" href="payment.html?tier=pro&amp;amount=79" data-magnetic>
             <span class="magnetic-inner" style="display:inline-flex;align-items:center;gap:6px;">
               Buy for Mac
@@ -126,10 +125,14 @@
             <button type="button" class="summary-copy"><span class="material-symbols-outlined" aria-hidden="true">content_copy</span><span data-copy-label>Copy</span></button>
           </div>
           <div class="summary-body">
-            <article class="app-summary" aria-label="Summary of a product marketing sync"></article>
+            <div class="summary-scroll" data-lenis-prevent tabindex="0" aria-label="Summary, scrollable">
+              <article class="app-summary" aria-label="Summary of a product marketing sync"></article>
+            </div>
+            <span class="summary-scroll-hint" aria-hidden="true">Scroll<span class="material-symbols-outlined">keyboard_arrow_down</span></span>
             <button type="button" class="summary-toggle" aria-expanded="false"><span data-toggle-label>Show full summary</span><span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
           </div>
         </div>
+        <button type="button" class="summary-float" data-summary-float><span>Collapse summary</span><span class="material-symbols-outlined" aria-hidden="true">expand_less</span></button>
       </div>
     </section>
 
