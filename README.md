@@ -1,4 +1,4 @@
-# Minutely — Landing Page Prototype (v8)
+# Minutely — Landing Page Prototype (v9)
 
 Static, visual-only prototype of a fictional Mac app: auto-records Teams/Zoom
 calls, transcribes with speaker diarization, summarizes, and lets you search and
@@ -8,6 +8,16 @@ support.
 This is a portfolio / demand-validation artifact. No backend, no database, no
 real auth, no real payment processing. Login and Payment pages are UI-only
 mockups that send nothing — form values never leave the page.
+
+v9 changes (over v8):
+
+- Comparison rows phrased as capabilities with explicit ✓ Yes / – Partly / ✕ No
+  plus short notes; footnotes removed; legend in the header.
+- Flat 2D icon tiles (no shading) with clearer glyphs; persona cards use flat
+  person avatars with a role badge.
+- Hero gets "Buy for Mac" / "See how it works" actions and a "30-second
+  overview" label on the video; "Records from" is a thin static centred band.
+- All section headers centred; denser summary preview; no gap before footer.
 
 v8 changes (over v7):
 
