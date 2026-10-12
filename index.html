@@ -18,6 +18,8 @@
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/animations.css">
   <link rel="stylesheet" href="assets/css/home.css">
+
+  <link rel="preload" as="image" href="assets/video/hero-poster.webp" type="image/webp" fetchpriority="high">
 </head>
 <body data-page="home" class="page-enter">
 
@@ -105,6 +107,17 @@
         </div>
 
         <p class="hero-microcopy">One-time purchase. Free updates forever. Works with Teams, Zoom, Meet, screen recordings, and any video file on macOS 13+.</p>
+
+        <figure class="hero-video" data-hero-video data-reveal>
+          <video class="hero-video-media" muted loop playsinline disablepictureinpicture preload="none"
+                 poster="assets/video/hero-poster.webp" width="1280" height="720"
+                 src="assets/video/hero-720.mp4" data-src-mobile="assets/video/hero-480.mp4"
+                 aria-label="30-second overview of the Minutely app"></video>
+          <button class="hero-video-sound" type="button" data-hero-video-sound>
+            <span class="material-symbols-outlined" aria-hidden="true">volume_up</span>
+            <span data-hero-video-label>Play with sound</span>
+          </button>
+        </figure>
       </div>
     </section>
 
@@ -202,7 +215,6 @@
     </section>
 
     <!-- ============ FEATURES (6) ============ -->
-    <!-- TODO demo video: general UI overview + synchronised video replay / summary autoscroll (place under "Watch it back, in sync") -->
     <section class="features" id="features" aria-label="Features">
       <div class="container">
         <span class="eyebrow">Features</span>
@@ -486,6 +498,7 @@
   <script src="assets/js/magnetic.js" defer></script>
   <script src="assets/js/cursor.js" defer></script>
   <script src="assets/js/typewriter.js" defer></script>
+  <script src="assets/js/hero-video.js" defer></script>
   <script type="module" src="assets/js/scroll.js"></script>
 </body>
 </html>

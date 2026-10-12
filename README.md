@@ -1,4 +1,4 @@
-# Minutely — Landing Page Prototype (v3)
+# Minutely — Landing Page Prototype (v4)
 
 Static, visual-only prototype of a fictional Mac app: auto-records Teams/Zoom
 calls, transcribes with speaker diarization, summarizes, and lets you search and
@@ -8,6 +8,9 @@ support.
 This is a portfolio / demand-validation artifact. No backend, no database, no
 real auth, no real payment processing. Login and Payment pages are UI-only
 mockups with zero network calls.
+
+v4 adds a 30-second product overview video to the hero (see "Hero video"
+below). Everything else is carried over from v3.
 
 v3 is a premium refresh of the `minutely/` prototype one directory up: tighter,
 more consistent copy across all 8 pages; a typography fix for the Instrument
@@ -59,7 +62,7 @@ Login and Payment are 100% client-side state machines; no `fetch`,
 ## File layout
 
 ```
-v3/
+v4/
 ├── index.html
 ├── login.html
 ├── payment.html
@@ -80,15 +83,37 @@ v3/
     │   ├── magnetic.js   # magnetic button hover effect
     │   ├── cursor.js     # Apple-style custom cursor
     │   ├── typewriter.js # hero logo bars/circle typewriter effect
+    │   ├── hero-video.js # hero video: in-view muted autoplay + "Play with sound"
     │   ├── login.js      # mock auth state machine
     │   └── payment.js    # mock payment state machine
-    └── img/
-        ├── logo.svg
-        └── favicon.svg
+    ├── img/
+    │   ├── logo.svg
+    │   └── favicon.svg
+    └── video/
+        ├── hero-720.mp4      # desktop, H.264 30 fps, ~2.5 MB, faststart
+        ├── hero-480.mp4      # mobile (≤720px), ~1.4 MB
+        └── hero-poster.webp  # poster / LCP image (preloaded)
 ```
 
 All icons on the site come from the Material Symbols web font — there are no
 screenshot mocks or icon sprite files in `img/`.
+
+## Hero video
+
+The overview clip is committed to the repo and served same-origin by Vercel
+(no external video host). Behaviour:
+
+- `preload="none"` + poster image, so nothing downloads until the video is
+  25% on screen; it pauses when scrolled away or the tab is hidden.
+- Mobile (≤720px) gets the 480p file; `hero-video.js` swaps `src` before
+  anything loads (`<source media>` isn't honoured everywhere).
+- Muted + `playsinline` so iOS allows autoplay. "Play with sound" restarts it
+  unmuted with native controls (fullscreen available there).
+- No autoplay with `prefers-reduced-motion` or Data Saver — poster + "Play".
+
+Re-encode from the master (`v3/Minutely hero.mp4`) with two-pass x264:
+720p @ 520 kb/s and 854×480 @ 260 kb/s, 30 fps, `-tune animation
+-movflags +faststart`.
 
 ## Premium touches
 
