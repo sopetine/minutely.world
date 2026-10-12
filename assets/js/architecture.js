@@ -1,6 +1,6 @@
 // "Under the hood" diagram: one data model, two layouts (wide / phone).
-// Hover, tap or focus a node to trace its links; the mode toggle shows the
-// one optional path out of the Mac.
+// Hover, tap or focus a node to trace its links. Both summary models —
+// on-device and your own key — are drawn in the same picture.
 (function () {
   const fig = document.querySelector('[data-arch]');
   if (!fig) return;
@@ -10,76 +10,99 @@
   const NS = 'http://www.w3.org/2000/svg';
 
   const NODES = [
-    { id: 'detector', icon: 'radar', label: 'Meeting detector', sub: 'Teams · Zoom · Meet', cap: 'Notices the call window the moment you join, and when you leave.' },
+    { id: 'detector', icon: 'radar', label: 'Call detector', sub: 'Teams · Zoom · Meet', cap: 'Notices the call window the moment you join, and when you leave.' },
     { id: 'capture', icon: 'mic', label: 'Capture', sub: 'screen + audio', cap: 'Records screen and system audio on your Mac — nothing joins the call.' },
-    { id: 'library', icon: 'folder', label: 'Local library', sub: 'recordings on disk', cap: 'Every recording, transcript and summary is a file on your own disk.' },
-    { id: 'whisper', icon: 'subtitles', label: 'Whisper', sub: 'speech to text', cap: 'Whisper turns audio into text on Apple Silicon. Free, no per-minute fees.' },
-    { id: 'speakers', icon: 'record_voice_over', label: 'Speaker ID', sub: 'who said what', cap: 'Tells voices apart from the audio alone, so every line has a speaker.' },
-    { id: 'player', icon: 'play_circle', label: 'Synced player', sub: 'video + transcript', cap: 'Replays the meeting with the transcript scrolling along. Click a line to jump.' },
-    { id: 'search', icon: 'manage_search', label: 'Search & Ask', sub: 'every past meeting', cap: 'Searches every word, or answers a plain-English question with the moment it happened.' },
-    { id: 'names', icon: 'badge', label: 'Names & roles', sub: 'your speaker registry', cap: 'Name a speaker once and give them a role — every future summary knows them.' },
-    { id: 'summary', icon: 'auto_awesome', label: 'Summary engine', sub: 'your prompt + context', cap: 'Builds the summary from the transcript, names, roles, your prompt and your context.' },
-    { id: 'llm', icon: 'memory', label: 'Local model', sub: 'Ollama / LM Studio', cap: 'Writes the summary fully offline on your Mac.' },
-    { id: 'provider', icon: 'key', label: 'Your AI provider', sub: 'optional · your key', cap: 'Optional. Only transcript text is sent, with your own key — audio never leaves.', outside: true }
+    { id: 'library', icon: 'folder', label: 'Local library', sub: 'files on your disk', cap: 'Every recording, transcript and summary is a file on your own disk.' },
+    { id: 'prep', icon: 'equalizer', label: 'Audio prep', sub: 'mono · 16 kHz', cap: 'Extracts a clean mono 16 kHz track so long recordings transcribe reliably.' },
+    { id: 'lang', icon: 'translate', label: 'Language', sub: 'auto-detected', cap: 'Listens to the opening of the call and locks the language, so the transcript never drifts.' },
+    { id: 'whisper', icon: 'subtitles', label: 'Whisper', sub: 'speech to text', cap: 'Whisper turns speech into timestamped text on Apple Silicon. You pick the model size.' },
+    { id: 'diar', icon: 'record_voice_over', label: 'Speaker ID', sub: 'diarisation', chips: ['voice activity', 'voice fingerprints', 'clustering'], cap: 'Finds who spoke when: detects speech, fingerprints each voice and clusters them into speakers.' },
+    { id: 'aligned', icon: 'segment', label: 'Transcript', sub: 'speaker-aligned', cap: 'Each line gets its speaker by matching voice turns to the text by timing.' },
+    { id: 'names', icon: 'badge', label: 'Names & roles', sub: 'speaker registry', cap: 'Name a speaker once and give them a role — every future summary knows them.' },
+    { id: 'prompt', icon: 'edit_note', label: 'Your prompt', sub: '+ meeting context', cap: 'Your own prompt and structure, plus any context you add for this meeting.' },
+    { id: 'summary', icon: 'auto_awesome', label: 'Summary engine', sub: 'builds the request', cap: 'Combines the transcript, names, roles, your prompt and context, then asks the model you chose.' },
+    { id: 'llm', icon: 'memory', label: 'Local model', sub: 'Ollama · LM Studio', cap: 'Writes the summary fully offline, on your Mac.' },
+    { id: 'provider', icon: 'key', label: 'Your AI provider', sub: 'optional · your key', cap: 'Optional. Only transcript text is sent, with your own key — audio never leaves.', outside: true },
+    { id: 'md', icon: 'description', label: 'Summary', sub: 'decisions · owners', cap: 'A Markdown summary with decisions, owners and deadlines — copy it anywhere.' },
+    { id: 'search', icon: 'manage_search', label: 'Search & Ask', sub: 'every meeting', cap: 'Search every word, or ask a follow-up question and jump to the moment.' },
+    { id: 'player', icon: 'play_circle', label: 'Synced player', sub: 'video + transcript', cap: 'Replays the meeting with the transcript scrolling along. Click a line to jump.' }
   ];
 
-  // Per layout: node size, node top-left positions, the "Your Mac" frame,
-  // and orthogonal edge routes computed from node geometry.
   function box(L, id) {
     const [x, y] = L.pos[id];
-    return { x, y, r: x + L.w, b: y + L.h, cx: x + L.w / 2, cy: y + L.h / 2 };
+    const n = NODES.find((m) => m.id === id);
+    const w = n.outside ? L.ow : L.w;
+    const h = n.chips ? L.ch : L.h;
+    return { x, y, w, h, r: x + w, b: y + h, cx: x + w / 2, cy: y + L.h / 2 };
   }
   const right = (a, b) => [[a.r, a.cy], [b.x, b.cy]];
+  const left = (a, b) => [[a.x, a.cy], [b.r, b.cy]];
   const down = (a, b) => [[a.cx, a.b], [b.cx, b.y]];
 
   const LAYOUTS = {
     wide: {
-      w: 176, h: 64, view: [1180, 470], mac: [8, 24, 888, 438],
+      w: 156, h: 58, ch: 112, ow: 172, view: [1124, 530], mac: [12, 24, 1100, 400],
       pos: {
-        detector: [28, 56], capture: [252, 56], library: [476, 56], whisper: [700, 56],
-        player: [252, 206], search: [476, 206], speakers: [700, 206],
-        llm: [252, 330], names: [476, 330], summary: [700, 330],
-        provider: [990, 330]
+        detector: [32, 56], capture: [212, 56], library: [392, 56], prep: [572, 56], lang: [752, 56], whisper: [932, 56],
+        names: [212, 176], prompt: [392, 176], summary: [572, 176], aligned: [752, 176], diar: [932, 176],
+        player: [32, 340], search: [212, 340], md: [392, 340], llm: [752, 340],
+        provider: [924, 460]
       },
       edges(B) {
-        const libMid = (B.library.b + B.player.y) / 2, below = B.summary.b + 34;
+        const g1 = (B.detector.b + B.names.y) / 2;
+        const gMd = 302, gModel = 318;
         return [
           ['detector', 'capture', right(B.detector, B.capture), 'main'],
           ['capture', 'library', right(B.capture, B.library), 'main'],
-          ['library', 'whisper', right(B.library, B.whisper), 'main'],
-          ['whisper', 'speakers', down(B.whisper, B.speakers), 'main'],
-          ['speakers', 'summary', down(B.speakers, B.summary), 'main'],
-          ['library', 'player', [[B.library.x + 44, B.library.b], [B.library.x + 44, libMid], [B.player.cx, libMid], [B.player.cx, B.player.y]], ''],
-          ['library', 'search', [[B.search.cx + 30, B.library.b], [B.search.cx + 30, B.search.y]], ''],
-          ['names', 'summary', right(B.names, B.summary), ''],
-          ['summary', 'llm', [[B.summary.cx, B.summary.b], [B.summary.cx, below], [B.llm.cx, below], [B.llm.cx, B.llm.b]], 'local'],
-          ['summary', 'provider', right(B.summary, B.provider), 'byok']
+          ['library', 'prep', right(B.library, B.prep), 'main'],
+          ['prep', 'lang', right(B.prep, B.lang), 'main'],
+          ['lang', 'whisper', right(B.lang, B.whisper), 'main'],
+          ['whisper', 'diar', down(B.whisper, B.diar), 'main'],
+          ['diar', 'aligned', left(B.diar, B.aligned), 'main'],
+          ['aligned', 'summary', left(B.aligned, B.summary), 'main'],
+          ['names', 'prompt', right(B.names, B.prompt), ''],
+          ['prompt', 'summary', right(B.prompt, B.summary), ''],
+          ['library', 'player', [[B.library.x + 30, B.library.b], [B.library.x + 30, g1], [B.player.cx, g1], [B.player.cx, B.player.y]], ''],
+          ['summary', 'md', [[B.summary.x + 30, B.summary.b], [B.summary.x + 30, gMd], [B.md.cx, gMd], [B.md.cx, B.md.y]], 'main'],
+          ['md', 'search', left(B.md, B.search), ''],
+          ['summary', 'llm', [[B.summary.r - 30, B.summary.b], [B.summary.r - 30, gModel], [B.llm.cx, gModel], [B.llm.cx, B.llm.y]], 'model'],
+          ['summary', 'provider', [[B.summary.r - 30, B.summary.b], [B.summary.r - 30, gModel], [B.provider.cx, gModel], [B.provider.cx, B.provider.y]], 'byok']
         ];
-      }
+      },
+      junction: (B) => [B.summary.r - 30, 318],
+      outLabel: (B) => [B.provider.cx - 10, 446, 'end']
     },
     narrow: {
-      w: 160, h: 60, view: [380, 770], mac: [4, 16, 372, 640],
+      w: 160, h: 56, ch: 104, ow: 166, view: [380, 1110], mac: [4, 16, 372, 1004],
       pos: {
-        detector: [12, 40], capture: [12, 140], library: [12, 240], whisper: [12, 340],
-        speakers: [12, 440], summary: [12, 560],
-        player: [208, 240], search: [208, 340], names: [208, 440], llm: [208, 560],
-        provider: [12, 690]
+        detector: [12, 40], capture: [12, 116], library: [12, 192], prep: [12, 268], lang: [12, 344], whisper: [12, 420],
+        diar: [12, 496], aligned: [12, 626], summary: [12, 776], md: [12, 860], search: [12, 940],
+        player: [208, 192], names: [208, 626], prompt: [208, 700], llm: [208, 860],
+        provider: [208, 1040]
       },
       edges(B) {
-        const gutter = (B.library.r + B.search.x) / 2, mid = (B.names.b + B.summary.y) / 2;
+        const gx = (B.summary.r + B.llm.x) / 2;
+        const out = B.summary.y + 42;
         return [
           ['detector', 'capture', down(B.detector, B.capture), 'main'],
           ['capture', 'library', down(B.capture, B.library), 'main'],
-          ['library', 'whisper', down(B.library, B.whisper), 'main'],
-          ['whisper', 'speakers', down(B.whisper, B.speakers), 'main'],
-          ['speakers', 'summary', down(B.speakers, B.summary), 'main'],
-          ['library', 'player', [[B.library.r, B.library.y + 20], [B.player.x, B.library.y + 20]], ''],
-          ['library', 'search', [[B.library.r, B.library.y + 44], [gutter, B.library.y + 44], [gutter, B.search.cy], [B.search.x, B.search.cy]], ''],
-          ['names', 'summary', [[B.names.cx, B.names.b], [B.names.cx, mid], [B.summary.r - 36, mid], [B.summary.r - 36, B.summary.y]], ''],
-          ['summary', 'llm', right(B.summary, B.llm), 'local'],
-          ['summary', 'provider', down(B.summary, B.provider), 'byok']
+          ['library', 'prep', down(B.library, B.prep), 'main'],
+          ['prep', 'lang', down(B.prep, B.lang), 'main'],
+          ['lang', 'whisper', down(B.lang, B.whisper), 'main'],
+          ['whisper', 'diar', down(B.whisper, B.diar), 'main'],
+          ['diar', 'aligned', down(B.diar, B.aligned), 'main'],
+          ['aligned', 'summary', down(B.aligned, B.summary), 'main'],
+          ['library', 'player', right(B.library, B.player), ''],
+          ['names', 'prompt', down(B.names, B.prompt), ''],
+          ['prompt', 'summary', [[B.prompt.cx, B.prompt.b], [B.prompt.cx, B.summary.y + 14], [B.summary.r, B.summary.y + 14]], ''],
+          ['summary', 'md', down(B.summary, B.md), 'main'],
+          ['md', 'search', down(B.md, B.search), ''],
+          ['summary', 'llm', [[B.summary.r, out], [gx, out], [gx, B.llm.cy], [B.llm.x, B.llm.cy]], 'model'],
+          ['summary', 'provider', [[B.summary.r, out], [gx, out], [gx, B.provider.cy], [B.provider.x, B.provider.cy]], 'byok']
         ];
-      }
+      },
+      junction: (B) => [(B.summary.r + B.llm.x) / 2, B.summary.y + 42],
+      outLabel: (B) => [B.provider.x, 1020 + 12, 'start']
     }
   };
 
@@ -95,7 +118,7 @@
     current = kind;
     const L = LAYOUTS[kind];
     host.textContent = '';
-    svg = el('svg', { viewBox: '0 0 ' + L.view.join(' '), class: 'arch-svg', role: 'img', 'aria-labelledby': 'arch-title' });
+    svg = el('svg', { viewBox: '0 0 ' + L.view.join(' '), class: 'arch-svg arch-' + kind, role: 'img', 'aria-labelledby': 'arch-title' });
     el('title', { id: 'arch-title' }, svg).textContent = 'Minutely architecture: everything runs inside your Mac; the only optional path out is transcript text to your own AI provider.';
     const defs = el('defs', {}, svg);
     const marker = el('marker', { id: 'arch-arrow', viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 7, markerHeight: 7, orient: 'auto-start-reverse' }, defs);
@@ -103,8 +126,7 @@
 
     const [mx, my, mw, mh] = L.mac;
     el('rect', { x: mx, y: my, width: mw, height: mh, rx: 22, class: 'arch-mac' }, svg);
-    const tag = el('text', { x: mx + 18, y: my + 2, class: 'arch-mac-label' }, svg);
-    tag.textContent = 'YOUR MAC';
+    el('text', { x: mx + 18, y: my + 2, class: 'arch-mac-label' }, svg).textContent = 'YOUR MAC';
 
     const B = {};
     NODES.forEach((n) => { B[n.id] = box(L, n.id); });
@@ -114,38 +136,45 @@
       const d = 'M' + pts.map((p) => p.join(',')).join(' L');
       el('path', { d, class: 'arch-edge' + (kindCls ? ' arch-edge-' + kindCls : ''), 'data-from': from, 'data-to': to, 'marker-end': 'url(#arch-arrow)' }, edgeLayer);
     });
-    // Label for the only edge that can leave the Mac.
-    const out = edges.find((e) => e[3] === 'byok')[2];
-    const macRight = L.mac[0] + L.mac[2];
-    const lx = kind === 'wide' ? (macRight + out[1][0]) / 2 : out[0][0] + 10;
-    const ly = kind === 'wide' ? out[0][1] - 10 : out[0][1] + 20;
-    const lbl = el('text', { x: lx, y: ly, class: 'arch-edge-label', 'text-anchor': kind === 'wide' ? 'middle' : 'start' }, svg);
-    lbl.textContent = 'text only';
+
+    // "either / or" junction where the two model paths split.
+    const [jx, jy] = L.junction(B);
+    el('circle', { cx: jx, cy: jy, r: 4.5, class: 'arch-junction' }, svg);
+    el('text', { x: jx + 9, y: jy - 8, class: 'arch-junction-label' }, svg).textContent = 'either';
+
+    const [lx, ly, anchor] = L.outLabel(B);
+    el('text', { x: lx, y: ly, class: 'arch-edge-label', 'text-anchor': anchor }, svg).textContent = 'text only · your key';
 
     const nodeLayer = el('g', { class: 'arch-nodes' }, svg);
     NODES.forEach((n) => {
-      const [x, y] = L.pos[n.id];
-      const g = el('g', { class: 'arch-node' + (n.outside ? ' arch-node-out' : ''), 'data-id': n.id, tabindex: 0, role: 'button', 'aria-label': n.label + ' — ' + n.cap, transform: 'translate(' + x + ',' + y + ')' }, nodeLayer);
+      const b = B[n.id];
+      const g = el('g', { class: 'arch-node' + (n.outside ? ' arch-node-out' : '') + (n.chips ? ' arch-node-tall' : ''), 'data-id': n.id, tabindex: 0, role: 'button', 'aria-label': n.label + ' — ' + n.cap, transform: 'translate(' + b.x + ',' + b.y + ')' }, nodeLayer);
+      el('rect', { width: b.w, height: b.h, rx: 14, class: 'arch-node-box' }, g);
       const mid = L.h / 2;
-      el('rect', { width: L.w, height: L.h, rx: 14, class: 'arch-node-box' }, g);
-      el('text', { x: 14, y: mid + 7, class: 'arch-node-icon' }, g).textContent = n.icon;
-      el('text', { x: 44, y: mid - 3, class: 'arch-node-label' }, g).textContent = n.label;
-      el('text', { x: 44, y: mid + 13, class: 'arch-node-sub' }, g).textContent = n.sub;
+      el('text', { x: 13, y: mid + 7, class: 'arch-node-icon' }, g).textContent = n.icon;
+      el('text', { x: 42, y: mid - 3, class: 'arch-node-label' }, g).textContent = n.label;
+      el('text', { x: 42, y: mid + 13, class: 'arch-node-sub' }, g).textContent = n.sub;
+      if (n.chips) {
+        n.chips.forEach((c, i) => {
+          const cy = L.h + 2 + i * 16;
+          el('rect', { x: 12, y: cy - 1, width: b.w - 24, height: 14, rx: 7, class: 'arch-chip' }, g);
+          el('text', { x: b.w / 2, y: cy + 9.5, class: 'arch-chip-text', 'text-anchor': 'middle' }, g).textContent = (i + 1) + ' · ' + c;
+        });
+      }
     });
     host.appendChild(svg);
     bind();
   }
 
+  function linked(a, b) {
+    return !!svg.querySelector('.arch-edge[data-from="' + a + '"][data-to="' + b + '"], .arch-edge[data-from="' + b + '"][data-to="' + a + '"]');
+  }
   function focusNode(id) {
     svg.classList.toggle('is-tracing', !!id);
-    svg.querySelectorAll('.arch-node').forEach((g) => g.classList.toggle('is-on', g.dataset.id === id || linked(id, g.dataset.id)));
+    svg.querySelectorAll('.arch-node').forEach((g) => g.classList.toggle('is-on', !!id && (g.dataset.id === id || linked(id, g.dataset.id))));
     svg.querySelectorAll('.arch-edge').forEach((p) => p.classList.toggle('is-on', p.dataset.from === id || p.dataset.to === id));
     const n = NODES.find((x) => x.id === id);
     caption.textContent = n ? n.cap : defaultCaption;
-  }
-  function linked(a, b) {
-    if (!a) return false;
-    return !!svg.querySelector('.arch-edge[data-from="' + a + '"][data-to="' + b + '"], .arch-edge[data-from="' + b + '"][data-to="' + a + '"]');
   }
 
   function bind() {
@@ -162,19 +191,6 @@
     svg.addEventListener('mouseleave', () => focusNode(null));
     svg.addEventListener('focusout', (e) => { if (!svg.contains(e.relatedTarget)) focusNode(null); });
   }
-
-  // Mode toggle: local model (default) vs. your own key.
-  fig.querySelectorAll('[data-arch-mode]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const mode = btn.dataset.archMode;
-      fig.dataset.mode = mode;
-      fig.querySelectorAll('[data-arch-mode]').forEach((b) => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
-      caption.textContent = mode === 'key'
-        ? 'Your own key: only the transcript text goes to the provider you chose. Audio, video and files stay put.'
-        : 'Local model: the summary is written on your Mac. Nothing leaves at all.';
-      if (window.mtTrack) window.mtTrack('diagram_mode', { mode });
-    });
-  });
 
   const mq = window.matchMedia('(max-width: 719px)');
   const pick = () => { const k = mq.matches ? 'narrow' : 'wide'; if (k !== current) render(k); };

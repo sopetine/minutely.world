@@ -1,4 +1,4 @@
-# Minutely — Landing Page Prototype (v7)
+# Minutely — Landing Page Prototype (v8)
 
 Static, visual-only prototype of a fictional Mac app: auto-records Teams/Zoom
 calls, transcribes with speaker diarization, summarizes, and lets you search and
@@ -8,6 +8,23 @@ support.
 This is a portfolio / demand-validation artifact. No backend, no database, no
 real auth, no real payment processing. Login and Payment pages are UI-only
 mockups that send nothing — form values never leave the page.
+
+v8 changes (over v7):
+
+- **Comparison** now names Granola, Otter.ai and Fireflies.ai (facts from each
+  vendor's public pricing/docs, October 2026, footnoted); Minutely column is a
+  raised card; stacks into per-question cards on phones.
+- **Diagram** shows the full pipeline in one picture — audio prep, language
+  detection, Whisper, speaker diarisation (voice activity → voice fingerprints →
+  clustering), speaker-aligned transcript, prompt + context, summary engine —
+  with both the local model and "your own key" paths drawn together (no toggle).
+- **Logo band** moved directly under the hero video.
+- **How it works / Features** rebuilt as scannable cards: filled icon tiles,
+  one key line, ✓ key points.
+- **Compact rhythm:** eyebrow pills removed from the landing page, tighter
+  section padding and card spacing.
+- **Summary preview** typography smoothed (Inter, larger size, airier tables).
+- **Maker** reduced to a slim row: avatar, name, role, LinkedIn.
 
 v7 changes (over v6):
 
