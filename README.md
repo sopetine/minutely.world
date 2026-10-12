@@ -1,4 +1,4 @@
-# Minutely — Landing Page Prototype (v5)
+# Minutely — Landing Page Prototype (v6)
 
 Static, visual-only prototype of a fictional Mac app: auto-records Teams/Zoom
 calls, transcribes with speaker diarization, summarizes, and lets you search and
@@ -8,6 +8,26 @@ support.
 This is a portfolio / demand-validation artifact. No backend, no database, no
 real auth, no real payment processing. Login and Payment pages are UI-only
 mockups with zero network calls.
+
+v6 changes (over v5):
+
+- **Summary preview** under the hero video: a real Minutely summary
+  (`assets/summary/sample.summary.md`) rendered with the app's own pipeline —
+  the same marked v4.3.0 build (`assets/js/marked.min.js`, extracted from the
+  app), the app's summary CSS ported 1:1 and scoped under `.app-summary`
+  (`assets/css/summary.css`, incl. the saved typography overrides and accent
+  `#0568a1`), and the same table-sizing and @mention passes
+  (`assets/js/summary-preview.js`). Collapsed by default with "Show full
+  summary"; text is selectable, and Copy puts rich text + plain text on the
+  clipboard like ⌘C in the app.
+- New, larger hero video (3:2, 1296×864, shown up to 1200px wide) in a softer
+  frame: no black backing, hairline ring, and the logo's red/blue
+  chromatic-aberration fringe.
+- Premium cursor: a single dot that tracks the pointer exactly, morphs into a
+  soft brand lens over links/buttons and a caret over text, fades when idle.
+- Polish: tighter display type, eyebrow dots, hairline card highlights and
+  calmer hovers, gradient icon tiles, gradient dividers, button sheen, popular
+  plan glow. No structural changes.
 
 v5 changes (over v4):
 
@@ -80,7 +100,7 @@ Login and Payment are 100% client-side state machines; no `fetch`,
 ## File layout
 
 ```
-v5/
+v6/
 ├── index.html
 ├── login.html
 ├── payment.html
@@ -109,8 +129,8 @@ v5/
     │   ├── logo.svg
     │   └── favicon.svg
     └── video/
-        ├── hero-720.mp4      # desktop, H.264 30 fps, ~3.9 MB, faststart, no audio
-        ├── hero-480.mp4      # mobile (≤720px), ~1.9 MB, no audio
+        ├── hero-864.mp4      # desktop, 1296×864 H.264 30 fps, ~8.9 MB, faststart, no audio
+        ├── hero-480.mp4      # mobile (≤720px), 720×480, ~2.7 MB, no audio
         └── hero-poster.webp  # poster / LCP image (preloaded)
 ```
 
@@ -132,9 +152,9 @@ The overview clip is committed to the repo and served same-origin by Vercel
 - Scroll effect: `scroll.js` tweens `--expand` 0 → 1 on the figure; CSS maps it
   to `scale` (and, on phones, the corner radius down to 0 for a full-bleed finish).
 
-Re-encode from the master (`~/Movies/OBS/2026-10-12 14-29-34.mp4`, 1080p60)
-with two-pass x264, 30 fps, `-an -movflags +faststart`: 1280×720 @ 900 kb/s and
-854×480 @ 450 kb/s. Poster: frame at 1 s, 1280×720 WebP (q80, via `cwebp`).
+Re-encode from the master (`~/Movies/OBS/(Oct 12, Mon) 15:29 - [Teams Meeting].mp4`,
+1296×864 @ 60 fps) with two-pass x264, 30 fps, `-an -movflags +faststart`:
+1296×864 @ 2.2 Mb/s and 720×480 @ 650 kb/s. Poster: frame at 4 s, WebP q80 via `cwebp`.
 
 ## Premium touches
 

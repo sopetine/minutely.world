@@ -494,49 +494,71 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 [hidden] { display: none !important; }
 
-/* ====== CUSTOM CURSOR (single ring, no CA) ====== */
-/* White + mix-blend-mode: difference inverts whatever is underneath, so the
-   ring and dot read dark on light surfaces and light on dark ones. */
-.cursor-ring {
+/* ====== CUSTOM CURSOR ======
+   A single element positioned at the pointer; ::before is the visible shape.
+   Dark fill + white hairline + soft shadow reads on light, dark and video
+   without blend modes. */
+.cursor {
   position: fixed;
   top: 0;
   left: 0;
-  width: 26px;
-  height: 26px;
-  border: 2px solid #fff;
-  border-radius: 50%;
+  width: 0;
+  height: 0;
   pointer-events: none;
   z-index: 2147483647;
-  will-change: transform;
-  mix-blend-mode: difference;
-  transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
-  transition: width 200ms var(--ease-out-expo),
-              height 200ms var(--ease-out-expo),
-              opacity 200ms var(--ease-smooth);
-}
-
-.cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #fff;
-  pointer-events: none;
-  z-index: 2147483647;
-  mix-blend-mode: difference;
+  opacity: 0;
+  transition: opacity 300ms var(--ease-smooth);
   transform: translate3d(-100px, -100px, 0);
-  transition: opacity 200ms var(--ease-smooth);
 }
+.cursor.is-visible { opacity: 1; }
+.cursor::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  translate: -50% -50%;
+  background: rgba(14, 15, 18, 0.88);
+  box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.95), 0 2px 8px rgba(14, 15, 18, 0.25);
+  transition:
+    width 320ms var(--ease-out-expo),
+    height 320ms var(--ease-out-expo),
+    border-radius 320ms var(--ease-out-expo),
+    background 240ms var(--ease-smooth),
+    box-shadow 240ms var(--ease-smooth),
+    scale 160ms var(--ease-smooth);
+}
+.cursor.is-link::before {
+  width: 40px;
+  height: 40px;
+  background: rgba(91, 91, 240, 0.10);
+  box-shadow: 0 0 0 1px rgba(91, 91, 240, 0.45), 0 4px 16px rgba(91, 91, 240, 0.12);
+  -webkit-backdrop-filter: blur(2px) saturate(140%);
+  backdrop-filter: blur(2px) saturate(140%);
+}
+.cursor.is-text::before,
+.cursor.is-select::before {
+  width: 2px;
+  height: 20px;
+  border-radius: 2px;
+  background: var(--color-brand);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8);
+}
+.cursor.is-down::before { scale: 0.85; }
 
-.cursor-ring.is-hover {
-  width: 44px;
-  height: 44px;
-}
+body.has-custom-cursor .app-summary { cursor: none; }
 
 @media (pointer: coarse), (prefers-reduced-motion: reduce) {
-  .cursor-ring, .cursor-dot { display: none; }
+  .cursor { display: none; }
+}
+
+@media (prefers-color-scheme: dark) {
+  .cursor::before {
+    background: rgba(244, 245, 247, 0.92);
+    box-shadow: 0 0 0 1.5px rgba(10, 11, 14, 0.9), 0 2px 8px rgba(0, 0, 0, 0.5);
+  }
 }
 
 /* ====== VIEW TRANSITIONS ====== */

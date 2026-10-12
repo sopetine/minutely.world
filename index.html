@@ -11,13 +11,14 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Fira+Code:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Fira+Code:wght@600;700&family=Source+Serif+4:opsz,wght@8..60,600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
 
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/animations.css">
   <link rel="stylesheet" href="assets/css/home.css">
+  <link rel="stylesheet" href="assets/css/summary.css">
 
   <link rel="preload" as="image" href="assets/video/hero-poster.webp" type="image/webp" fetchpriority="high">
 </head>
@@ -98,10 +99,37 @@
 
         <figure class="hero-video" data-hero-video data-reveal>
           <video class="hero-video-media" muted loop playsinline disablepictureinpicture preload="none"
-                 poster="assets/video/hero-poster.webp" width="1280" height="720"
-                 src="assets/video/hero-720.mp4" data-src-mobile="assets/video/hero-480.mp4"
+                 poster="assets/video/hero-poster.webp" width="1296" height="864"
+                 src="assets/video/hero-864.mp4" data-src-mobile="assets/video/hero-480.mp4"
                  aria-label="30-second overview of the Minutely app"></video>
         </figure>
+      </div>
+    </section>
+
+    <!-- ============ SUMMARY PREVIEW (real app output) ============ -->
+    <section class="summary-preview" id="sample" aria-label="Example summary">
+      <div class="container">
+        <span class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Real output</span>
+        <h2 class="section-title">This is what lands after every call.</h2>
+        <p class="section-lead">An unedited Minutely summary of a 43-minute product marketing sync — speakers, decisions, owners and deadlines. Select any part, or copy it all.</p>
+
+        <div class="summary-window" data-summary-window data-summary-src="assets/summary/sample.summary.md" data-reveal-scroll>
+          <div class="summary-window-bar">
+            <div class="summary-window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="summary-window-title">(Oct 10, Sat) 12:01 - [GitLab]</div>
+            <div></div>
+          </div>
+          <div class="summary-toolbar">
+            <span class="summary-toolbar-item" aria-hidden="true"><span class="material-symbols-outlined">refresh</span><span>Re-Summarise</span></span>
+            <span class="summary-toolbar-item" aria-hidden="true"><span class="material-symbols-outlined">help</span><span>Ask</span></span>
+            <span class="summary-toolbar-item" aria-hidden="true"><span class="material-symbols-outlined">notes</span><span>Context</span></span>
+            <button type="button" class="summary-copy"><span class="material-symbols-outlined" aria-hidden="true">content_copy</span><span data-copy-label>Copy</span></button>
+          </div>
+          <div class="summary-body">
+            <article class="app-summary" aria-label="Summary of a product marketing sync"></article>
+            <button type="button" class="summary-toggle" aria-expanded="false"><span data-toggle-label>Show full summary</span><span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -174,7 +202,7 @@
     <!-- ============ WALKTHROUGH (Before / During / After) ============ -->
     <section class="walkthrough" id="walkthrough" aria-label="How it works">
       <div class="container">
-        <span class="eyebrow">How it works</span>
+        <span class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>How it works</span>
         <h2 class="section-title">Before, during, after.</h2>
         <p class="section-lead">Minutely runs in the background — you stay focused on the conversation. Here's what happens before, during, and after each call.</p>
 
@@ -201,7 +229,7 @@
     <!-- ============ FEATURES (6) ============ -->
     <section class="features" id="features" aria-label="Features">
       <div class="container">
-        <span class="eyebrow">Features</span>
+        <span class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Features</span>
         <h2 class="section-title">Built around how meetings really go.</h2>
         <p class="section-lead">Capture it without effort, keep it private, and get answers that fit your team.</p>
 
@@ -243,7 +271,7 @@
     <!-- ============ REVIEWS ============ -->
     <section class="reviews" id="reviews" aria-label="Reviews">
       <div class="container">
-        <span class="eyebrow">Reviews</span>
+        <span class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Reviews</span>
         <h2 class="section-title">People who stopped re-explaining meetings.</h2>
         <p class="section-lead">Minutely in the wild — unedited, from the places people actually talk about tools like this.</p>
 
@@ -308,7 +336,7 @@
     <!-- ============ PRICING ============ -->
     <section class="pricing" id="pricing" aria-label="Pricing">
       <div class="container">
-        <span class="eyebrow">Pricing</span>
+        <span class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Pricing</span>
         <h2 class="section-title">One price. <em>Yours forever.</em></h2>
         <p class="section-lead">Free local transcription, one-time price, every future update. No subscriptions, ever.</p>
 
@@ -397,7 +425,7 @@
     <!-- ============ FAQ ============ -->
     <section class="faq" id="faq" aria-label="Frequently asked questions">
       <div class="container">
-        <span class="eyebrow">FAQ</span>
+        <span class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>FAQ</span>
         <h2 class="section-title">Quick answers.</h2>
 
         <div class="faq-list">
@@ -482,6 +510,8 @@
   <script src="assets/js/cursor.js" defer></script>
   <script src="assets/js/typewriter.js" defer></script>
   <script src="assets/js/hero-video.js" defer></script>
+  <script src="assets/js/marked.min.js" defer></script>
+  <script src="assets/js/summary-preview.js" defer></script>
   <script type="module" src="assets/js/scroll.js"></script>
 </body>
 </html>

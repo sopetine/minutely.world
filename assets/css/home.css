@@ -275,17 +275,32 @@
    frame is just a rounded dark surface with a soft brand halo. Nothing
    animates on the <video> itself while it plays. */
 
+/* Frame: no dark backing, just a hairline ring plus the same red/blue
+   chromatic-aberration fringe as the hero logo (#FF2A55 up-left,
+   #2563FF down-right) and a soft ambient shadow. */
 .hero-video {
   --expand: 1;
   position: relative;
-  width: min(1040px, calc(100vw - 32px));
-  aspect-ratio: 16 / 9;
+  width: min(1200px, calc(100vw - 48px));
+  aspect-ratio: 3 / 2;
   margin: clamp(16px, 2.5vw, 28px) 0 0;
   border-radius: 12px;
   overflow: hidden;
-  background: #0A0B0E;
-  border: 1px solid var(--color-border-strong);
-  box-shadow: var(--shadow-xl), 0 30px 120px -20px var(--color-brand-glow);
+  background: var(--color-surface-raised);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.45),
+    -1.5px -1px 0 rgba(255, 42, 85, 0.45),
+    1.5px 1px 0 rgba(37, 99, 255, 0.40),
+    0 30px 80px -30px rgba(14, 15, 18, 0.28),
+    0 40px 120px -40px var(--color-brand-glow);
+}
+.hero-video::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  pointer-events: none;
 }
 
 /* Scroll-driven settle (scroll.js tweens --expand 0 → 1). Uses the
@@ -309,9 +324,12 @@
   .hero-video {
     width: 100vw;
     border-radius: calc(14px * (1 - var(--expand)));
-    border-inline: 0;
-    box-shadow: 0 24px 60px -24px var(--color-brand-glow);
+    box-shadow:
+      0 -1.5px 0 rgba(255, 42, 85, 0.45),
+      0 1.5px 0 rgba(37, 99, 255, 0.40),
+      0 24px 60px -24px var(--color-brand-glow);
   }
+  .hero-video::after { box-shadow: none; }
   .hero-video.is-expandable { scale: calc(0.88 + 0.12 * var(--expand)); }
 }
 
@@ -1306,4 +1324,97 @@
   margin-bottom: var(--space-5);
   line-height: 1.55;
   font-size: 0.9rem;
+}
+
+/* ============================================
+   PREMIUM POLISH (v6) — refinements only, no layout changes
+   ============================================ */
+
+/* Type */
+.hero-title { letter-spacing: -0.045em; font-optical-sizing: auto; }
+.section-title { font-size: clamp(1.6rem, 2.8vw, 2.2rem); letter-spacing: -0.035em; }
+.section-lead { color: var(--color-ink-muted); }
+.eyebrow-dot { box-shadow: 0 0 0 3px rgba(91, 91, 240, 0.18); }
+
+/* Surfaces: hairline border, top inner highlight, calmer hover */
+.walkthrough-card,
+.feature-card,
+.review-card,
+.price-card {
+  border-color: rgba(14, 15, 18, 0.07);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 1px 2px rgba(14, 15, 18, 0.03);
+  transition: transform 400ms var(--ease-out-expo),
+              border-color 400ms var(--ease-smooth),
+              box-shadow 400ms var(--ease-out-expo);
+}
+.walkthrough-card:hover,
+.feature-card:hover,
+.review-card:hover,
+.price-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(14, 15, 18, 0.11);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), var(--shadow-lg);
+}
+
+/* Icons: soft gradient tiles instead of flat tint */
+.feature-icon,
+.value-item-icon {
+  background: linear-gradient(145deg, #F1F0FF 0%, #E4E3FD 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 0 0 1px rgba(91, 91, 240, 0.10);
+}
+
+/* Hairline gradient dividers instead of solid rules */
+.value-props { border-top: 0; border-bottom: 0; position: relative; }
+.value-props::before,
+.value-props::after,
+.footer::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-border-strong) 20%, var(--color-border-strong) 80%, transparent);
+}
+.value-props::before { top: 0; }
+.value-props::after { bottom: 0; }
+.footer { border-top: 0; position: relative; }
+.footer::before { top: 0; }
+
+/* Marquee: monochrome, brand on hover */
+.logo-marquee-item { transition: color 300ms var(--ease-smooth); }
+.logo-marquee-item:hover { color: var(--color-brand); }
+.logo-marquee-item:hover .logo-marquee-label { color: var(--color-ink); }
+
+/* Primary buttons: slow sheen on hover */
+.btn-primary { overflow: hidden; isolation: isolate; }
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.22) 50%, transparent 70%);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+.btn-primary:hover::after { transform: translateX(120%); transition: transform 900ms var(--ease-out-quart); }
+
+/* Popular plan: faint brand glow */
+.price-card-popular,
+.price-card-popular:hover {
+  box-shadow: 0 0 0 1px var(--color-brand), 0 20px 50px -24px var(--color-brand-glow), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+@media (prefers-color-scheme: dark) {
+  .walkthrough-card, .feature-card, .review-card, .price-card,
+  .walkthrough-card:hover, .feature-card:hover, .review-card:hover, .price-card:hover {
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+  .feature-icon, .value-item-icon {
+    background: linear-gradient(145deg, #23234a 0%, #1b1b38 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary::after { display: none; }
 }

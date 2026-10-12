@@ -1,3 +1,6 @@
+// Premium cursor: one calm dot that tracks the pointer exactly, morphs into a
+// soft lens over interactive elements and a caret over text fields, and fades
+// away when the mouse rests. Touch and reduced-motion users keep the native one.
 (function () {
   'use strict';
 
@@ -5,44 +8,33 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (isCoarse || reduceMotion) return;
 
-  const ring = document.createElement('div');
-  ring.className = 'cursor-ring';
-  const dot = document.createElement('div');
-  dot.className = 'cursor-dot';
-  document.body.appendChild(ring);
-  document.body.appendChild(dot);
+  const cursor = document.createElement('div');
+  cursor.className = 'cursor';
+  cursor.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(cursor);
   document.body.classList.add('has-custom-cursor');
 
-  let targetX = -100, targetY = -100;
-  let curX = -100, curY = -100;
+  const linkSel = 'a, button, [role="button"], select, label, summary, [data-magnetic], [data-cursor-hover]';
+  const textSel = 'input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]), textarea, [contenteditable="true"]';
+  const selectableSel = '.app-summary';
+  let idleTimer;
 
-  function tick() {
-    curX += (targetX - curX) * 0.32;
-    curY += (targetY - curY) * 0.32;
-    ring.style.transform = `translate3d(${curX.toFixed(1)}px, ${curY.toFixed(1)}px, 0) translate(-50%, -50%)`;
-    requestAnimationFrame(tick);
+  function setState(target) {
+    const el = target && target.closest ? target : null;
+    cursor.classList.toggle('is-text', !!(el && el.closest(textSel)));
+    cursor.classList.toggle('is-link', !!(el && !el.closest(textSel) && el.closest(linkSel)));
+    cursor.classList.toggle('is-select', !!(el && !el.closest(linkSel) && el.closest(selectableSel)));
   }
-  requestAnimationFrame(tick);
 
   window.addEventListener('pointermove', (e) => {
-    targetX = e.clientX;
-    targetY = e.clientY;
-    dot.style.transform = `translate3d(${targetX}px, ${targetY}px, 0) translate(-50%, -50%)`;
+    cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+    cursor.classList.add('is-visible');
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(() => cursor.classList.remove('is-visible'), 3000);
   }, { passive: true });
 
-  const hoverSel = 'a, button, [role="button"], input, textarea, select, label, summary, [data-magnetic], [data-cursor-hover]';
-  function isHoverTarget(el) {
-    if (!el || !el.closest) return false;
-    return !!el.closest(hoverSel);
-  }
-
-  window.addEventListener('pointerover', (e) => {
-    if (isHoverTarget(e.target)) ring.classList.add('is-hover');
-  });
-  window.addEventListener('pointerout', (e) => {
-    if (isHoverTarget(e.target)) ring.classList.remove('is-hover');
-  });
-
-  document.addEventListener('mouseleave', () => { ring.style.opacity = dot.style.opacity = '0'; });
-  document.addEventListener('mouseenter', () => { ring.style.opacity = dot.style.opacity = '1'; });
+  window.addEventListener('pointerover', (e) => setState(e.target));
+  window.addEventListener('pointerdown', () => cursor.classList.add('is-down'));
+  window.addEventListener('pointerup', () => cursor.classList.remove('is-down'));
+  document.addEventListener('mouseleave', () => cursor.classList.remove('is-visible'));
 })();
