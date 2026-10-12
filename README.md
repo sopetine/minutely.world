@@ -20,9 +20,11 @@ v6 changes (over v5):
   (`assets/js/summary-preview.js`). Collapsed by default with "Show full
   summary"; text is selectable, and Copy puts rich text + plain text on the
   clipboard like ⌘C in the app.
-- New, larger hero video (3:2, 1296×864, shown up to 1200px wide) in a softer
-  frame: no black backing, hairline ring, and the logo's red/blue
-  chromatic-aberration fringe.
+- New hero video (3:2, 1296×864), shown at the same 820px width as the
+  summary window; both use the top nav's hairline border + shadow.
+- Collapsed summary scrolls inside its window (fades + "Scroll" hint);
+  expanded summary has a floating "Collapse summary" pill.
+- "Log in" removed from the top bar (login page still exists).
 - Premium cursor: a single dot that tracks the pointer exactly, morphs into a
   soft brand lens over links/buttons and a caret over text, fades when idle.
 - Polish: tighter display type, eyebrow dots, hairline card highlights and
