@@ -6,14 +6,14 @@
     const tier = params.get('tier');
     const amount = params.get('amount');
     const valid = {
-      personal: { name: 'Personal', amount: 49 },
-      pro:      { name: 'Pro',      amount: 99 },
+      personal: { name: 'Personal', amount: 29 },
+      pro:      { name: 'Pro',      amount: 79 },
       team:     { name: 'Team',     amount: 249 }
     };
     if (tier && valid[tier]) {
       return valid[tier];
     }
-    return { name: 'Pro', amount: 99, fallback: true };
+    return { name: 'Pro', amount: 79, fallback: true };
   }
 
   function formatCardNumber(value) {

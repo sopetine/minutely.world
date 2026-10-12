@@ -29,7 +29,7 @@
     <div class="top-nav-inner">
       <div class="top-nav-shell">
         <a class="top-nav-logo" href="index.html" aria-label="Minutely home">
-          <img src="assets/img/logo.svg" alt="" class="logo-mark">
+          <span class="logo-mark" aria-hidden="true"></span>
           <span>Minutely</span>
         </a>
         <nav class="top-nav-links" aria-label="Primary">
@@ -40,7 +40,7 @@
         </nav>
         <div class="top-nav-actions">
           <a class="btn btn-ghost" href="login.html">Log in</a>
-          <a class="btn btn-primary magnetic" href="payment.html?tier=pro&amp;amount=99" data-magnetic>
+          <a class="btn btn-primary magnetic" href="payment.html?tier=pro&amp;amount=79" data-magnetic>
             <span class="magnetic-inner" style="display:inline-flex;align-items:center;gap:6px;">
               Buy for Mac
               <span class="material-symbols-outlined icon-arrow" style="font-size:16px;">arrow_forward</span>
@@ -92,19 +92,65 @@
         <h1 class="hero-title">Every meeting, <em>remembered for you.</em></h1>
 
         <p class="hero-sub">
-          Minutely listens quietly on your Mac, transcribes every word, and hands you what matters the moment your call ends. Nothing is uploaded, ever. One purchase, yours forever.
+          Minutely starts by itself, stays silent in the call, and turns every meeting into a searchable transcript and a summary that knows your team. Transcription runs free on your Mac. One purchase, yours forever.
         </p>
 
         <div class="hero-cta" data-magnetic>
-          <a class="btn btn-primary btn-xl magnetic" href="payment.html?tier=pro&amp;amount=99" data-magnetic>
+          <a class="btn btn-lilac btn-xl magnetic" href="payment.html?tier=pro&amp;amount=79" data-magnetic>
             <span class="magnetic-inner" style="display:inline-flex;align-items:center;gap:8px;">
-              Buy for Mac — $99
+              Buy for Mac — $79
               <span class="material-symbols-outlined icon-arrow">arrow_forward</span>
             </span>
           </a>
         </div>
 
-        <p class="hero-microcopy">One-time purchase. Free updates forever. Works with Teams, Zoom, and Google Meet on macOS 13+.</p>
+        <p class="hero-microcopy">One-time purchase. Free updates forever. Works with Teams, Zoom, Meet, screen recordings, and any video file on macOS 13+.</p>
+      </div>
+    </section>
+
+    <!-- ============ LOGO MARQUEE (supported apps) ============ -->
+    <section class="logo-marquee" aria-label="Works with">
+      <div class="logo-marquee-track">
+        <div class="logo-marquee-set" aria-hidden="false">
+          <span class="logo-marquee-item"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.625 8.127q-.55 0-1.025-.205-.475-.205-.832-.563-.358-.357-.563-.832Q18 6.053 18 5.502q0-.54.205-1.02t.563-.837q.357-.358.832-.563.474-.205 1.025-.205.54 0 1.02.205t.837.563q.358.357.563.837.205.48.205 1.02 0 .55-.205 1.025-.205.475-.563.832-.357.358-.837.563-.48.205-1.02.205zm0-3.75q-.469 0-.797.328-.328.328-.328.797 0 .469.328.797.328.328.797.328.469 0 .797-.328.328-.328.328-.797 0-.469-.328-.797-.328-.328-.797-.328zM24 10.002v5.578q0 .774-.293 1.46-.293.685-.803 1.194-.51.51-1.195.803-.686.293-1.459.293-.445 0-.908-.105-.463-.106-.85-.329-.293.95-.855 1.729-.563.78-1.319 1.336-.756.557-1.67.861-.914.305-1.898.305-1.148 0-2.162-.398-1.014-.399-1.805-1.102-.79-.703-1.312-1.664t-.674-2.086h-5.8q-.411 0-.704-.293T0 16.881V6.873q0-.41.293-.703t.703-.293h8.59q-.34-.715-.34-1.5 0-.727.275-1.365.276-.639.75-1.114.475-.474 1.114-.75.638-.275 1.365-.275t1.365.275q.639.276 1.114.75.474.475.75 1.114.275.638.275 1.365t-.275 1.365q-.276.639-.75 1.113-.475.475-1.114.75-.638.276-1.365.276-.188 0-.375-.024-.188-.023-.375-.058v1.078h10.875q.469 0 .797.328.328.328.328.797zM12.75 2.373q-.41 0-.78.158-.368.158-.638.434-.27.275-.428.639-.158.363-.158.773 0 .41.158.78.159.368.428.638.27.27.639.428.369.158.779.158.41 0 .773-.158.364-.159.64-.428.274-.27.433-.639.158-.369.158-.779 0-.41-.158-.773-.159-.364-.434-.64-.275-.275-.639-.433-.363-.158-.773-.158zM6.937 9.814h2.25V7.94H2.814v1.875h2.25v6h1.875zm10.313 7.313v-6.75H12v6.504q0 .41-.293.703t-.703.293H8.309q.152.809.556 1.5.405.691.985 1.19.58.497 1.318.779.738.281 1.582.281.926 0 1.746-.352.82-.351 1.436-.966.615-.616.966-1.43.352-.815.352-1.752zm5.25-1.547v-5.203h-3.75v6.855q.305.305.691.452.387.146.809.146.469 0 .879-.176.41-.175.715-.48.304-.305.48-.715t.176-.879Z"/></svg>
+            <span class="logo-marquee-label">Teams</span>
+          </span>
+          <span class="logo-marquee-item"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.033 14.649H.743a.74.74 0 0 1-.686-.458.74.74 0 0 1 .16-.808L3.19 10.41H1.06A1.06 1.06 0 0 1 0 9.35h3.957c.301 0 .57.18.686.458a.74.74 0 0 1-.161.808L1.51 13.59h2.464c.585 0 1.06.475 1.06 1.06zM24 11.338c0-1.14-.927-2.066-2.066-2.066-.61 0-1.158.265-1.537.686a2.061 2.061 0 0 0-1.536-.686c-1.14 0-2.066.926-2.066 2.066v3.311a1.06 1.06 0 0 0 1.06-1.06v-2.251a1.004 1.004 0 0 1 2.013 0v2.251c0 .586.474 1.06 1.06 1.06v-3.311a1.004 1.004 0 0 1 2.012 0v2.251c0 .586.475 1.06 1.06 1.06zM16.265 12a2.728 2.728 0 1 1-5.457 0 2.728 2.728 0 0 1 5.457 0zm-1.06 0a1.669 1.669 0 1 0-3.338 0 1.669 1.669 0 0 0 3.338 0zm-4.82 0a2.728 2.728 0 1 1-5.458 0 2.728 2.728 0 0 1 5.457 0zm-1.06 0a1.669 1.669 0 1 0-3.338 0 1.669 1.669 0 0 0 3.338 0z"/></svg>
+            <span class="logo-marquee-label">Zoom</span>
+          </span>
+          <span class="logo-marquee-item"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.53 2.13 0 7.75h5.53zm.398 0v5.62h7.608v3.65l5.47-4.45c-.014-1.22.031-2.25-.025-3.46-.148-1.09-1.287-1.47-2.236-1.36zM23.1 4.32c-.802.295-1.358.995-2.047 1.49-2.506 2.05-4.982 4.12-7.468 6.19 3.025 2.59 6.04 5.18 9.065 7.76 1.218.671 1.428-.814 1.328-1.64v-13a.828.828 0 0 0-.877-.825zM.038 8.15v7.7h5.53v-7.7zm13.577 8.1H6.008v5.62c3.864-.006 7.737.011 11.58-.009 1.02-.07 1.618-1.12 1.468-2.07v-2.51l-5.47-4.68v3.65zm-13.577 0c.02 1.44-.041 2.88.033 4.31.162.948 1.158 1.43 2.047 1.31h3.464v-5.62z"/></svg>
+            <span class="logo-marquee-label">Google Meet</span>
+          </span>
+          <span class="logo-marquee-item"><span class="material-symbols-outlined">screen_record</span>
+            <span class="logo-marquee-label">Screen Recording</span>
+          </span>
+          <span class="logo-marquee-item"><span class="material-symbols-outlined">upload_file</span>
+            <span class="logo-marquee-label">Any video file</span>
+          </span>
+          <span class="logo-marquee-item"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            <span class="logo-marquee-label">YouTube</span>
+          </span>
+        </div>
+        <div class="logo-marquee-set" aria-hidden="true">
+          <span class="logo-marquee-item"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.625 8.127q-.55 0-1.025-.205-.475-.205-.832-.563-.358-.357-.563-.832Q18 6.053 18 5.502q0-.54.205-1.02t.563-.837q.357-.358.832-.563.474-.205 1.025-.205.54 0 1.02.205t.837.563q.358.357.563.837.205.48.205 1.02 0 .55-.205 1.025-.205.475-.563.832-.357.358-.837.563-.48.205-1.02.205zm0-3.75q-.469 0-.797.328-.328.328-.328.797 0 .469.328.797.328.328.797.328.469 0 .797-.328.328-.328.328-.797 0-.469-.328-.797-.328-.328-.797-.328zM24 10.002v5.578q0 .774-.293 1.46-.293.685-.803 1.194-.51.51-1.195.803-.686.293-1.459.293-.445 0-.908-.105-.463-.106-.85-.329-.293.95-.855 1.729-.563.78-1.319 1.336-.756.557-1.67.861-.914.305-1.898.305-1.148 0-2.162-.398-1.014-.399-1.805-1.102-.79-.703-1.312-1.664t-.674-2.086h-5.8q-.411 0-.704-.293T0 16.881V6.873q0-.41.293-.703t.703-.293h8.59q-.34-.715-.34-1.5 0-.727.275-1.365.276-.639.75-1.114.475-.474 1.114-.75.638-.275 1.365-.275t1.365.275q.639.276 1.114.75.474.475.75 1.114.275.638.275 1.365t-.275 1.365q-.276.639-.75 1.113-.475.475-1.114.75-.638.276-1.365.276-.188 0-.375-.024-.188-.023-.375-.058v1.078h10.875q.469 0 .797.328.328.328.328.797zM12.75 2.373q-.41 0-.78.158-.368.158-.638.434-.27.275-.428.639-.158.363-.158.773 0 .41.158.78.159.368.428.638.27.27.639.428.369.158.779.158.41 0 .773-.158.364-.159.64-.428.274-.27.433-.639.158-.369.158-.779 0-.41-.158-.773-.159-.364-.434-.64-.275-.275-.639-.433-.363-.158-.773-.158zM6.937 9.814h2.25V7.94H2.814v1.875h2.25v6h1.875zm10.313 7.313v-6.75H12v6.504q0 .41-.293.703t-.703.293H8.309q.152.809.556 1.5.405.691.985 1.19.58.497 1.318.779.738.281 1.582.281.926 0 1.746-.352.82-.351 1.436-.966.615-.616.966-1.43.352-.815.352-1.752zm5.25-1.547v-5.203h-3.75v6.855q.305.305.691.452.387.146.809.146.469 0 .879-.176.41-.175.715-.48.304-.305.48-.715t.176-.879Z"/></svg>
+            <span class="logo-marquee-label">Teams</span>
+          </span>
+          <span class="logo-marquee-item"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.033 14.649H.743a.74.74 0 0 1-.686-.458.74.74 0 0 1 .16-.808L3.19 10.41H1.06A1.06 1.06 0 0 1 0 9.35h3.957c.301 0 .57.18.686.458a.74.74 0 0 1-.161.808L1.51 13.59h2.464c.585 0 1.06.475 1.06 1.06zM24 11.338c0-1.14-.927-2.066-2.066-2.066-.61 0-1.158.265-1.537.686a2.061 2.061 0 0 0-1.536-.686c-1.14 0-2.066.926-2.066 2.066v3.311a1.06 1.06 0 0 0 1.06-1.06v-2.251a1.004 1.004 0 0 1 2.013 0v2.251c0 .586.474 1.06 1.06 1.06v-3.311a1.004 1.004 0 0 1 2.012 0v2.251c0 .586.475 1.06 1.06 1.06zM16.265 12a2.728 2.728 0 1 1-5.457 0 2.728 2.728 0 0 1 5.457 0zm-1.06 0a1.669 1.669 0 1 0-3.338 0 1.669 1.669 0 0 0 3.338 0zm-4.82 0a2.728 2.728 0 1 1-5.458 0 2.728 2.728 0 0 1 5.457 0zm-1.06 0a1.669 1.669 0 1 0-3.338 0 1.669 1.669 0 0 0 3.338 0z"/></svg>
+            <span class="logo-marquee-label">Zoom</span>
+          </span>
+          <span class="logo-marquee-item"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.53 2.13 0 7.75h5.53zm.398 0v5.62h7.608v3.65l5.47-4.45c-.014-1.22.031-2.25-.025-3.46-.148-1.09-1.287-1.47-2.236-1.36zM23.1 4.32c-.802.295-1.358.995-2.047 1.49-2.506 2.05-4.982 4.12-7.468 6.19 3.025 2.59 6.04 5.18 9.065 7.76 1.218.671 1.428-.814 1.328-1.64v-13a.828.828 0 0 0-.877-.825zM.038 8.15v7.7h5.53v-7.7zm13.577 8.1H6.008v5.62c3.864-.006 7.737.011 11.58-.009 1.02-.07 1.618-1.12 1.468-2.07v-2.51l-5.47-4.68v3.65zm-13.577 0c.02 1.44-.041 2.88.033 4.31.162.948 1.158 1.43 2.047 1.31h3.464v-5.62z"/></svg>
+            <span class="logo-marquee-label">Google Meet</span>
+          </span>
+          <span class="logo-marquee-item"><span class="material-symbols-outlined">screen_record</span>
+            <span class="logo-marquee-label">Screen Recording</span>
+          </span>
+          <span class="logo-marquee-item"><span class="material-symbols-outlined">upload_file</span>
+            <span class="logo-marquee-label">Any video file</span>
+          </span>
+          <span class="logo-marquee-item"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            <span class="logo-marquee-label">YouTube</span>
+          </span>
+        </div>
       </div>
     </section>
 
@@ -114,15 +160,15 @@
         <ul class="value-list">
           <li class="value-item">
             <span class="value-item-icon"><span class="material-symbols-outlined">encrypted</span></span>
-            <span><strong>Stay invisible on every call</strong> — no bot ever joins.</span>
+            <span><strong>Nothing joins your call</strong> — no bot, no banner, no one to approve.</span>
           </li>
           <li class="value-item">
             <span class="value-item-icon"><span class="material-symbols-outlined">visibility_off</span></span>
-            <span><strong>Keep every recording on your Mac</strong> — nothing is uploaded, ever.</span>
+            <span><strong>Nothing leaves your Mac</strong> — free local transcripts, speaker ID, even local AI.</span>
           </li>
           <li class="value-item">
             <span class="value-item-icon"><span class="material-symbols-outlined">search</span></span>
-            <span><strong>Find any moment in seconds</strong> — search, or just ask in plain English.</span>
+            <span><strong>Nothing gets forgotten</strong> — search every word, or just ask in plain English.</span>
           </li>
         </ul>
       </div>
@@ -139,59 +185,60 @@
           <article class="walkthrough-card" data-reveal-scroll>
             <span class="walkthrough-card-num">01 · BEFORE</span>
             <h3>Detects your meetings</h3>
-            <p>Minutely reads your calendar and gets ready the moment a Teams, Zoom, or Google Meet call starts. You never click record.</p>
+            <p>Minutely spots a Teams, Zoom, or Meet call the moment you join and starts recording by itself. It stops when you leave. You never click record.</p>
           </article>
           <article class="walkthrough-card" data-reveal-scroll>
             <span class="walkthrough-card-num">02 · DURING</span>
             <h3>Transcribes live</h3>
-            <p>Whisper runs on your Mac's Neural Engine. Words appear with speaker labels in real time — nothing leaves your device.</p>
+            <p>Whisper runs on your Mac, free, with speakers told apart automatically. No bot, no banner — nobody in the call has to approve anything.</p>
           </article>
           <article class="walkthrough-card" data-reveal-scroll>
             <span class="walkthrough-card-num">03 · AFTER</span>
             <h3>Summarises everything</h3>
-            <p>A short summary, chapter markers, and action items appear the moment the call ends. Every past meeting is searchable from the same place.</p>
+            <p>A summary built from the transcript, speaker names, roles, and your own context. Replay the video with the text scrolling along, and search every past meeting.</p>
           </article>
         </div>
       </div>
     </section>
 
     <!-- ============ FEATURES (6) ============ -->
+    <!-- TODO demo video: general UI overview + synchronised video replay / summary autoscroll (place under "Watch it back, in sync") -->
     <section class="features" id="features" aria-label="Features">
       <div class="container">
         <span class="eyebrow">Features</span>
-        <h2 class="section-title">What's inside.</h2>
-        <p class="section-lead">Everything you need to record, read, and revisit a meeting — and a few things you didn't know you needed.</p>
+        <h2 class="section-title">Built around how meetings really go.</h2>
+        <p class="section-lead">Capture it without effort, keep it private, and get answers that fit your team.</p>
 
         <div class="features-grid">
           <article class="feature-card spotlight" data-reveal-scroll>
             <div class="feature-icon"><span class="material-symbols-outlined">fiber_manual_record</span></div>
-            <h3>Automatic recording</h3>
-            <p>Starts the moment you join — no bot, no extra click, nothing to remember. Works with Teams, Zoom, and Google Meet.</p>
+            <h3>Hands-free capture</h3>
+            <p>Starts when you join a Teams, Zoom, or Meet call and stops when you leave. Also records any window or your whole screen, and takes a folder of old recordings or any video file.</p>
+          </article>
+          <article class="feature-card spotlight" data-reveal-scroll>
+            <div class="feature-icon"><span class="material-symbols-outlined">visibility_off</span></div>
+            <h3>Invisible by design</h3>
+            <p>No bot in the call, no &ldquo;recording&rdquo; banner, no confirmation from participants. Silent for everyone but you.</p>
           </article>
           <article class="feature-card spotlight" data-reveal-scroll>
             <div class="feature-icon"><span class="material-symbols-outlined">subtitles</span></div>
-            <h3>Transcription &amp; speakers</h3>
-            <p>Every word, transcribed on-device with Whisper and labelled by speaker. Rename someone once, and Minutely remembers them in every meeting after.</p>
+            <h3>Free, private transcripts</h3>
+            <p>Whisper transcribes on your Mac with no per-minute fees, and speakers are told apart automatically from the audio. Nothing is uploaded.</p>
+          </article>
+          <article class="feature-card spotlight" data-reveal-scroll>
+            <div class="feature-icon"><span class="material-symbols-outlined">sync</span></div>
+            <h3>Watch it back, in sync</h3>
+            <p>Play the video and the transcript scrolls along with it. Click any line to jump to that moment.</p>
           </article>
           <article class="feature-card spotlight" data-reveal-scroll>
             <div class="feature-icon"><span class="material-symbols-outlined">auto_awesome</span></div>
-            <h3>Summaries &amp; chapters</h3>
-            <p>A clean summary and chapter markers are waiting the second you hang up. Don't love it? Regenerate with one click, any time.</p>
+            <h3>Summaries that know your team</h3>
+            <p>Name speakers once and give them roles. Summaries use the transcript, names, roles, and your own context, with a visual overview and action items. You control the prompt, structure, and speaker tagging. Use your own key, or run a local LLM offline. 5 AI summaries a day included.</p>
           </article>
           <article class="feature-card spotlight" data-reveal-scroll>
-            <div class="feature-icon"><span class="material-symbols-outlined">manage_search</span></div>
-            <h3>Catalog, search &amp; ask</h3>
-            <p>Every meeting you've ever recorded, instantly searchable. Ask a question in plain English and jump straight to the moment it was said.</p>
-          </article>
-          <article class="feature-card spotlight" data-reveal-scroll>
-            <div class="feature-icon"><span class="material-symbols-outlined">tune</span></div>
-            <h3>Prompt presets &amp; your own AI</h3>
-            <p>Start from a built-in summary style, or bring any OpenAI-compatible key. Same workflow, whichever model you trust.</p>
-          </article>
-          <article class="feature-card spotlight" data-reveal-scroll>
-            <div class="feature-icon"><span class="material-symbols-outlined">memory</span></div>
-            <h3>Local LLM support</h3>
-            <p>Run Llama, Mistral, or Phi entirely on-device. No key, no cloud, no internet — full speed on Apple Silicon.</p>
+            <div class="feature-icon"><span class="material-symbols-outlined">share</span></div>
+            <h3>Share &amp; find anything</h3>
+            <p>Share a summary and @mention people so they can ask questions. Copy it into email or Slack in one click. Search every word of every transcript and summary.</p>
           </article>
         </div>
       </div>
@@ -267,7 +314,7 @@
       <div class="container">
         <span class="eyebrow">Pricing</span>
         <h2 class="section-title">One price. <em>Yours forever.</em></h2>
-        <p class="section-lead">Pay once per tier, get every future update. No subscriptions, ever.</p>
+        <p class="section-lead">Free local transcription, one-time price, every future update. No subscriptions, ever.</p>
 
         <div class="pricing-grid">
           <article class="price-card spotlight" data-reveal-scroll>
@@ -275,16 +322,17 @@
             <p class="price-tagline">For working solo, one Mac at a time.</p>
             <div class="price-amount-wrap">
               <span class="price-currency">$</span>
-              <span class="price-amount tabular">49</span>
+              <span class="price-amount tabular">29</span>
             </div>
             <p class="price-period">one-time · 1 Mac</p>
             <ul class="price-features">
-              <li>Auto-recording on Teams, Zoom, and Meet</li>
-              <li>Local transcription</li>
-              <li>Summary the moment the call ends</li>
+              <li>Auto start/stop on Teams, Zoom, and Meet</li>
+              <li>Screen recording and any video file</li>
+              <li>Free local transcription and speaker ID</li>
+              <li>5 AI summaries a day</li>
               <li>1 Mac, 1 user</li>
             </ul>
-            <a class="btn btn-outline btn-block magnetic" href="payment.html?tier=personal&amp;amount=49" data-magnetic>
+            <a class="btn btn-outline btn-block magnetic" href="payment.html?tier=personal&amp;amount=29" data-magnetic>
               <span class="magnetic-inner">Buy Personal</span>
             </a>
           </article>
@@ -295,16 +343,17 @@
             <p class="price-tagline">For people who live in back-to-back calls.</p>
             <div class="price-amount-wrap">
               <span class="price-currency">$</span>
-              <span class="price-amount tabular">99</span>
+              <span class="price-amount tabular">79</span>
             </div>
             <p class="price-period">one-time · 1 Mac</p>
             <ul class="price-features">
               <li><strong>Everything</strong> in Personal</li>
-              <li>Speaker names in every meeting</li>
-              <li>Search across all past meetings and ask in plain English</li>
-              <li>Built-in summary presets and your own AI key</li>
+              <li>Speaker names and roles in every meeting</li>
+              <li>Synced video and auto-scrolling transcript</li>
+              <li>Custom prompts, structure, and local LLM</li>
+              <li>Search every transcript and summary</li>
             </ul>
-            <a class="btn btn-primary btn-block magnetic" href="payment.html?tier=pro&amp;amount=99" data-magnetic>
+            <a class="btn btn-primary btn-block magnetic" href="payment.html?tier=pro&amp;amount=79" data-magnetic>
               <span class="magnetic-inner">Buy Pro</span>
             </a>
           </article>
@@ -319,8 +368,8 @@
             <p class="price-period">one-time · 5 seats</p>
             <ul class="price-features">
               <li><strong>Everything</strong> in Pro</li>
-              <li>Shared meeting catalog</li>
-              <li>Shared summary presets</li>
+              <li>Shareable summaries with @mentions and questions</li>
+              <li>Shared meeting catalog and prompt presets</li>
               <li>Priority email support</li>
             </ul>
             <a class="btn btn-outline btn-block magnetic" href="payment.html?tier=team&amp;amount=249" data-magnetic>

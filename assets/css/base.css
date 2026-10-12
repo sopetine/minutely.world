@@ -306,15 +306,12 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
    visible on every scroll, not a one-time hero moment. Sized up ~15%
    to correct for Instrument Serif's smaller optical size next to the
    30px mark and the surrounding Inter nav links. */
-.top-nav-logo span {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.15em;
-  background: linear-gradient(120deg, var(--color-brand) 0%, #C084FC 50%, var(--color-brand) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+.top-nav-logo > span:not(.logo-mark) {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -0.005em;
+  color: var(--color-ink);
 }
 
 .top-nav-logo .logo-mark {
@@ -322,7 +319,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   width: 30px;
   height: auto;
   aspect-ratio: 850 / 400;
-  color: var(--color-ink);
+  background: var(--color-ink);
+  -webkit-mask: url(../img/logo.svg) center / contain no-repeat;
+  mask: url(../img/logo.svg) center / contain no-repeat;
   flex-shrink: 0;
   transition: transform var(--dur-base) var(--ease-spring);
 }
@@ -421,6 +420,19 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 .btn-primary:hover::before { opacity: 1; }
 .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.btn-lilac {
+  background: var(--color-brand-soft);
+  color: var(--color-brand);
+  box-shadow: var(--shadow-md), 0 0 0 1px rgba(91, 91, 240, 0.18);
+}
+
+.btn-lilac:hover {
+  background: #E0E0FD;
+  color: var(--color-brand-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(91, 91, 240, 0.3);
+}
 
 .btn-brand {
   background: var(--color-brand);
