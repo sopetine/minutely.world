@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#5B5BF0">
 <title>Privacy — Minutely</title>
 <meta name="description" content="Your meetings stay on your Mac. Read Minutely's privacy policy.">
-<link rel="canonical" href="https://minutely.app/privacy.html">
+<link rel="canonical" href="https://minutely.world/privacy.html">
 
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,6 +19,19 @@
 <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/animations.css">
 <link rel="stylesheet" href="assets/css/home.css">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Minutely">
+  <meta property="og:title" content="Privacy — Minutely">
+  <meta property="og:description" content="Your meetings stay on your Mac. Read Minutely&#x27;s privacy policy.">
+  <meta property="og:url" content="https://minutely.world/privacy.html">
+  <meta property="og:image" content="https://minutely.world/assets/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Privacy — Minutely">
+  <meta name="twitter:description" content="Your meetings stay on your Mac. Read Minutely&#x27;s privacy policy.">
+  <meta name="twitter:image" content="https://minutely.world/assets/img/og.png">
+  <script src="assets/js/analytics.js" defer></script>
 </head>
 <body data-page="legal">
 
@@ -65,7 +78,7 @@
       <div class="legal-callout">
         <span class="material-symbols-outlined">shield_lock</span>
         <div>
-          <strong>The short version:</strong> audio, transcripts, and summaries are processed and stored on your Mac by default. Nothing leaves your device unless you opt in to a cloud AI provider. We don't even know you're using the app.
+          <strong>The short version:</strong> audio, transcripts, and summaries are processed and stored on your Mac by default. Nothing leaves your device unless you add your own key for a cloud AI provider — and then only transcript text. The app never phones home: we don't even know you're using it.
         </div>
       </div>
 
@@ -82,11 +95,14 @@
       <p>By default: <strong>nothing</strong>. If you choose to bring your own API key for cloud summarization, the prompt + transcript are sent to your chosen provider under their terms. Minutely does not proxy, log, or store these requests. You can flip the switch back at any time in Settings, and we'll never send anything unless you ask us to.</p>
 
       <h2>What we (the makers of Minutely) collect</h2>
+      <h3>From the app: nothing</h3>
       <ul>
-        <li>A licence key check on first launch (verifies your key is valid and tied to your Mac)</li>
-        <li>No telemetry, no analytics, no "improvement" programs</li>
-        <li>Crash reports are opt-in, off by default, and never include meeting content</li>
+        <li>Your licence key is verified offline, on your Mac</li>
+        <li>No telemetry, no analytics, no crash reporting, no "improvement" programs</li>
+        <li>If something breaks, you decide what — if anything — to email us</li>
       </ul>
+      <h3>From this website: anonymous visit counts</h3>
+      <p>minutely.world uses Vercel Web Analytics to count page views. It sets no cookies, doesn't identify you, and never records what you type into a form — checkout, sign-in, or waitlist fields are not sent anywhere.</p>
 
       <h2>Your data, your control</h2>
       <p>Uninstall Minutely and everything we ever touched on your Mac is gone — recordings, transcripts, summaries, prompt presets, speaker registry, settings. The encrypted local store is wiped. There is no cloud backup to delete because we never had one.</p>
@@ -98,7 +114,7 @@
       <p>If we change anything material, we'll surface it in the app on next launch and ask you to re-acknowledge before continuing. We will never silently expand what we collect.</p>
 
       <h2>Contact</h2>
-      <p>Questions? Email <a href="mailto:privacy@minutely.app">privacy@minutely.app</a> — a real person responds within one business day.</p>
+      <p>Questions? Email <a href="mailto:sopetine@gmail.com">sopetine@gmail.com</a> — a real person responds within one business day.</p>
     </div>
   </section>
 </main>

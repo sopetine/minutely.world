@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Minutely records your meetings on your Mac, transcribes them locally, and writes the summary for you. No bots, no cloud upload, no monthly fee.">
+  <meta name="description" content="Minutely records, transcribes and summarises your meetings on your Mac. No bot in the call, nothing uploaded, one-time price.">
   <meta name="theme-color" content="#5B5BF0">
   <title>Minutely — Local meeting notes for your Mac</title>
 
@@ -21,6 +21,21 @@
   <link rel="stylesheet" href="assets/css/summary.css">
 
   <link rel="preload" as="image" href="assets/video/hero-poster.webp" type="image/webp" fetchpriority="high">
+  <link rel="canonical" href="https://minutely.world/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Minutely">
+  <meta property="og:title" content="Minutely — Meeting notes that never leave your Mac">
+  <meta property="og:description" content="Minutely records, transcribes and summarises your meetings on your Mac. No bot in the call, nothing uploaded, one-time price.">
+  <meta property="og:url" content="https://minutely.world/">
+  <meta property="og:image" content="https://minutely.world/assets/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Minutely — Meeting notes that never leave your Mac">
+  <meta name="twitter:description" content="Minutely records, transcribes and summarises your meetings on your Mac. No bot in the call, nothing uploaded, one-time price.">
+  <meta name="twitter:image" content="https://minutely.world/assets/img/og.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Minutely", "operatingSystem": "macOS 13 or later (Apple Silicon)", "applicationCategory": "BusinessApplication", "description": "Minutely records, transcribes and summarises your meetings on your Mac. No bot in the call, nothing uploaded, one-time price.", "url": "https://minutely.world/", "offers": [{"@type": "Offer", "name": "Personal", "price": "29", "priceCurrency": "USD"}, {"@type": "Offer", "name": "Pro", "price": "79", "priceCurrency": "USD"}], "author": {"@type": "Person", "name": "Evgenii Sopetin", "sameAs": "https://www.linkedin.com/in/evgenii-sopetin-653868242/"}}</script>
+  <script src="assets/js/analytics.js" defer></script>
 </head>
 <body data-page="home" class="page-enter">
 
@@ -93,7 +108,7 @@
         <h1 class="hero-title">Every meeting, <em>remembered for you.</em></h1>
 
         <p class="hero-sub">
-          Minutely starts by itself, stays silent in the call, and turns every meeting into a searchable transcript and a summary that knows your team. Transcription runs free on your Mac. One purchase, yours forever.
+          Minutely starts by itself, stays invisible in the call, and turns every meeting into a searchable transcript and a summary written your way — your prompt, your speakers, your model. It all runs on your Mac. One purchase, yours forever.
         </p>
 
         <figure class="hero-video" data-hero-video data-reveal>
@@ -125,10 +140,9 @@
             <button type="button" class="summary-copy"><span class="material-symbols-outlined" aria-hidden="true">content_copy</span><span data-copy-label>Copy</span></button>
           </div>
           <div class="summary-body">
-            <div class="summary-scroll" data-lenis-prevent tabindex="0" aria-label="Summary, scrollable">
+            <div class="summary-scroll">
               <article class="app-summary" aria-label="Summary of a product marketing sync"></article>
             </div>
-            <span class="summary-scroll-hint" aria-hidden="true">Scroll<span class="material-symbols-outlined">keyboard_arrow_down</span></span>
             <button type="button" class="summary-toggle" aria-expanded="false"><span data-toggle-label>Show full summary</span><span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button>
           </div>
         </div>
@@ -187,18 +201,70 @@
       <div class="container">
         <ul class="value-list">
           <li class="value-item">
-            <span class="value-item-icon"><span class="material-symbols-outlined">encrypted</span></span>
-            <span><strong>Nothing joins your call</strong> — no bot, no banner, no one to approve.</span>
-          </li>
-          <li class="value-item">
             <span class="value-item-icon"><span class="material-symbols-outlined">visibility_off</span></span>
-            <span><strong>Nothing leaves your Mac</strong> — free local transcripts, speaker ID, even local AI.</span>
+            <span><strong>Invisible</strong> — no bot joins, no banner, no one to approve.</span>
           </li>
           <li class="value-item">
-            <span class="value-item-icon"><span class="material-symbols-outlined">search</span></span>
-            <span><strong>Nothing gets forgotten</strong> — search every word, or just ask in plain English.</span>
+            <span class="value-item-icon"><span class="material-symbols-outlined">encrypted</span></span>
+            <span><strong>Private</strong> — transcripts and speaker ID on your Mac. The AI can be local too.</span>
+          </li>
+          <li class="value-item">
+            <span class="value-item-icon"><span class="material-symbols-outlined">tune</span></span>
+            <span><strong>Yours to shape</strong> — your prompt, speaker roles, context, and model.</span>
+          </li>
+          <li class="value-item">
+            <span class="value-item-icon"><span class="material-symbols-outlined">all_inclusive</span></span>
+            <span><strong>Yours forever</strong> — one price, every update, no subscription.</span>
           </li>
         </ul>
+      </div>
+    </section>
+
+    <!-- ============ COMPARISON ============ -->
+    <section class="compare" id="compare" aria-label="How Minutely compares">
+      <div class="container">
+        <span class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Why it's different</span>
+        <h2 class="section-title">Meeting notes, without the trade-offs.</h2>
+        <p class="section-lead">Most AI note-takers either send a bot into your call or send your audio to their cloud. Minutely does neither.</p>
+
+        <div class="compare-table" role="table" aria-label="Minutely compared with bot note-takers and cloud AI note apps" data-reveal-scroll>
+          <div class="compare-row compare-head" role="row">
+            <span role="columnheader"><span class="sr-only">Question</span></span>
+            <span role="columnheader" class="compare-us">Minutely</span>
+            <span role="columnheader">Bot note-takers</span>
+            <span role="columnheader">Cloud AI note apps</span>
+          </div>
+          <div class="compare-row" role="row">
+            <span role="rowheader">A bot joins your call</span>
+            <span role="cell" class="compare-us" data-label="Minutely"><span class="compare-yes">No</span></span>
+            <span role="cell" data-label="Bot note-takers"><span class="compare-no">Yes</span></span>
+            <span role="cell" data-label="Cloud AI note apps">Usually not</span>
+          </div>
+          <div class="compare-row" role="row">
+            <span role="rowheader">Your audio leaves your Mac</span>
+            <span role="cell" class="compare-us" data-label="Minutely"><span class="compare-yes">Never</span></span>
+            <span role="cell" data-label="Bot note-takers"><span class="compare-no">Yes</span></span>
+            <span role="cell" data-label="Cloud AI note apps"><span class="compare-no">Yes</span></span>
+          </div>
+          <div class="compare-row" role="row">
+            <span role="rowheader">You write the summary prompt</span>
+            <span role="cell" class="compare-us" data-label="Minutely"><span class="compare-yes">Fully</span></span>
+            <span role="cell" data-label="Bot note-takers">Templates</span>
+            <span role="cell" data-label="Cloud AI note apps">Templates</span>
+          </div>
+          <div class="compare-row" role="row">
+            <span role="rowheader">Local model or your own key</span>
+            <span role="cell" class="compare-us" data-label="Minutely"><span class="compare-yes">Both</span></span>
+            <span role="cell" data-label="Bot note-takers"><span class="compare-no">No</span></span>
+            <span role="cell" data-label="Cloud AI note apps"><span class="compare-no">No</span></span>
+          </div>
+          <div class="compare-row" role="row">
+            <span role="rowheader">Pricing</span>
+            <span role="cell" class="compare-us" data-label="Minutely"><span class="compare-yes">One-time</span></span>
+            <span role="cell" data-label="Bot note-takers">Monthly</span>
+            <span role="cell" data-label="Cloud AI note apps">Monthly</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -213,19 +279,48 @@
           <article class="walkthrough-card" data-reveal-scroll>
             <span class="walkthrough-card-num">01 · BEFORE</span>
             <h3>Detects your meetings</h3>
-            <p>Minutely spots a Teams, Zoom, or Meet call the moment you join and starts recording by itself. It stops when you leave. You never click record.</p>
+            <p>Minutely spots a Teams, Zoom, or Meet call the moment you join and starts recording by itself. It stops when you leave.</p>
           </article>
           <article class="walkthrough-card" data-reveal-scroll>
             <span class="walkthrough-card-num">02 · DURING</span>
-            <h3>Transcribes live</h3>
-            <p>Whisper runs on your Mac, free, with speakers told apart automatically. No bot, no banner — nobody in the call has to approve anything.</p>
+            <h3>Records silently</h3>
+            <p>Screen and system audio are captured on your Mac. No bot, no banner — nobody in the call has to approve anything, and you never click record.</p>
           </article>
           <article class="walkthrough-card" data-reveal-scroll>
             <span class="walkthrough-card-num">03 · AFTER</span>
-            <h3>Summarises everything</h3>
-            <p>A summary built from the transcript, speaker names, roles, and your own context. Replay the video with the text scrolling along, and search every past meeting.</p>
+            <h3>Transcribes &amp; summarises</h3>
+            <p>Minutes after you hang up: a Whisper transcript with speakers told apart, then a summary built from it, speaker names and roles, and your own context. Replay it in sync and search every past meeting.</p>
           </article>
         </div>
+      </div>
+    </section>
+
+    <!-- ============ UNDER THE HOOD (architecture) ============ -->
+    <section class="arch" id="architecture" aria-label="How Minutely works under the hood">
+      <div class="container">
+        <span class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Under the hood</span>
+        <h2 class="section-title">Everything happens inside your Mac.</h2>
+        <p class="section-lead">Every step from the call to the summary runs on your own machine. There is exactly one optional way out — and you hold the key to it.</p>
+
+        <figure class="arch-figure" data-arch data-mode="local" data-reveal-scroll>
+          <div class="arch-toolbar">
+            <span class="arch-toolbar-label">Summaries written by</span>
+            <div class="arch-toggle" role="group" aria-label="Where summaries are written">
+              <button type="button" data-arch-mode="local" aria-pressed="true">Local model</button>
+              <button type="button" data-arch-mode="key" aria-pressed="false">Your own key</button>
+            </div>
+          </div>
+          <div class="arch-canvas"></div>
+          <figcaption class="arch-caption" data-arch-caption aria-live="polite">Hover or tap any step to see what it does.</figcaption>
+          <ul class="sr-only">
+            <li>Meeting detector notices a Teams, Zoom or Meet call and starts Capture.</li>
+            <li>Capture records screen and system audio into the local library on disk.</li>
+            <li>Whisper transcribes on your Mac; Speaker ID tells voices apart.</li>
+            <li>The summary engine combines the transcript, speaker names and roles, your prompt and your context.</li>
+            <li>The summary is written by a local model, or optionally by your own AI provider — only transcript text is sent, never audio.</li>
+            <li>The synced player and Search &amp; Ask read from the local library.</li>
+          </ul>
+        </figure>
       </div>
     </section>
 
@@ -260,77 +355,56 @@
           <article class="feature-card spotlight" data-reveal-scroll>
             <div class="feature-icon"><span class="material-symbols-outlined">auto_awesome</span></div>
             <h3>Summaries that know your team</h3>
-            <p>Name speakers once and give them roles. Summaries use the transcript, names, roles, and your own context, with a visual overview and action items. You control the prompt, structure, and speaker tagging. Use your own key, or run a local LLM offline. 5 AI summaries a day included.</p>
+            <p>Name speakers once and give them roles. Summaries use the transcript, names, roles, and your own context, with a visual overview and action items. You control the prompt, structure, and speaker tagging. Run a local LLM fully offline, or use your own API key.</p>
           </article>
           <article class="feature-card spotlight" data-reveal-scroll>
-            <div class="feature-icon"><span class="material-symbols-outlined">share</span></div>
-            <h3>Share &amp; find anything</h3>
-            <p>Share a summary and @mention people so they can ask questions. Copy it into email or Slack in one click. Search every word of every transcript and summary.</p>
+            <div class="feature-icon"><span class="material-symbols-outlined">manage_search</span></div>
+            <h3>Copy &amp; find anything</h3>
+            <p>Copy a summary into email or Slack in one click. Search every word of every transcript and summary, or ask a question in plain English and jump to the moment.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ============ REVIEWS ============ -->
-    <section class="reviews" id="reviews" aria-label="Reviews">
+    <!-- ============ WHO IT'S FOR ============ -->
+    <section class="personas" id="who" aria-label="Who it's for">
       <div class="container">
-        <span class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Reviews</span>
-        <h2 class="section-title">People who stopped re-explaining meetings.</h2>
-        <p class="section-lead">Minutely in the wild — unedited, from the places people actually talk about tools like this.</p>
+        <span class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Who it's for</span>
+        <h2 class="section-title">Built for people whose week is meetings.</h2>
+        <p class="section-lead">If you leave most calls with something to write up, Minutely writes the first draft.</p>
 
-        <div class="reviews-grid">
-          <article class="review-card spotlight" data-reveal-scroll>
-            <div class="review-source">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12c0 3.314 1.343 6.314 3.515 8.485l-2.286 2.286C.775 23.225 1.097 24 1.738 24H12c6.627 0 12-5.373 12-12S18.627 0 12 0Zm4.388 3.199c1.104 0 1.999.895 1.999 1.999 0 1.105-.895 2-1.999 2-.946 0-1.739-.657-1.947-1.539v.002c-1.147.162-2.032 1.15-2.032 2.341v.007c1.776.067 3.4.567 4.686 1.363.473-.363 1.064-.58 1.707-.58 1.547 0 2.802 1.254 2.802 2.802 0 1.117-.655 2.081-1.601 2.531-.088 3.256-3.637 5.876-7.997 5.876-4.361 0-7.905-2.617-7.998-5.87-.954-.447-1.614-1.415-1.614-2.538 0-1.548 1.255-2.802 2.803-2.802.645 0 1.239.218 1.712.585 1.275-.79 2.881-1.291 4.64-1.365v-.01c0-1.663 1.263-3.034 2.88-3.207.188-.911.993-1.595 1.959-1.595Zm-8.085 8.376c-.784 0-1.459.78-1.506 1.797-.047 1.016.64 1.429 1.426 1.429.786 0 1.371-.369 1.418-1.385.047-1.017-.553-1.841-1.338-1.841Zm7.406 0c-.786 0-1.385.824-1.338 1.841.047 1.017.634 1.385 1.418 1.385.785 0 1.473-.413 1.426-1.429-.046-1.017-.721-1.797-1.506-1.797Zm-3.703 4.013c-.974 0-1.907.048-2.77.135-.147.015-.241.168-.183.305.483 1.154 1.622 1.964 2.953 1.964 1.33 0 2.47-.81 2.953-1.964.057-.137-.037-.29-.184-.305-.863-.087-1.795-.135-2.769-.135Z"/></svg>
-              <span>Reddit</span>
+        <div class="personas-grid">
+          <article class="persona-card spotlight" data-reveal-scroll>
+            <div class="persona-head">
+              <span class="feature-icon" aria-hidden="true"><span class="material-symbols-outlined">query_stats</span></span>
+              <h3>Business Analyst</h3>
             </div>
-            <p class="review-quote">"No bot in the call, no 'let the recorder in' moment. It just remembers the meeting."</p>
-            <p class="review-author">u/pm_in_disguise</p>
+            <p class="persona-pain">Workshops move fast — the exact wording of a requirement gets lost by the time you write it up.</p>
+            <p class="persona-gain"><span class="persona-gain-label">With Minutely</span>The verbatim quote, every decision, and every open question, with timestamps to prove it.</p>
           </article>
-
-          <article class="review-card spotlight" data-reveal-scroll>
-            <div class="review-source">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12c0 3.314 1.343 6.314 3.515 8.485l-2.286 2.286C.775 23.225 1.097 24 1.738 24H12c6.627 0 12-5.373 12-12S18.627 0 12 0Zm4.388 3.199c1.104 0 1.999.895 1.999 1.999 0 1.105-.895 2-1.999 2-.946 0-1.739-.657-1.947-1.539v.002c-1.147.162-2.032 1.15-2.032 2.341v.007c1.776.067 3.4.567 4.686 1.363.473-.363 1.064-.58 1.707-.58 1.547 0 2.802 1.254 2.802 2.802 0 1.117-.655 2.081-1.601 2.531-.088 3.256-3.637 5.876-7.997 5.876-4.361 0-7.905-2.617-7.998-5.87-.954-.447-1.614-1.415-1.614-2.538 0-1.548 1.255-2.802 2.803-2.802.645 0 1.239.218 1.712.585 1.275-.79 2.881-1.291 4.64-1.365v-.01c0-1.663 1.263-3.034 2.88-3.207.188-.911.993-1.595 1.959-1.595Zm-8.085 8.376c-.784 0-1.459.78-1.506 1.797-.047 1.016.64 1.429 1.426 1.429.786 0 1.371-.369 1.418-1.385.047-1.017-.553-1.841-1.338-1.841Zm7.406 0c-.786 0-1.385.824-1.338 1.841.047 1.017.634 1.385 1.418 1.385.785 0 1.473-.413 1.426-1.429-.046-1.017-.721-1.797-1.506-1.797Zm-3.703 4.013c-.974 0-1.907.048-2.77.135-.147.015-.241.168-.183.305.483 1.154 1.622 1.964 2.953 1.964 1.33 0 2.47-.81 2.953-1.964.057-.137-.037-.29-.184-.305-.863-.087-1.795-.135-2.769-.135Z"/></svg>
-              <span>Reddit</span>
+          <article class="persona-card spotlight" data-reveal-scroll>
+            <div class="persona-head">
+              <span class="feature-icon" aria-hidden="true"><span class="material-symbols-outlined">view_kanban</span></span>
+              <h3>Product Manager</h3>
             </div>
-            <p class="review-quote">"Ran it on calls with 6+ people for a month — diarization held up, and renaming a speaker once actually sticks."</p>
-            <p class="review-author">u/backend_sarah</p>
+            <p class="persona-pain">Six syncs a day, and the decisions from the first one are gone by the last.</p>
+            <p class="persona-gain"><span class="persona-gain-label">With Minutely</span>A summary per call with decisions, owners, and deadlines — searchable weeks later.</p>
           </article>
-
-          <article class="review-card spotlight" data-reveal-scroll>
-            <div class="review-source">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/></svg>
-              <span>X</span>
+          <article class="persona-card spotlight" data-reveal-scroll>
+            <div class="persona-head">
+              <span class="feature-icon" aria-hidden="true"><span class="material-symbols-outlined">handshake</span></span>
+              <h3>Consultant</h3>
             </div>
-            <p class="review-quote">"no subscription, no bot joining my calls, transcribes locally on my mac. first 'ai meeting notes' thing that doesn't feel like a privacy trade."</p>
-            <p class="review-author">@foundertime</p>
+            <p class="persona-pain">Client calls where inviting a recording bot isn't an option.</p>
+            <p class="persona-gain"><span class="persona-gain-label">With Minutely</span>Nothing joins the call and nothing leaves your Mac, so client conversations stay yours.</p>
           </article>
-
-          <article class="review-card spotlight" data-reveal-scroll>
-            <div class="review-source">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/></svg>
-              <span>X</span>
+          <article class="persona-card spotlight" data-reveal-scroll>
+            <div class="persona-head">
+              <span class="feature-icon" aria-hidden="true"><span class="material-symbols-outlined">terminal</span></span>
+              <h3>Engineering Lead</h3>
             </div>
-            <p class="review-quote">"asked it what we decided about the pricing page — it pulled the exact timestamp from a call three weeks ago."</p>
-            <p class="review-author">@dev_marcus</p>
-          </article>
-
-          <article class="review-card spotlight" data-reveal-scroll>
-            <div class="review-source">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.604 8.4h-3.405V12h3.405c.995 0 1.801-.806 1.801-1.801 0-.993-.805-1.799-1.801-1.799zM12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm1.604 14.4h-3.405V18H7.801V6h5.804c2.319 0 4.2 1.88 4.2 4.199 0 2.321-1.881 4.201-4.201 4.201z"/></svg>
-              <span>Product Hunt</span>
-            </div>
-            <p class="review-quote">"Finally a meeting tool that doesn't need a bot in the call or my data in someone else's cloud."</p>
-            <p class="review-author">Elena R.</p>
-          </article>
-
-          <article class="review-card spotlight" data-reveal-scroll>
-            <div class="review-source">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.604 8.4h-3.405V12h3.405c.995 0 1.801-.806 1.801-1.801 0-.993-.805-1.799-1.801-1.799zM12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm1.604 14.4h-3.405V18H7.801V6h5.804c2.319 0 4.2 1.88 4.2 4.199 0 2.321-1.881 4.201-4.201 4.201z"/></svg>
-              <span>Product Hunt</span>
-            </div>
-            <p class="review-quote">"One-time price sealed it — tired of paying $20/mo for something this simple."</p>
-            <p class="review-author">Jonas K.</p>
+            <p class="persona-pain">Stand-ups and incident reviews where it matters who said what, and when.</p>
+            <p class="persona-gain"><span class="persona-gain-label">With Minutely</span>Speakers told apart and named once — ask “what did we agree on the rollback?” and jump to it.</p>
           </article>
         </div>
       </div>
@@ -343,7 +417,7 @@
         <h2 class="section-title">One price. <em>Yours forever.</em></h2>
         <p class="section-lead">Free local transcription, one-time price, every future update. No subscriptions, ever.</p>
 
-        <div class="pricing-grid">
+        <div class="pricing-grid pricing-grid-2">
           <article class="price-card spotlight" data-reveal-scroll>
             <h3>Personal</h3>
             <p class="price-tagline">For working solo, one Mac at a time.</p>
@@ -356,7 +430,7 @@
               <li>Auto start/stop on Teams, Zoom, and Meet</li>
               <li>Screen recording and any video file</li>
               <li>Free local transcription and speaker ID</li>
-              <li>5 AI summaries a day</li>
+              <li>AI summaries with a local model or your own key</li>
               <li>1 Mac, 1 user</li>
             </ul>
             <a class="btn btn-outline btn-block magnetic" href="payment.html?tier=personal&amp;amount=29" data-magnetic>
@@ -377,7 +451,7 @@
               <li><strong>Everything</strong> in Personal</li>
               <li>Speaker names and roles in every meeting</li>
               <li>Synced video and auto-scrolling transcript</li>
-              <li>Custom prompts, structure, and local LLM</li>
+              <li>Custom prompts and summary structure</li>
               <li>Search every transcript and summary</li>
             </ul>
             <a class="btn btn-primary btn-block magnetic" href="payment.html?tier=pro&amp;amount=79" data-magnetic>
@@ -385,43 +459,19 @@
             </a>
           </article>
 
-          <article class="price-card spotlight" data-reveal-scroll>
-            <h3>Team</h3>
-            <p class="price-tagline">For small teams that share a calendar.</p>
-            <div class="price-amount-wrap">
-              <span class="price-currency">$</span>
-              <span class="price-amount tabular">249</span>
-            </div>
-            <p class="price-period">one-time · 5 seats</p>
-            <ul class="price-features">
-              <li><strong>Everything</strong> in Pro</li>
-              <li>Shareable summaries with @mentions and questions</li>
-              <li>Shared meeting catalog and prompt presets</li>
-              <li>Priority email support</li>
-            </ul>
-            <a class="btn btn-outline btn-block magnetic" href="payment.html?tier=team&amp;amount=249" data-magnetic>
-              <span class="magnetic-inner">Buy Team</span>
-            </a>
-          </article>
-
-          <article class="price-card price-card-enterprise spotlight" data-reveal-scroll>
-            <h3>Enterprise</h3>
-            <p class="price-tagline">For organizations with their own security bar to clear.</p>
-            <div class="price-amount-wrap">
-              <span class="price-amount">Custom</span>
-            </div>
-            <p class="price-period">annual · volume seats</p>
-            <ul class="price-features">
-              <li>On-prem LLM and data residency</li>
-              <li>SSO, SCIM, and admin dashboard</li>
-              <li>Custom integrations</li>
-              <li>Named engineer &amp; SLA</li>
-            </ul>
-            <a class="btn btn-ghost btn-block magnetic" href="mailto:sales@minutely.app" data-magnetic>
-              <span class="magnetic-inner">Contact sales</span>
-            </a>
-          </article>
         </div>
+
+        <form class="team-waitlist" action="waitlist.html" method="get" data-waitlist data-reveal-scroll>
+          <div class="team-waitlist-copy">
+            <h3>Team plan <span class="team-waitlist-tag">Coming soon</span></h3>
+            <p>Coming: a shared meeting catalog, shared prompt presets, and @mentions. Leave your email and we'll write when it's ready.</p>
+          </div>
+          <div class="team-waitlist-field">
+            <label class="sr-only" for="waitlist-email">Work email</label>
+            <input id="waitlist-email" type="email" required placeholder="you@company.com" autocomplete="email">
+            <button class="btn btn-primary" type="submit">Join waitlist</button>
+          </div>
+        </form>
       </div>
     </section>
 
@@ -434,7 +484,7 @@
         <div class="faq-list">
           <details class="faq-item" data-reveal-scroll>
             <summary>Where does my audio go?</summary>
-            <div class="faq-item-body">Nowhere, by default. Transcription, summaries, and search all run on your Mac. The only thing that leaves your device is what you explicitly send to a cloud AI provider you set up yourself.</div>
+            <div class="faq-item-body">Nowhere, by default. Transcription, summaries, and search all run on your Mac. The only thing that can ever leave your device is transcript text you choose to send to an AI provider, with your own key. Audio never leaves.</div>
           </details>
           <details class="faq-item" data-reveal-scroll>
             <summary>Does Minutely need a bot to join my calls?</summary>
@@ -442,7 +492,7 @@
           </details>
           <details class="faq-item" data-reveal-scroll>
             <summary>Which platforms are supported?</summary>
-            <div class="faq-item-body">Microsoft Teams (including the new Teams 2.0), Zoom, and Google Meet. Anything that runs on macOS 13 or later works — Intel and Apple Silicon.</div>
+            <div class="faq-item-body">Microsoft Teams (including the new Teams 2.0), Zoom, and Google Meet — plus any window, your whole screen, or a video file. Minutely runs on Apple Silicon Macs with macOS 13 or later.</div>
           </details>
           <details class="faq-item" data-reveal-scroll>
             <summary>Can I use my own AI model?</summary>
@@ -453,9 +503,33 @@
             <div class="faq-item-body">No. Every tier is a single one-time purchase. All future updates are included — Minutely will never charge you again for the same Mac.</div>
           </details>
           <details class="faq-item" data-reveal-scroll>
-            <summary>I need more seats later — what do I do?</summary>
-            <div class="faq-item-body">Email us and we'll set you up — no need to repurchase. You only ever pay for the difference when you add seats.</div>
+            <summary>Is there a team plan?</summary>
+            <div class="faq-item-body">It's coming — a shared meeting catalog, shared prompt presets, and @mentions. <a href="#pricing">Join the waitlist</a> and we'll write when it's ready.</div>
           </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MAKER ============ -->
+    <section class="maker" id="maker" aria-label="Who makes Minutely">
+      <div class="container">
+        <div class="maker-card" data-reveal-scroll>
+          <div class="maker-photo">
+            <img src="assets/img/maker.webp" width="180" height="180" alt="Evgenii Sopetin" loading="lazy" decoding="async">
+          </div>
+          <div class="maker-body">
+            <span class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Made by</span>
+            <h2 class="maker-name">Evgenii Sopetin</h2>
+            <p class="maker-role">Business Analyst at EPAM Systems</p>
+            <p class="maker-story">My job is turning conversations into requirements, so I record and review a lot of meetings. I wanted notes I could trust without sending a bot into the call or my clients' words to someone else's cloud — so I built Minutely.</p>
+            <div class="maker-links">
+              <a class="btn btn-primary" href="https://www.linkedin.com/in/evgenii-sopetin-653868242/" target="_blank" rel="noopener me" data-track="maker_linkedin">
+                <svg class="maker-li" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z" fill="currentColor"/></svg>
+                Connect on LinkedIn
+              </a>
+              <a class="btn btn-outline" href="mailto:sopetine@gmail.com" data-track="maker_email">sopetine@gmail.com</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -488,7 +562,8 @@
         <div class="footer-col">
           <h4>Company</h4>
           <ul>
-            <li><a href="mailto:hello@minutely.app">Contact</a></li>
+            <li><a href="mailto:sopetine@gmail.com">Contact</a></li>
+            <li><a href="https://www.linkedin.com/in/evgenii-sopetin-653868242/" target="_blank" rel="noopener me">LinkedIn</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -500,7 +575,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 Minutely — built for people who hate re-explaining meetings.</span>
+        <span>© 2026 Minutely — built by <a class="footer-maker" href="https://www.linkedin.com/in/evgenii-sopetin-653868242/" target="_blank" rel="noopener me">Evgenii Sopetin</a> for people who hate re-explaining meetings.</span>
         <span class="badge">macOS 13+</span>
         <span>v1.4</span>
       </div>
@@ -515,6 +590,7 @@
   <script src="assets/js/hero-video.js" defer></script>
   <script src="assets/js/marked.min.js" defer></script>
   <script src="assets/js/summary-preview.js" defer></script>
+  <script src="assets/js/architecture.js" defer></script>
   <script type="module" src="assets/js/scroll.js"></script>
 </body>
 </html>

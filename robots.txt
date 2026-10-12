@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /login.html
 Disallow: /payment.html
+Disallow: /waitlist.html
 
-Sitemap: https://minutely.app/sitemap.xml
+Sitemap: https://minutely.world/sitemap.xml

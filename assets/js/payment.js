@@ -3,8 +3,7 @@
 
   const TIERS = {
     personal: { name: 'Personal', amount: 29,  meta: 'One-time · 1 Mac' },
-    pro:      { name: 'Pro',      amount: 79,  meta: 'One-time · 1 Mac' },
-    team:     { name: 'Team',     amount: 249, meta: 'One-time · 5 seats' }
+    pro:      { name: 'Pro',      amount: 79,  meta: 'One-time · 1 Mac' }
   };
 
   function readTierFromQuery() {
@@ -167,6 +166,7 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!validateCard()) return;
+      if (window.mtTrack) window.mtTrack('checkout_card', { tier: current });
       setBusy(payBtn, true, 'Verifying card…');
       await wait(1600);
       document.getElementById('payment-form-wrap').hidden = true;
@@ -189,6 +189,7 @@
       if (!ok) return;
 
       alertEl.hidden = true;
+      if (window.mtTrack) window.mtTrack('checkout_submit', { tier: current });
       setBusy(accountBtn, true, 'Creating your account…');
       await wait(4000);
       setBusy(accountBtn, true, 'Issuing licence key…');
@@ -200,6 +201,7 @@
         code: '504 Gateway Timeout · lic-eu-west-1'
       });
       setBusy(accountBtn, false, 'Try again');
+      if (window.mtTrack) window.mtTrack('checkout_error', { tier: current });
     });
   }
 

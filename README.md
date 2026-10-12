@@ -1,4 +1,4 @@
-# Minutely — Landing Page Prototype (v6)
+# Minutely — Landing Page Prototype (v7)
 
 Static, visual-only prototype of a fictional Mac app: auto-records Teams/Zoom
 calls, transcribes with speaker diarization, summarizes, and lets you search and
@@ -7,7 +7,33 @@ support.
 
 This is a portfolio / demand-validation artifact. No backend, no database, no
 real auth, no real payment processing. Login and Payment pages are UI-only
-mockups with zero network calls.
+mockups that send nothing — form values never leave the page.
+
+v7 changes (over v6):
+
+- **Credibility pass:** fabricated reviews replaced by "Who it's for" persona
+  cards; Intel, SSO/SCIM and Enterprise claims removed; "5 AI summaries a day"
+  removed; sharing/@mentions moved to a Team-plan waitlist; walkthrough now says
+  transcription happens after the call; the app's licence check is offline, so
+  the only path off the Mac is optional transcript text to your own AI key.
+- **Under the hood:** interactive architecture diagram
+  (`assets/js/architecture.js`) — one data model, wide + phone layouts, hover /
+  tap / keyboard tracing, "Local model / Your own key" toggle. Topology drafted
+  and validated with Archify first.
+- **Value proposition:** four pillars (Invisible, Private, Yours to shape, Yours
+  forever) and a comparison table against bot note-takers and cloud AI note apps.
+- **Pricing:** Personal $29 and Pro $79, plus a Team waitlist
+  (`waitlist.html`; the email is never sent anywhere).
+- **Maker note + footer credit** linking to LinkedIn; contact is sopetine@gmail.com.
+- **Analytics:** Vercel Web Analytics (`assets/js/analytics.js`). On Hobby only
+  pageviews are recorded, so funnels are encoded as paths: `/cv` and `/in`
+  (rewrites in `vercel.json`) for traffic source, `/payment/<tier>` via
+  `beforeSend`, and `/waitlist`. Custom events (scroll depth, sections, clicks,
+  video, FAQ, diagram, checkout) are wired for Pro. Owner opt-out:
+  `localStorage.setItem('va-disable', '1')`.
+- **Social:** OG/Twitter meta + `assets/img/og.png`, JSON-LD, canonicals and
+  sitemap on minutely.world.
+- **Fix:** the summary preview no longer traps the page scroll.
 
 v6 changes (over v5):
 

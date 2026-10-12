@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#5B5BF0">
+<meta name="robots" content="noindex">
+<title>You're on the list — Minutely</title>
+<meta name="description" content="You're on the Minutely Team plan waitlist.">
+<link rel="canonical" href="https://minutely.world/waitlist.html">
+
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+<link rel="stylesheet" href="assets/css/home.css">
+
+<style>
+  body { padding-bottom: 0; }
+  .nf {
+    min-height: calc(100vh - 96px);
+    display: grid; place-items: center;
+    padding: 32px;
+    background: var(--gradient-hero);
+  }
+  .nf-card {
+    text-align: center;
+    padding: 64px 48px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-xl);
+    max-width: 540px;
+    width: 100%;
+  }
+  .nf-check {
+    width: 64px; height: 64px; margin: 0 auto 16px;
+    display: grid; place-items: center;
+    border-radius: 50%;
+    background: var(--color-brand-soft);
+    color: var(--color-brand);
+  }
+  .nf-check .material-symbols-outlined { font-size: 30px; }
+  .nf-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.65rem, 3.3vw, 2.5rem);
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .nf-body { color: var(--color-ink-muted); margin-bottom: 32px; font-size: 1.0625rem; }
+  .nf-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .nf-ctas .btn { display: inline-flex; align-items: center; gap: 8px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .nf-card { animation: nfIn 600ms var(--ease-out-expo) backwards; }
+    @keyframes nfIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+  }
+</style>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Minutely">
+  <meta property="og:title" content="You&#x27;re on the list — Minutely">
+  <meta property="og:description" content="You&#x27;re on the Minutely Team plan waitlist.">
+  <meta property="og:url" content="https://minutely.world/waitlist.html">
+  <meta property="og:image" content="https://minutely.world/assets/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="You&#x27;re on the list — Minutely">
+  <meta name="twitter:description" content="You&#x27;re on the Minutely Team plan waitlist.">
+  <meta name="twitter:image" content="https://minutely.world/assets/img/og.png">
+  <script src="assets/js/analytics.js" defer></script>
+</head>
+<body data-page="home">
+
+  <a class="sr-only" href="#main">Skip to main content</a>
+
+  <header class="top-nav" role="banner">
+    <div class="top-nav-inner">
+      <div class="top-nav-shell">
+        <a class="top-nav-logo" href="index.html" aria-label="Minutely home">
+          <span class="logo-mark" aria-hidden="true"></span>
+          <span>Minutely</span>
+        </a>
+        <nav class="top-nav-links" aria-label="Primary">
+          <a class="top-nav-link" href="index.html#hero">Overview</a>
+          <a class="top-nav-link" href="index.html#features">Features</a>
+          <a class="top-nav-link" href="index.html#pricing">Pricing</a>
+          <a class="top-nav-link" href="index.html#faq">FAQ</a>
+          <a class="top-nav-link" href="docs.html">Docs</a>
+        </nav>
+        <div class="top-nav-actions">
+          <a class="btn btn-primary magnetic" href="payment.html?tier=pro&amp;amount=79" data-magnetic>
+            <span class="magnetic-inner" style="display:inline-flex;align-items:center;gap:6px;">
+              Buy for Mac
+              <span class="material-symbols-outlined icon-arrow" style="font-size:16px;">arrow_forward</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="nf" aria-label="Waitlist confirmation">
+      <div class="nf-card">
+        <div class="nf-check" aria-hidden="true"><span class="material-symbols-outlined">mark_email_read</span></div>
+        <h1 class="nf-title">You're on the list.</h1>
+        <p class="nf-body">We'll write once when the Team plan is ready — a shared meeting catalog, shared prompt presets, and @mentions. No newsletter, no follow-ups.</p>
+        <div class="nf-ctas">
+          <a class="btn btn-primary" href="index.html#pricing">
+            <span class="material-symbols-outlined">arrow_back</span> Back to pricing
+          </a>
+          <a class="btn btn-outline" href="index.html#architecture">
+            <span class="material-symbols-outlined">hub</span> See how it works
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <script src="assets/js/init.js" defer></script>
+  <script src="assets/js/magnetic.js" defer></script>
+  <script src="assets/js/cursor.js" defer></script>
+  <script type="module" src="assets/js/scroll.js"></script>
+</body>
+</html>

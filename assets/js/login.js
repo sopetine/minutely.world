@@ -19,6 +19,7 @@
       if (!ok) return;
 
       alertEl.hidden = true;
+      if (window.mtTrack) window.mtTrack('signin_attempt');
       setBusy(btn, true, 'Signing in…');
       await wait(4500);
       setBusy(btn, true, 'Still connecting…');
@@ -30,6 +31,7 @@
         code: '504 Gateway Timeout · auth-eu-west-1'
       });
       setBusy(btn, false, 'Try again');
+      if (window.mtTrack) window.mtTrack('signin_error');
     });
   }
 
