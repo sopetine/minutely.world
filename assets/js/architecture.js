@@ -73,36 +73,42 @@
       outLabel: (B) => [B.provider.cx - 10, 446, 'end']
     },
     narrow: {
-      w: 160, h: 56, ch: 104, ow: 166, view: [380, 1110], mac: [4, 16, 372, 1004],
+      // Two-column snake so both columns fill from the top.
+      w: 160, h: 56, ch: 104, ow: 166, view: [380, 816], mac: [4, 16, 372, 708],
       pos: {
-        detector: [12, 40], capture: [12, 116], library: [12, 192], prep: [12, 268], lang: [12, 344], whisper: [12, 420],
-        diar: [12, 496], aligned: [12, 626], summary: [12, 776], md: [12, 860], search: [12, 940],
-        player: [208, 192], names: [208, 626], prompt: [208, 700], llm: [208, 860],
-        provider: [208, 1040]
+        detector: [14, 40], capture: [206, 40],
+        player: [14, 120], library: [206, 120],
+        lang: [14, 200], prep: [206, 200],
+        whisper: [14, 280], diar: [206, 280],
+        names: [14, 408], aligned: [206, 408],
+        prompt: [14, 488], summary: [206, 488],
+        llm: [14, 572], md: [206, 572],
+        search: [206, 652],
+        provider: [14, 746]
       },
       edges(B) {
-        const gx = (B.summary.r + B.llm.x) / 2;
-        const out = B.summary.y + 42;
+        const gy = (B.summary.b + B.llm.y) / 2, sx = B.summary.x + 30, gx = (B.llm.r + B.md.x) / 2;
         return [
-          ['detector', 'capture', down(B.detector, B.capture), 'main'],
+          ['detector', 'capture', right(B.detector, B.capture), 'main'],
           ['capture', 'library', down(B.capture, B.library), 'main'],
+          ['library', 'player', left(B.library, B.player), ''],
           ['library', 'prep', down(B.library, B.prep), 'main'],
-          ['prep', 'lang', down(B.prep, B.lang), 'main'],
+          ['prep', 'lang', left(B.prep, B.lang), 'main'],
           ['lang', 'whisper', down(B.lang, B.whisper), 'main'],
-          ['whisper', 'diar', down(B.whisper, B.diar), 'main'],
+          ['whisper', 'diar', right(B.whisper, B.diar), 'main'],
           ['diar', 'aligned', down(B.diar, B.aligned), 'main'],
           ['aligned', 'summary', down(B.aligned, B.summary), 'main'],
-          ['library', 'player', right(B.library, B.player), ''],
           ['names', 'prompt', down(B.names, B.prompt), ''],
-          ['prompt', 'summary', [[B.prompt.cx, B.prompt.b], [B.prompt.cx, B.summary.y + 14], [B.summary.r, B.summary.y + 14]], ''],
+          ['prompt', 'summary', right(B.prompt, B.summary), ''],
           ['summary', 'md', down(B.summary, B.md), 'main'],
           ['md', 'search', down(B.md, B.search), ''],
-          ['summary', 'llm', [[B.summary.r, out], [gx, out], [gx, B.llm.cy], [B.llm.x, B.llm.cy]], 'model'],
-          ['summary', 'provider', [[B.summary.r, out], [gx, out], [gx, B.provider.cy], [B.provider.x, B.provider.cy]], 'byok']
+          ['summary', 'llm', [[sx, B.summary.b], [sx, gy], [B.llm.cx, gy], [B.llm.cx, B.llm.y]], 'model'],
+          ['summary', 'provider', [[sx, B.summary.b], [sx, gy], [gx, gy], [gx, B.provider.cy], [B.provider.r, B.provider.cy]], 'byok']
         ];
       },
-      junction: (B) => [(B.summary.r + B.llm.x) / 2, B.summary.y + 42],
-      outLabel: (B) => [B.provider.x, 1020 + 12, 'start']
+      junction: (B) => [(B.llm.r + B.md.x) / 2, (B.summary.b + B.llm.y) / 2],
+      junctionLabel: (jx, jy) => [jx - 9, jy - 5, 'end'],
+      outLabel: (B) => [B.provider.x, 736, 'start']
     }
   };
 
@@ -140,7 +146,8 @@
     // "either / or" junction where the two model paths split.
     const [jx, jy] = L.junction(B);
     el('circle', { cx: jx, cy: jy, r: 4.5, class: 'arch-junction' }, svg);
-    el('text', { x: jx + 9, y: jy - 8, class: 'arch-junction-label' }, svg).textContent = 'either';
+    const jl = L.junctionLabel ? L.junctionLabel(jx, jy) : [jx + 9, jy - 8, 'start'];
+    el('text', { x: jl[0], y: jl[1], 'text-anchor': jl[2], class: 'arch-junction-label' }, svg).textContent = 'either';
 
     const [lx, ly, anchor] = L.outLabel(B);
     el('text', { x: lx, y: ly, class: 'arch-edge-label', 'text-anchor': anchor }, svg).textContent = 'text only · your key';
